@@ -18,6 +18,54 @@ try {
     exit;
 }
 
+session_start();
+$userType = $_SESSION['user_type'] ?? null;
+$userDepartment = null;
+
+if ($userType === 'dept_head' && isset($_SESSION['user_id'])) {
+    $userId = $_SESSION['user_id'];
+    // Fetch department_id directly from the users table
+    $stmt_user = $conn->prepare("SELECT department_id FROM users WHERE user_id = ?");
+    if ($stmt_user) {
+        $stmt_user->bind_param("i", $userId);
+        $stmt_user->execute();
+        $result_user = $stmt_user->get_result();
+        if ($result_user->num_rows > 0) {
+            $row_user = $result_user->fetch_assoc();
+            $departmentId = $row_user['department_id'];
+            // Now fetch the department name from the departments table
+            $stmt_dept_name = $conn->prepare("SELECT department_name FROM departments WHERE department_id = ?");
+            if ($stmt_dept_name) {
+                $stmt_dept_name->bind_param("i", $departmentId);
+                $stmt_dept_name->execute();
+                $result_dept_name = $stmt_dept_name->get_result();
+                if ($result_dept_name->num_rows > 0) {
+                    $row_dept_name = $result_dept_name->fetch_assoc();
+                    $userDepartment = $row_dept_name['department_name'];
+                    error_log("Logged in dept_head's department: " . $userDepartment); // Debugging
+                }
+                $stmt_dept_name->close();
+            }
+        }
+        $stmt_user->close();
+    }
+} else {
+    error_log("User is not a department head or user ID is not set (based on user_type)."); // Debugging
+}
+
+$whereClauseGadget = "WHERE gd.status_id = 3";
+$whereClauseBag = "WHERE bd.status_id = 3";
+$filterApplied = false;
+
+if ($userType === 'dept_head' && $userDepartment) {
+    $whereClauseGadget .= " AND d_mrep.department_name = ?";
+    $whereClauseBag .= " AND d_mrep.department_name = ?";
+    $filterApplied = true;
+    error_log("Department filter will be applied: " . $userDepartment); // Debugging
+} else {
+    error_log("Department filter will NOT be applied (based on user_type)."); // Debugging
+}
+
 $sql = "(SELECT
     gd.dist_id,
     i.box_no,
@@ -54,7 +102,7 @@ LEFT JOIN employees m ON gd.mrep_id = m.emp_rec_id
 LEFT JOIN departments d_stud ON s.department_id = d_stud.department_id
 LEFT JOIN departments d_emp ON e.department_id = d_emp.department_id
 LEFT JOIN departments d_mrep ON m.department_id = d_mrep.department_id
-WHERE gd.status_id = 3)
+$whereClauseGadget)
 
 UNION ALL
 
@@ -94,17 +142,44 @@ LEFT JOIN employees m ON bd.mrep_id = m.emp_rec_id
 LEFT JOIN departments d_stud ON s.department_id = d_stud.department_id
 LEFT JOIN departments d_emp ON e.department_id = d_emp.department_id
 LEFT JOIN departments d_mrep ON m.department_id = d_mrep.department_id
-WHERE bd.status_id = 3)
+$whereClauseBag)
 
 ORDER BY received_date DESC";
 
-$result = $conn->query($sql);
+$stmt = $conn->prepare($sql);
 $records = [];
 
-if ($result && $result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $records[] = $row;
+if ($stmt) {
+    if ($filterApplied) {
+        $stmt->bind_param("ss", $userDepartment, $userDepartment);
+        error_log("Bound department parameters: " . $userDepartment); // Debugging
     }
+
+    $result = $stmt->execute();
+
+    if ($result) {
+        $res = $stmt->get_result();
+        if ($res) {
+            while ($row = $res->fetch_assoc()) {
+                $records[] = $row;
+            }
+            $res->free();
+        } else if ($stmt->errno) {
+            error_log("Error getting result: " . $stmt->error); // Debugging
+            echo json_encode(['error' => 'Error getting result: ' . $stmt->error]);
+            exit;
+        }
+    } else if ($stmt->errno) {
+        error_log("Error executing query: " . $stmt->error); // Debugging
+        echo json_encode(['error' => 'Error executing query: ' . $stmt->error]);
+        exit;
+    }
+
+    $stmt->close();
+} else if ($conn->errno) {
+    error_log("Error preparing statement: " . $conn->error); // Debugging
+    echo json_encode(['error' => 'Error preparing statement: ' . $conn->error]);
+    exit;
 }
 
 $conn->close();

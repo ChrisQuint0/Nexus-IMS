@@ -419,16 +419,36 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function fetchBorrowerRecords() {
-    // Fetch data from the PHP script
-    fetch("../php/get_borrower_records.php")
+    // Fetch the user's role
+    fetch("../php/get_users.php")
       .then((response) => response.json())
-      .then((data) => {
-        allBorrowerRecords = data;
-        populateTable(allBorrowerRecords);
+      .then((userData) => {
+        const userRole = userData.role;
+
+        // Construct the fetch URL, potentially including the role
+        let fetchUrl = "../php/get_borrower_records.php";
+
+        // Fetch data from the PHP script, now potentially passing the role
+        fetch(fetchUrl, {
+          method: "POST", // Or GET depending on how you want to handle it
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ role: userRole }), // Send the role in the request body
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            allBorrowerRecords = data;
+            populateTable(allBorrowerRecords);
+          })
+          .catch((error) => {
+            console.error("Error fetching borrower records:", error);
+            alert("Failed to load borrower records.");
+          });
       })
       .catch((error) => {
-        console.error("Error fetching borrower records:", error);
-        alert("Failed to load borrower records.");
+        console.error("Error fetching user role:", error);
+        alert("Failed to determine user role.");
       });
   }
 
