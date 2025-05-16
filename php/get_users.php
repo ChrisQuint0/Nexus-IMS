@@ -1,54 +1,51 @@
 <?php
-// Database credentials (replace with your actual credentials)
+// Database credentials
 include 'db_connection_header.php';
 
-// Check connection
-if ($conn->connect_error) {
-    http_response_code(500);
-    echo json_encode(['success' => false, 'error' => 'Database connection failed: ' . $conn->connect_error]);
+// Start the session
+session_start();
+
+// Check if the user is logged in (you'll need to adapt this based on your session management)
+if (!isset($_SESSION['user_id'])) {
+    http_response_code(401); // Unauthorized
+    echo json_encode(['success' => false, 'error' => 'User not logged in']);
     exit();
 }
 
-// Prepare the SQL query with ordering
+// Get the current user's ID from the session
+$currentUserId = $_SESSION['user_id'];
+
+// Prepare the SQL query to fetch the current user's role
 $sql = "
     SELECT
-        u.user_id,
-        u.username,
-        u.email,
-        u.password,
-        u.user_type AS role,
-        d.department_name AS department,
-        u.account_status
+        u.user_type AS role
     FROM users u
-    INNER JOIN departments d ON u.department_id = d.department_id
-    ORDER BY
-        CASE u.user_type
-            WHEN 'admin' THEN 1
-            WHEN 'dept_head' THEN 2
-            ELSE 3
-        END,
-        CASE u.account_status
-            WHEN 'deactivated' THEN 2
-            ELSE 1
-        END,
-        u.username;
+    WHERE u.user_id = ?
 ";
 
-$result = $conn->query($sql);
-
-if ($result) {
-    $users = array();
-    while ($row = $result->fetch_assoc()) {
-        $users[] = $row;
-    }
-    $result->free();
-
-    header('Content-Type: application/json');
-    echo json_encode(['success' => true, 'users' => $users]);
-} else {
+$stmt = $conn->prepare($sql);
+if ($stmt === false) {
     http_response_code(500);
-    echo json_encode(['success' => false, 'error' => 'Error executing query: ' . $conn->error]);
+    echo json_encode(['success' => false, 'error' => 'Error preparing statement: ' . $conn->error]);
+    $conn->close();
+    exit();
 }
 
+$stmt->bind_param("i", $currentUserId);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result && $result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    header('Content-Type: application/json');
+    echo json_encode(['role' => $row['role']]);
+} else {
+    http_response_code(404); // Not Found
+    echo json_encode(['success' => false, 'error' => 'User not found or role not defined']);
+}
+
+if ($stmt) {
+    $stmt->close();
+}
 $conn->close();
 ?>
