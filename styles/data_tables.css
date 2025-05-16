@@ -68,7 +68,8 @@ body {
 .item-table-searchbar,
 .dept-table-searchbar,
 .cat-table-searchbar,
-.status-table-searchbar {
+.status-table-searchbar,
+.bag-item-table-searchbar {
   height: 30px;
   width: 200px;
   margin-left: 20px;
@@ -82,7 +83,8 @@ body {
 .items-table-header-section,
 .depts-table-header-section,
 .cats-table-header-section,
-.status-table-header-section {
+.status-table-header-section,
+.bag-items-table-header-section {
   display: flex;
 
   align-items: center;
@@ -94,7 +96,8 @@ body {
 .item-heading,
 .dept-heading,
 .cat-heading,
-.status-heading {
+.status-heading,
+.bag-item-heading {
   color: #0e2f56;
 }
 
@@ -103,7 +106,8 @@ body {
 .items-table-section,
 .depts-table-section,
 .cats-table-section,
-.statuses-table-section {
+.statuses-table-section,
+.bag-items-table-section {
   margin-left: 70px;
   margin-top: 50px;
 }
@@ -162,4 +166,31 @@ body {
 
 .styled-table tbody tr:last-child td:last-child {
   border-bottom-right-radius: 10px;
+}
+
+.nav-container {
+  display: flex;
+  gap: 10px; /* Adjust spacing between buttons */
+  padding-left: 0;
+}
+
+.nav-btn {
+  background-color: white;
+  color: #0e2f56;
+  border: 1px solid #0e2f56;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-btn:hover {
+  background-color: #d3e0f0; /* A lighter shade of your accent for hover */
+}
+
+.nav-btn.active {
+  background-color: #0e2f56;
+  color: white;
+  border: none;
 }

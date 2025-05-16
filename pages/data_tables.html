@@ -18,6 +18,23 @@
               style="width: 70px; height: 70px"
             />
             <h1 class="heading">Data Tables</h1>
+            <div
+              class="nav-container"
+              style="
+                padding: 20px;
+                padding-left: 0px;
+                margin-left: auto;
+                margin-right: 50px;
+              "
+            >
+              <button class="nav-btn nav-stud-btn active">Student</button>
+              <button class="nav-btn nav-emp-btn">Employees</button>
+              <button class="nav-btn nav-items-btn">Items</button>
+              <button class="nav-btn nav-bag-items-btn">Bag Items</button>
+              <button class="nav-btn nav-dept-btn">Departments</button>
+              <button class="nav-btn nav-cat-btn">Categories</button>
+              <button class="nav-btn nav-statuses-btn">Statuses</button>
+            </div>
           </div>
           <div class="subheader-section">
             <p class="subheading">A view of all editable tables</p>
@@ -107,6 +124,38 @@
           </div>
           <div class="item-data-table-container styled-table-container">
             <table class="item-data-table styled-table" id="item-data-table">
+              <thead>
+                <tr>
+                  <th>Action</th>
+                  <th>Box Number</th>
+                  <th>Item Name</th>
+                  <th>Serial Number</th>
+                  <th>Purchase Date</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="bag-items-table-section" id="bag-items-table-section">
+          <div class="bag-items-table-header-section">
+            <div class="bag-item-heading"><h1>Bag Items</h1></div>
+            <div class="search-bar-section">
+              <p class="search-bar-label">Search</p>
+              <input
+                type="text"
+                id="bag-item-table-searchbar"
+                class="bag-item-table-searchbar"
+                placeholder="⌕ Search Item"
+              />
+            </div>
+          </div>
+          <div class="bag-item-data-table-container styled-table-container">
+            <table
+              class="bag-item-data-table styled-table"
+              id="bag-item-data-table"
+            >
               <thead>
                 <tr>
                   <th>Action</th>
@@ -321,5 +370,6 @@
     <script src="../scripts/display_depts.js"></script>
     <script src="../scripts/display_categories.js"></script>
     <script src="../scripts/display_statuses.js"></script>
+    <script src="../scripts/display_bag_items.js"></script>
   </body>
 </html>
