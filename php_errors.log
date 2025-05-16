@@ -1,0 +1,527 @@
+[15-May-2025 08:25:44 Europe/Berlin] Starting PDF generation process
+[15-May-2025 08:25:44 Europe/Berlin] TCPDF library found
+[15-May-2025 08:25:44 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 08:25:44 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 08:25:44 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 08:29:32 Europe/Berlin] Starting PDF generation process
+[15-May-2025 08:29:32 Europe/Berlin] TCPDF library found
+[15-May-2025 08:29:32 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 08:29:32 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 08:29:32 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 08:29:32 Europe/Berlin] Writing HTML content to PDF
+[15-May-2025 08:29:32 Europe/Berlin] Generating PDF output
+[15-May-2025 08:29:32 Europe/Berlin] PDF generation complete. Output size: 29839 bytes
+[15-May-2025 08:31:03 Europe/Berlin] Starting PDF generation process
+[15-May-2025 08:31:03 Europe/Berlin] TCPDF library found
+[15-May-2025 08:31:03 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 08:31:03 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 08:31:03 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 08:31:03 Europe/Berlin] Writing HTML content to PDF
+[15-May-2025 08:31:03 Europe/Berlin] Generating PDF output
+[15-May-2025 08:31:03 Europe/Berlin] PDF generation complete. Output size: 29839 bytes
+[15-May-2025 08:34:32 Europe/Berlin] Processing uploaded photo
+[15-May-2025 08:34:32 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 08:34:32 Europe/Berlin] Starting PDF generation process
+[15-May-2025 08:34:32 Europe/Berlin] TCPDF library found
+[15-May-2025 08:34:32 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 08:34:32 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 08:34:32 Europe/Berlin] Processing borrower photo
+[15-May-2025 08:34:32 Europe/Berlin] Photo added to PDF
+[15-May-2025 08:34:32 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 08:34:32 Europe/Berlin] Writing HTML content to PDF
+[15-May-2025 08:34:32 Europe/Berlin] Generating PDF output
+[15-May-2025 08:34:32 Europe/Berlin] PDF generation complete. Output size: 74466 bytes
+[15-May-2025 08:35:51 Europe/Berlin] Processing uploaded photo
+[15-May-2025 08:35:51 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 08:35:51 Europe/Berlin] Starting PDF generation process
+[15-May-2025 08:35:51 Europe/Berlin] TCPDF library found
+[15-May-2025 08:35:51 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 08:35:51 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 08:35:51 Europe/Berlin] Processing borrower photo
+[15-May-2025 08:35:51 Europe/Berlin] Photo added to PDF
+[15-May-2025 08:35:51 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 08:35:51 Europe/Berlin] Writing HTML content to PDF
+[15-May-2025 08:35:51 Europe/Berlin] Generating PDF output
+[15-May-2025 08:35:51 Europe/Berlin] PDF generation complete. Output size: 74482 bytes
+[15-May-2025 08:36:04 Europe/Berlin] Processing uploaded photo
+[15-May-2025 08:36:04 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 08:36:04 Europe/Berlin] Starting PDF generation process
+[15-May-2025 08:36:04 Europe/Berlin] TCPDF library found
+[15-May-2025 08:36:05 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 08:36:05 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 08:36:05 Europe/Berlin] Processing borrower photo
+[15-May-2025 08:36:05 Europe/Berlin] Photo added to PDF
+[15-May-2025 08:36:05 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 08:36:05 Europe/Berlin] Writing HTML content to PDF
+[15-May-2025 08:36:05 Europe/Berlin] Generating PDF output
+[15-May-2025 08:36:05 Europe/Berlin] PDF generation complete. Output size: 74479 bytes
+[15-May-2025 08:36:19 Europe/Berlin] Processing uploaded photo
+[15-May-2025 08:36:19 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 08:36:19 Europe/Berlin] Starting PDF generation process
+[15-May-2025 08:36:19 Europe/Berlin] TCPDF library found
+[15-May-2025 08:36:19 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 08:36:19 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 08:36:19 Europe/Berlin] Processing borrower photo
+[15-May-2025 08:36:19 Europe/Berlin] Photo added to PDF
+[15-May-2025 08:36:19 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 08:36:19 Europe/Berlin] Writing HTML content to PDF
+[15-May-2025 08:36:19 Europe/Berlin] Generating PDF output
+[15-May-2025 08:36:19 Europe/Berlin] PDF generation complete. Output size: 74478 bytes
+[15-May-2025 08:36:34 Europe/Berlin] Processing uploaded photo
+[15-May-2025 08:36:34 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 08:36:34 Europe/Berlin] Starting PDF generation process
+[15-May-2025 08:36:34 Europe/Berlin] TCPDF library found
+[15-May-2025 08:36:34 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 08:36:34 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 08:36:34 Europe/Berlin] Processing borrower photo
+[15-May-2025 08:36:34 Europe/Berlin] Photo added to PDF
+[15-May-2025 08:36:34 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 08:36:34 Europe/Berlin] Writing HTML content to PDF
+[15-May-2025 08:36:34 Europe/Berlin] Generating PDF output
+[15-May-2025 08:36:34 Europe/Berlin] PDF generation complete. Output size: 74478 bytes
+[15-May-2025 08:36:42 Europe/Berlin] Processing uploaded photo
+[15-May-2025 08:36:42 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 08:36:42 Europe/Berlin] Starting PDF generation process
+[15-May-2025 08:36:42 Europe/Berlin] TCPDF library found
+[15-May-2025 08:36:42 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 08:36:42 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 08:36:42 Europe/Berlin] Processing borrower photo
+[15-May-2025 08:36:42 Europe/Berlin] Photo added to PDF
+[15-May-2025 08:36:42 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 08:36:42 Europe/Berlin] Writing HTML content to PDF
+[15-May-2025 08:36:42 Europe/Berlin] Generating PDF output
+[15-May-2025 08:36:42 Europe/Berlin] PDF generation complete. Output size: 74466 bytes
+[15-May-2025 08:36:54 Europe/Berlin] Processing uploaded photo
+[15-May-2025 08:36:54 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 08:36:54 Europe/Berlin] Starting PDF generation process
+[15-May-2025 08:36:54 Europe/Berlin] TCPDF library found
+[15-May-2025 08:36:54 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 08:36:54 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 08:36:54 Europe/Berlin] Processing borrower photo
+[15-May-2025 08:36:54 Europe/Berlin] Photo added to PDF
+[15-May-2025 08:36:54 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 08:36:55 Europe/Berlin] Writing HTML content to PDF
+[15-May-2025 08:36:55 Europe/Berlin] Generating PDF output
+[15-May-2025 08:36:55 Europe/Berlin] PDF generation complete. Output size: 74478 bytes
+[15-May-2025 08:37:11 Europe/Berlin] Processing uploaded photo
+[15-May-2025 08:37:11 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 08:37:11 Europe/Berlin] Starting PDF generation process
+[15-May-2025 08:37:11 Europe/Berlin] TCPDF library found
+[15-May-2025 08:37:11 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 08:37:11 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 08:37:11 Europe/Berlin] Processing borrower photo
+[15-May-2025 08:37:11 Europe/Berlin] Photo added to PDF
+[15-May-2025 08:37:11 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 08:37:11 Europe/Berlin] Writing HTML content to PDF
+[15-May-2025 08:37:11 Europe/Berlin] Generating PDF output
+[15-May-2025 08:37:11 Europe/Berlin] PDF generation complete. Output size: 74482 bytes
+[15-May-2025 08:38:05 Europe/Berlin] Processing uploaded photo
+[15-May-2025 08:38:05 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 08:38:05 Europe/Berlin] Starting PDF generation process
+[15-May-2025 08:38:05 Europe/Berlin] TCPDF library found
+[15-May-2025 08:38:05 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 08:38:05 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 08:38:05 Europe/Berlin] Processing borrower photo
+[15-May-2025 08:38:05 Europe/Berlin] Photo added to PDF
+[15-May-2025 08:38:05 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 08:38:05 Europe/Berlin] Writing HTML content to PDF
+[15-May-2025 08:38:05 Europe/Berlin] Generating PDF output
+[15-May-2025 08:38:05 Europe/Berlin] PDF generation complete. Output size: 75742 bytes
+[15-May-2025 08:38:22 Europe/Berlin] Processing uploaded photo
+[15-May-2025 08:38:22 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 08:38:22 Europe/Berlin] Starting PDF generation process
+[15-May-2025 08:38:22 Europe/Berlin] TCPDF library found
+[15-May-2025 08:38:22 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 08:38:22 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 08:38:22 Europe/Berlin] Processing borrower photo
+[15-May-2025 08:38:22 Europe/Berlin] Photo added to PDF
+[15-May-2025 08:38:22 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 08:38:22 Europe/Berlin] Writing HTML content to PDF
+[15-May-2025 08:38:22 Europe/Berlin] Generating PDF output
+[15-May-2025 08:38:22 Europe/Berlin] PDF generation complete. Output size: 75730 bytes
+[15-May-2025 08:38:43 Europe/Berlin] Processing uploaded photo
+[15-May-2025 08:38:43 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 08:38:43 Europe/Berlin] Starting PDF generation process
+[15-May-2025 08:38:43 Europe/Berlin] TCPDF library found
+[15-May-2025 08:38:43 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 08:38:43 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 08:38:43 Europe/Berlin] Processing borrower photo
+[15-May-2025 08:38:43 Europe/Berlin] Photo added to PDF
+[15-May-2025 08:38:43 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 08:38:43 Europe/Berlin] Writing HTML content to PDF
+[15-May-2025 08:38:43 Europe/Berlin] Generating PDF output
+[15-May-2025 08:38:43 Europe/Berlin] PDF generation complete. Output size: 72218 bytes
+[15-May-2025 08:44:28 Europe/Berlin] Processing uploaded photo
+[15-May-2025 08:44:28 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 08:44:28 Europe/Berlin] Starting PDF generation process
+[15-May-2025 08:44:28 Europe/Berlin] TCPDF library found
+[15-May-2025 08:44:28 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 08:44:28 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 08:44:28 Europe/Berlin] Processing borrower photo
+[15-May-2025 08:44:28 Europe/Berlin] Photo added to PDF with dimensions: 35mm x 26.25mm
+[15-May-2025 08:44:28 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 08:44:28 Europe/Berlin] Generating PDF output
+[15-May-2025 08:44:28 Europe/Berlin] PDF generation complete. Output size: 73952 bytes
+[15-May-2025 08:47:12 Europe/Berlin] Processing uploaded photo
+[15-May-2025 08:47:12 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 08:47:12 Europe/Berlin] Starting PDF generation process
+[15-May-2025 08:47:12 Europe/Berlin] TCPDF library found
+[15-May-2025 08:47:12 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 08:47:12 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 08:47:12 Europe/Berlin] Processing borrower photo
+[15-May-2025 08:47:12 Europe/Berlin] Photo added to PDF with dimensions: 35mm x 26.25mm
+[15-May-2025 08:47:12 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 08:47:12 Europe/Berlin] Generating PDF output
+[15-May-2025 08:47:12 Europe/Berlin] PDF generation complete. Output size: 73962 bytes
+[15-May-2025 08:48:17 Europe/Berlin] Processing uploaded photo
+[15-May-2025 08:48:17 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 08:48:17 Europe/Berlin] Starting PDF generation process
+[15-May-2025 08:48:17 Europe/Berlin] TCPDF library found
+[15-May-2025 08:48:17 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 08:48:17 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 08:48:17 Europe/Berlin] Processing borrower photo
+[15-May-2025 08:48:17 Europe/Berlin] Photo added to PDF with dimensions: 35mm x 26.25mm
+[15-May-2025 08:48:17 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 08:48:17 Europe/Berlin] Generating PDF output
+[15-May-2025 08:48:17 Europe/Berlin] PDF generation complete. Output size: 74290 bytes
+[15-May-2025 08:51:01 Europe/Berlin] Processing uploaded photo
+[15-May-2025 08:51:01 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 08:51:01 Europe/Berlin] Starting PDF generation process
+[15-May-2025 08:51:01 Europe/Berlin] TCPDF library found
+[15-May-2025 08:51:01 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 08:51:01 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 08:51:01 Europe/Berlin] Processing borrower photo
+[15-May-2025 08:51:01 Europe/Berlin] Photo added to PDF with dimensions: 35mm x 26.25mm
+[15-May-2025 08:51:01 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 08:54:52 Europe/Berlin] Processing uploaded photo
+[15-May-2025 08:54:52 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 08:54:52 Europe/Berlin] Starting PDF generation process
+[15-May-2025 08:54:52 Europe/Berlin] TCPDF library found
+[15-May-2025 08:54:52 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 08:54:52 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 08:54:52 Europe/Berlin] Processing borrower photo
+[15-May-2025 08:54:52 Europe/Berlin] Photo added to PDF with dimensions: 35mm x 26.25mm
+[15-May-2025 08:54:52 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 08:58:52 Europe/Berlin] Processing uploaded photo
+[15-May-2025 08:58:52 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 08:58:52 Europe/Berlin] Starting PDF generation process
+[15-May-2025 08:58:52 Europe/Berlin] TCPDF library found
+[15-May-2025 08:58:52 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 08:58:52 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 08:58:52 Europe/Berlin] Processing borrower photo
+[15-May-2025 08:58:52 Europe/Berlin] Photo added to PDF with dimensions: 35mm x 26.25mm
+[15-May-2025 08:58:52 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 09:00:00 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:00:00 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:00:00 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:00:00 Europe/Berlin] TCPDF library found
+[15-May-2025 09:00:00 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:00:00 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:00:00 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:00:00 Europe/Berlin] Photo added to PDF with dimensions: 35mm x 26.25mm
+[15-May-2025 09:00:00 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 09:00:26 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:00:26 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:00:26 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:00:26 Europe/Berlin] TCPDF library found
+[15-May-2025 09:00:26 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:00:26 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:00:26 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:00:26 Europe/Berlin] Photo added to PDF with dimensions: 35mm x 26.25mm
+[15-May-2025 09:00:26 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 09:04:14 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:04:14 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:04:14 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:04:14 Europe/Berlin] TCPDF library not found at: 
+[15-May-2025 09:04:14 Europe/Berlin] PDF Generation Error in detail: TCPDF library not found
+#0 C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\php\generate_receipt.php(70): generateICTReceipt(Array)
+#1 {main}
+[15-May-2025 09:04:14 Europe/Berlin] Receipt generation error: PDF Generation Error: TCPDF library not found
+#0 C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\php\generate_receipt.php(70): generateICTReceipt(Array)
+#1 {main}
+[15-May-2025 09:04:26 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:04:26 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:04:26 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:04:26 Europe/Berlin] TCPDF library found
+[15-May-2025 09:04:26 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:04:26 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:04:26 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:04:26 Europe/Berlin] Photo added to PDF with dimensions: 35mm x 26.25mm
+[15-May-2025 09:04:26 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 09:04:57 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:04:57 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:04:57 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:04:57 Europe/Berlin] TCPDF library found
+[15-May-2025 09:04:57 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:04:57 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:04:57 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:04:57 Europe/Berlin] Photo added to PDF with dimensions: 35mm x 26.25mm
+[15-May-2025 09:04:57 Europe/Berlin] Checking logo at: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\assets\images\plp-logo.png
+[15-May-2025 09:07:38 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:07:38 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:07:38 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:07:38 Europe/Berlin] TCPDF library found
+[15-May-2025 09:07:38 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:07:38 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:07:38 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:07:39 Europe/Berlin] Photo added to PDF with dimensions: 35mm x 26.25mm
+[15-May-2025 09:10:29 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:10:29 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:10:29 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:10:29 Europe/Berlin] TCPDF library found
+[15-May-2025 09:10:29 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:10:29 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:10:29 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:10:29 Europe/Berlin] Photo added to PDF with dimensions: 35mm x 26.25mm
+[15-May-2025 09:13:42 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:13:42 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:13:42 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:13:42 Europe/Berlin] TCPDF library found
+[15-May-2025 09:13:42 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:13:42 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:13:42 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:13:42 Europe/Berlin] Photo added to PDF with dimensions: 35mm x 26.25mm
+[15-May-2025 09:14:35 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:14:35 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:14:35 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:14:35 Europe/Berlin] TCPDF library found
+[15-May-2025 09:14:35 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:14:35 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:14:35 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:14:36 Europe/Berlin] Photo added to PDF with dimensions: 35mm x 26.25mm
+[15-May-2025 09:14:50 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:14:50 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:14:50 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:14:50 Europe/Berlin] TCPDF library found
+[15-May-2025 09:14:50 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:14:50 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:14:50 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:14:50 Europe/Berlin] Photo added to PDF with dimensions: 35mm x 26.25mm
+[15-May-2025 09:15:21 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:15:21 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:15:21 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:15:21 Europe/Berlin] TCPDF library found
+[15-May-2025 09:15:22 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:15:22 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:15:22 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:15:22 Europe/Berlin] Photo added to PDF with dimensions: 35mm x 26.25mm
+[15-May-2025 09:15:49 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:15:49 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:15:49 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:15:49 Europe/Berlin] TCPDF library found
+[15-May-2025 09:15:49 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:15:49 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:15:49 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:15:49 Europe/Berlin] Photo added to PDF with dimensions: 25mm x 18.75mm
+[15-May-2025 09:16:19 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:16:19 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:16:19 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:16:19 Europe/Berlin] TCPDF library found
+[15-May-2025 09:16:19 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:16:19 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:16:19 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:16:19 Europe/Berlin] Photo added to PDF with dimensions: 28mm x 21mm
+[15-May-2025 09:16:44 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:16:44 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:16:44 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:16:44 Europe/Berlin] TCPDF library found
+[15-May-2025 09:16:44 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:16:44 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:16:44 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:16:44 Europe/Berlin] Photo added to PDF with dimensions: 28mm x 21mm
+[15-May-2025 09:16:56 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:16:56 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:16:56 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:16:56 Europe/Berlin] TCPDF library found
+[15-May-2025 09:16:56 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:16:56 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:16:56 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:16:56 Europe/Berlin] Photo added to PDF with dimensions: 28mm x 21mm
+[15-May-2025 09:17:08 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:17:08 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:17:08 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:17:08 Europe/Berlin] TCPDF library found
+[15-May-2025 09:17:08 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:17:08 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:17:08 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:17:08 Europe/Berlin] Photo added to PDF with dimensions: 28mm x 21mm
+[15-May-2025 09:17:17 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:17:17 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:17:17 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:17:17 Europe/Berlin] TCPDF library found
+[15-May-2025 09:17:17 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:17:17 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:17:17 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:17:17 Europe/Berlin] Photo added to PDF with dimensions: 28mm x 21mm
+[15-May-2025 09:17:36 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:17:36 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:17:36 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:17:36 Europe/Berlin] TCPDF library found
+[15-May-2025 09:17:36 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:17:36 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:17:36 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:17:36 Europe/Berlin] Photo added to PDF with dimensions: 28mm x 21mm
+[15-May-2025 09:19:16 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:19:16 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:19:16 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:19:16 Europe/Berlin] TCPDF library found
+[15-May-2025 09:19:16 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:19:16 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:19:16 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:19:16 Europe/Berlin] Photo added to PDF with dimensions: 28mm x 21mm
+[15-May-2025 09:19:34 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:19:34 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:19:34 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:19:34 Europe/Berlin] TCPDF library found
+[15-May-2025 09:19:34 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:19:34 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:19:34 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:19:35 Europe/Berlin] Photo added to PDF with dimensions: 28mm x 21mm
+[15-May-2025 09:20:52 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:20:52 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:20:52 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:20:52 Europe/Berlin] TCPDF library found
+[15-May-2025 09:20:52 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:20:52 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:20:52 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:20:53 Europe/Berlin] Photo added to PDF with dimensions: 28mm x 21mm
+[15-May-2025 09:22:50 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:22:50 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:22:50 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:22:50 Europe/Berlin] TCPDF library found
+[15-May-2025 09:22:51 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:22:51 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:22:51 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:22:51 Europe/Berlin] Photo added to PDF with dimensions: 28mm x 21mm
+[15-May-2025 09:23:19 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:23:19 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:23:19 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:23:19 Europe/Berlin] TCPDF library found
+[15-May-2025 09:23:19 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:23:19 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:23:19 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:23:19 Europe/Berlin] Photo added to PDF with dimensions: 28mm x 21mm
+[15-May-2025 09:24:15 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:24:15 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:24:15 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:24:15 Europe/Berlin] TCPDF library found
+[15-May-2025 09:24:15 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:24:15 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:24:15 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:24:15 Europe/Berlin] Photo added to PDF with dimensions: 28mm x 21mm
+[15-May-2025 09:26:47 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:26:47 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:26:47 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:26:47 Europe/Berlin] TCPDF library found
+[15-May-2025 09:26:47 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:26:47 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:26:47 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:27:29 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:27:29 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:27:29 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:27:29 Europe/Berlin] TCPDF library found
+[15-May-2025 09:27:29 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:27:29 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:27:29 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:27:37 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:27:37 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:27:37 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:27:37 Europe/Berlin] TCPDF library found
+[15-May-2025 09:27:37 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:27:37 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:27:37 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:29:48 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:29:48 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:29:48 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:29:48 Europe/Berlin] TCPDF library found
+[15-May-2025 09:29:48 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:29:48 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:29:48 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:30:19 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:30:19 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:30:19 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:30:19 Europe/Berlin] TCPDF library found
+[15-May-2025 09:30:19 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:30:19 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:30:19 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:35:53 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:35:53 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:35:53 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:35:53 Europe/Berlin] TCPDF library found
+[15-May-2025 09:35:53 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:35:53 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:35:53 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:36:49 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:36:49 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:36:49 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:36:49 Europe/Berlin] TCPDF library found
+[15-May-2025 09:36:49 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:36:49 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:36:49 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:38:50 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:38:50 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:38:50 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:38:50 Europe/Berlin] TCPDF library found
+[15-May-2025 09:38:50 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:38:50 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:38:50 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:42:56 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:42:56 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:42:56 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:42:56 Europe/Berlin] TCPDF library found
+[15-May-2025 09:42:56 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:42:56 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:42:56 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:42:56 Europe/Berlin] QR Code Content: T30PR09999999
+[15-May-2025 09:46:25 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:46:25 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:46:25 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:46:25 Europe/Berlin] TCPDF library found
+[15-May-2025 09:46:25 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:46:25 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:46:25 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:46:25 Europe/Berlin] QR Code Content: T30PR09999999
+[15-May-2025 09:47:01 Europe/Berlin] Processing uploaded photo
+[15-May-2025 09:47:01 Europe/Berlin] Photo data added to receipt data
+[15-May-2025 09:47:01 Europe/Berlin] Starting PDF generation process
+[15-May-2025 09:47:01 Europe/Berlin] TCPDF library found
+[15-May-2025 09:47:01 Europe/Berlin] Creating new TCPDF instance
+[15-May-2025 09:47:01 Europe/Berlin] Loading template from: C:\xampp\htdocs\MIS-Nexus-Inventory-Management-NIMS-\pages\receipt_template.html
+[15-May-2025 09:47:01 Europe/Berlin] Processing borrower photo
+[15-May-2025 09:47:01 Europe/Berlin] QR Code Content: Item Name: DOOGEE T30PRO TABLET
+Box Number: 1
+Serial No: T30PR09999999
+Purchase Date: 2025-05-15
+[16-May-2025 15:42:18 Europe/Berlin] Processing uploaded photo
+[16-May-2025 15:42:18 Europe/Berlin] Photo data added to receipt data
+[16-May-2025 15:42:18 Europe/Berlin] Starting PDF generation process
+[16-May-2025 15:42:18 Europe/Berlin] TCPDF library found
+[16-May-2025 15:42:18 Europe/Berlin] Creating new TCPDF instance
+[16-May-2025 15:42:18 Europe/Berlin] Loading template from: C:\xampp\htdocs\Nexus-IMS\pages\receipt_template.html
+[16-May-2025 15:42:18 Europe/Berlin] Processing borrower photo
+[16-May-2025 15:42:18 Europe/Berlin] QR Code Content: Item Name: DOOGEE T30PRO TABLET
+Box Number: 9999
+Serial No: 9999
+Purchase Date: 2025-05-16
+[16-May-2025 15:45:25 Europe/Berlin] Processing uploaded photo
+[16-May-2025 15:45:25 Europe/Berlin] Photo data added to receipt data
+[16-May-2025 15:45:25 Europe/Berlin] Starting PDF generation process
+[16-May-2025 15:45:25 Europe/Berlin] TCPDF library found
+[16-May-2025 15:45:25 Europe/Berlin] Creating new TCPDF instance
+[16-May-2025 15:45:25 Europe/Berlin] Loading template from: C:\xampp\htdocs\Nexus-IMS\pages\receipt_template.html
+[16-May-2025 15:45:25 Europe/Berlin] Processing borrower photo
+[16-May-2025 15:45:25 Europe/Berlin] QR Code Content: Item Name: DOOGEE T30PRO TABLET
+Box Number: 9999
+Serial No: 9999
+Purchase Date: 2025-05-16
+[16-May-2025 15:55:54 Europe/Berlin] Processing uploaded photo
+[16-May-2025 15:55:54 Europe/Berlin] Photo data added to receipt data
+[16-May-2025 15:55:54 Europe/Berlin] Starting PDF generation process
+[16-May-2025 15:55:54 Europe/Berlin] TCPDF library found
+[16-May-2025 15:55:55 Europe/Berlin] Creating new TCPDF instance
+[16-May-2025 15:55:55 Europe/Berlin] Loading template from: C:\xampp\htdocs\Nexus-IMS\pages\receipt_template.html
+[16-May-2025 15:55:55 Europe/Berlin] Processing borrower photo
+[16-May-2025 15:55:55 Europe/Berlin] QR Code Content: Item Name: DOOGEE T30PRO TABLET
+Box Number: 9999
+Serial No: 9999
+Purchase Date: 2025-05-16

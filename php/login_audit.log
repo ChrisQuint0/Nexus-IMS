@@ -1,0 +1,229 @@
+[2025-05-14 15:54:04] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 15:54:04] Session started with ID: l2neu1go9aipl10m6c96ckgl8k
+[2025-05-14 15:54:04] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-14 15:54:04] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-14 15:54:04] Login failed: Account deactivated for email: quinto_christopher@plpasig.edu.ph, Username: Christopher Quinto
+[2025-05-14 15:54:34] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 15:54:34] Session started with ID: l2neu1go9aipl10m6c96ckgl8k
+[2025-05-14 15:54:34] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-14 15:54:34] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-14 15:54:34] Account is activated for user: Christopher Quinto
+[2025-05-14 15:54:34] Login successful for user: Christopher Quinto. Session variables set.
+[2025-05-14 17:57:12] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 17:57:12] Session started with ID: l2neu1go9aipl10m6c96ckgl8k
+[2025-05-14 17:57:12] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-14 17:57:12] Login failed: Invalid email: quinto_christopher@plpasig.edu.ph
+[2025-05-14 17:57:20] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 17:57:20] Session started with ID: l2neu1go9aipl10m6c96ckgl8k
+[2025-05-14 17:57:20] Received JSON data: {"email":"quinto_chris@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-14 17:57:20] User found with email: quinto_chris@plpasig.edu.ph, User ID: 4
+[2025-05-14 17:57:20] Login failed: Account deactivated for email: quinto_chris@plpasig.edu.ph, Username: Chris Quinto
+[2025-05-14 17:58:01] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 17:58:01] Session started with ID: l2neu1go9aipl10m6c96ckgl8k
+[2025-05-14 17:58:01] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-14 17:58:01] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-14 17:58:01] Account is activated for user: Christopher Quinto
+[2025-05-14 17:58:01] Login failed: Incorrect password for email: quinto_christopher@plpasig.edu.ph
+[2025-05-14 17:58:06] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 17:58:06] Session started with ID: l2neu1go9aipl10m6c96ckgl8k
+[2025-05-14 17:58:06] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-14 17:58:06] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-14 17:58:06] Account is activated for user: Christopher Quinto
+[2025-05-14 17:58:06] Login failed: Incorrect password for email: quinto_christopher@plpasig.edu.ph
+[2025-05-14 17:58:38] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 17:58:38] Session started with ID: l2neu1go9aipl10m6c96ckgl8k
+[2025-05-14 17:58:38] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-14 17:58:38] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-14 17:58:38] Login failed: Account deactivated for email: quinto_christopher@plpasig.edu.ph, Username: Christopher Quinto
+[2025-05-14 17:59:04] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 17:59:04] Session started with ID: l2neu1go9aipl10m6c96ckgl8k
+[2025-05-14 17:59:04] Received JSON data: {"email":"super_admin@gmail.com","password":"Pass@SUPERADMIN1538"}
+[2025-05-14 17:59:04] User found with email: super_admin@gmail.com, User ID: 17
+[2025-05-14 17:59:04] Account is activated for user: Super Admin
+[2025-05-14 17:59:04] Login successful for user: Super Admin. Session variables set.
+[2025-05-14 17:59:33] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 17:59:33] Session started with ID: l2neu1go9aipl10m6c96ckgl8k
+[2025-05-14 17:59:33] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-14 17:59:33] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-14 17:59:33] Account is activated for user: Christopher Quinto
+[2025-05-14 17:59:33] Login failed: Incorrect password for email: quinto_christopher@plpasig.edu.ph
+[2025-05-14 17:59:34] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 17:59:34] Session started with ID: l2neu1go9aipl10m6c96ckgl8k
+[2025-05-14 17:59:34] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-14 17:59:34] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-14 17:59:34] Account is activated for user: Christopher Quinto
+[2025-05-14 17:59:34] Login failed: Incorrect password for email: quinto_christopher@plpasig.edu.ph
+[2025-05-14 17:59:47] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 17:59:47] Session started with ID: l2neu1go9aipl10m6c96ckgl8k
+[2025-05-14 17:59:47] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"$2y$10$YcVpXYRW8Cs3b2C.U\/Pdr.kOtZdF5HPn.vsZtjrN2gSN7u6ZKIUhm"}
+[2025-05-14 17:59:47] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-14 17:59:47] Account is activated for user: Christopher Quinto
+[2025-05-14 17:59:47] Login successful for user: Christopher Quinto. Session variables set.
+[2025-05-14 18:07:12] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 18:07:12] Session started with ID: l2neu1go9aipl10m6c96ckgl8k
+[2025-05-14 18:07:12] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-14 18:07:12] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-14 18:07:12] Account is activated for user: Christopher Quinto
+[2025-05-14 18:07:12] Login failed: Incorrect password for email: quinto_christopher@plpasig.edu.ph
+[2025-05-14 18:08:17] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 18:08:17] Session started with ID: l2neu1go9aipl10m6c96ckgl8k
+[2025-05-14 18:08:17] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-14 18:08:17] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-14 18:08:17] Account is activated for user: Christopher Quinto
+[2025-05-14 18:08:17] Login failed: Incorrect password for email: quinto_christopher@plpasig.edu.ph
+[2025-05-14 18:08:45] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 18:08:45] Session started with ID: l2neu1go9aipl10m6c96ckgl8k
+[2025-05-14 18:08:45] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-14 18:08:45] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-14 18:08:45] Account is activated for user: Christopher Quinto
+[2025-05-14 18:08:45] Login successful for user: Christopher Quinto. Session variables set.
+[2025-05-14 18:11:57] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 18:11:57] Session started with ID: l2neu1go9aipl10m6c96ckgl8k
+[2025-05-14 18:11:57] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-14 18:11:57] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-14 18:11:57] Login failed: Account deactivated for email: quinto_christopher@plpasig.edu.ph, Username: Christopher Quinto
+[2025-05-14 18:12:12] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 18:12:12] Session started with ID: l2neu1go9aipl10m6c96ckgl8k
+[2025-05-14 18:12:12] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-14 18:12:12] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-14 18:12:12] Account is activated for user: Christopher Quinto
+[2025-05-14 18:12:13] Login failed: Incorrect password for email: quinto_christopher@plpasig.edu.ph
+[2025-05-14 18:23:13] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 18:23:13] Session started with ID: l2neu1go9aipl10m6c96ckgl8k
+[2025-05-14 18:23:13] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"PAsspass"}
+[2025-05-14 18:23:13] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-14 18:23:13] Login failed: Account deactivated for email: quinto_christopher@plpasig.edu.ph, Username: Christopher Quinto
+[2025-05-14 18:23:27] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 18:23:27] Session started with ID: l2neu1go9aipl10m6c96ckgl8k
+[2025-05-14 18:23:27] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"PAsspass"}
+[2025-05-14 18:23:27] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-14 18:23:27] Account is activated for user: Christopher Quinto
+[2025-05-14 18:23:27] Login failed: Incorrect password for email: quinto_christopher@plpasig.edu.ph
+[2025-05-14 18:23:33] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 18:23:33] Session started with ID: l2neu1go9aipl10m6c96ckgl8k
+[2025-05-14 18:23:33] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Passpass"}
+[2025-05-14 18:23:33] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-14 18:23:33] Account is activated for user: Christopher Quinto
+[2025-05-14 18:23:33] Login successful for user: Christopher Quinto. Session variables set.
+[2025-05-14 19:16:32] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 19:16:32] Session started with ID: tmqjirm24crs65rahkkgtljil6
+[2025-05-14 19:16:32] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-14 19:16:32] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-14 19:16:32] Account is activated for user: Christopher Quinto
+[2025-05-14 19:16:32] Login failed: Incorrect password for email: quinto_christopher@plpasig.edu.ph
+[2025-05-14 19:16:48] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 19:16:48] Session started with ID: tmqjirm24crs65rahkkgtljil6
+[2025-05-14 19:16:48] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Passpass"}
+[2025-05-14 19:16:48] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-14 19:16:48] Account is activated for user: Christopher Quinto
+[2025-05-14 19:16:48] Login successful for user: Christopher Quinto. Session variables set.
+[2025-05-14 19:17:13] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 19:17:13] Session started with ID: tmqjirm24crs65rahkkgtljil6
+[2025-05-14 19:17:13] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-14 19:17:13] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-14 19:17:13] Login failed: Account deactivated for email: quinto_christopher@plpasig.edu.ph, Username: Christopher Quinto
+[2025-05-14 19:17:49] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 19:17:49] Session started with ID: tmqjirm24crs65rahkkgtljil6
+[2025-05-14 19:17:49] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-14 19:17:49] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-14 19:17:49] Account is activated for user: Christopher Quinto
+[2025-05-14 19:17:49] Login successful for user: Christopher Quinto. Session variables set.
+[2025-05-14 21:41:06] Received login request from origin: http://localhost, IP: ::1
+[2025-05-14 21:41:06] Session started with ID: tmqjirm24crs65rahkkgtljil6
+[2025-05-14 21:41:06] Received JSON data: {"email":"super_admin@gmail.com","password":"Pass@SUPERADMIN1538"}
+[2025-05-14 21:41:06] User found with email: super_admin@gmail.com, User ID: 17
+[2025-05-14 21:41:06] Account is activated for user: Super Admin
+[2025-05-14 21:41:06] Login successful for user: Super Admin. Session variables set.
+[2025-05-15 01:19:53] Received login request from origin: http://localhost, IP: ::1
+[2025-05-15 01:19:53] Session started with ID: 1ahc9qaghi62a62u3j133nq2ne
+[2025-05-15 01:19:53] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Passs@1538"}
+[2025-05-15 01:19:53] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-15 01:19:53] Account is activated for user: Christopher Quinto
+[2025-05-15 01:19:53] Login failed: Incorrect password for email: quinto_christopher@plpasig.edu.ph
+[2025-05-15 01:19:58] Received login request from origin: http://localhost, IP: ::1
+[2025-05-15 01:19:58] Session started with ID: 1ahc9qaghi62a62u3j133nq2ne
+[2025-05-15 01:19:58] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Passpass"}
+[2025-05-15 01:19:58] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-15 01:19:58] Account is activated for user: Christopher Quinto
+[2025-05-15 01:19:58] Login failed: Incorrect password for email: quinto_christopher@plpasig.edu.ph
+[2025-05-15 01:20:05] Received login request from origin: http://localhost, IP: ::1
+[2025-05-15 01:20:05] Session started with ID: 1ahc9qaghi62a62u3j133nq2ne
+[2025-05-15 01:20:05] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-15 01:20:05] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-15 01:20:05] Account is activated for user: Christopher Quinto
+[2025-05-15 01:20:05] Login successful for user: Christopher Quinto. Session variables set.
+[2025-05-15 03:13:55] Received login request from origin: http://localhost, IP: ::1
+[2025-05-15 03:13:55] Session started with ID: 1ahc9qaghi62a62u3j133nq2ne
+[2025-05-15 03:13:55] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-15 03:13:55] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-15 03:13:55] Account is activated for user: Christopher Quinto
+[2025-05-15 03:13:55] Login successful for user: Christopher Quinto. Session variables set.
+[2025-05-15 04:26:27] Received login request from origin: http://localhost, IP: ::1
+[2025-05-15 04:26:27] Session started with ID: 1ahc9qaghi62a62u3j133nq2ne
+[2025-05-15 04:26:27] Received JSON data: {"email":"super_admin@gmail.com","password":"Pass@SUPERADMIN1538"}
+[2025-05-15 04:26:27] User found with email: super_admin@gmail.com, User ID: 17
+[2025-05-15 04:26:27] Account is activated for user: Super Admin
+[2025-05-15 04:26:27] Login successful for user: Super Admin. Session variables set.
+[2025-05-15 04:27:38] Received login request from origin: http://localhost, IP: ::1
+[2025-05-15 04:27:38] Session started with ID: 1ahc9qaghi62a62u3j133nq2ne
+[2025-05-15 04:27:38] Received JSON data: {"email":"super_admin@gmail.com","password":"Pass@1538"}
+[2025-05-15 04:27:38] User found with email: super_admin@gmail.com, User ID: 17
+[2025-05-15 04:27:38] Account is activated for user: Super Admin
+[2025-05-15 04:27:39] Login failed: Incorrect password for email: super_admin@gmail.com
+[2025-05-15 04:27:46] Received login request from origin: http://localhost, IP: ::1
+[2025-05-15 04:27:46] Session started with ID: 1ahc9qaghi62a62u3j133nq2ne
+[2025-05-15 04:27:46] Received JSON data: {"email":"super_admin@gmail.com","password":"Pass@SUPERADMIN1538"}
+[2025-05-15 04:27:46] User found with email: super_admin@gmail.com, User ID: 17
+[2025-05-15 04:27:46] Account is activated for user: Super Admin
+[2025-05-15 04:27:46] Login successful for user: Super Admin. Session variables set.
+[2025-05-15 04:56:23] Received login request from origin: http://localhost, IP: ::1
+[2025-05-15 04:56:23] Session started with ID: 1ahc9qaghi62a62u3j133nq2ne
+[2025-05-15 04:56:23] Received JSON data: {"email":"super_admin@gmail.com","password":"Pass@SUPERADMIN1538"}
+[2025-05-15 04:56:23] User found with email: super_admin@gmail.com, User ID: 17
+[2025-05-15 04:56:23] Account is activated for user: Super Admin
+[2025-05-15 04:56:23] Login successful for user: Super Admin. Session variables set.
+[2025-05-15 05:53:27] Received login request from origin: http://localhost, IP: ::1
+[2025-05-15 05:53:27] Session started with ID: 1ahc9qaghi62a62u3j133nq2ne
+[2025-05-15 05:53:27] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-15 05:53:27] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-15 05:53:27] Login failed: Account deactivated for email: quinto_christopher@plpasig.edu.ph, Username: Christopher Quinto
+[2025-05-15 05:53:54] Received login request from origin: http://localhost, IP: ::1
+[2025-05-15 05:53:54] Session started with ID: 1ahc9qaghi62a62u3j133nq2ne
+[2025-05-15 05:53:54] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-15 05:53:54] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-15 05:53:54] Account is activated for user: Christopher Quinto
+[2025-05-15 05:53:54] Login successful for user: Christopher Quinto. Session variables set.
+[2025-05-15 07:01:41] Received login request from origin: http://localhost, IP: ::1
+[2025-05-15 07:01:41] Session started with ID: 1ahc9qaghi62a62u3j133nq2ne
+[2025-05-15 07:01:41] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-15 07:01:41] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-15 07:01:41] Account is activated for user: Christopher Quinto
+[2025-05-15 07:01:41] Login successful for user: Christopher Quinto. Session variables set.
+[2025-05-15 09:51:24] Received login request from origin: http://localhost, IP: ::1
+[2025-05-15 09:51:24] Session started with ID: ktemh1m206o0u50lvkuccjit6h
+[2025-05-15 09:51:24] Received JSON data: {"email":"quinto_christopher@plpasig.edu.pg","password":"Pass@1538"}
+[2025-05-15 09:51:24] Login failed: Invalid email: quinto_christopher@plpasig.edu.pg
+[2025-05-15 09:51:31] Received login request from origin: http://localhost, IP: ::1
+[2025-05-15 09:51:31] Session started with ID: ktemh1m206o0u50lvkuccjit6h
+[2025-05-15 09:51:31] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-15 09:51:31] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-15 09:51:31] Account is activated for user: Christopher Quinto
+[2025-05-15 09:51:31] Login successful for user: Christopher Quinto. Session variables set.
+[2025-05-16 14:14:17] Received login request from origin: http://localhost, IP: ::1
+[2025-05-16 14:14:17] Session started with ID: j3tp88johfk04feakhup60adl9
+[2025-05-16 14:14:17] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-16 14:14:17] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 4
+[2025-05-16 14:14:17] Account is activated for user: Christopher Quinto
+[2025-05-16 14:14:17] Login successful for user: Christopher Quinto. Session variables set.
+[2025-05-16 14:23:42] Received login request from origin: http://localhost, IP: ::1
+[2025-05-16 14:23:42] Session started with ID: j3tp88johfk04feakhup60adl9
+[2025-05-16 14:23:42] Received JSON data: {"email":"super_admin@gmail.com","password":"Pass@1538"}
+[2025-05-16 14:23:42] User found with email: super_admin@gmail.com, User ID: 17
+[2025-05-16 14:23:42] Account is activated for user: Super Admin
+[2025-05-16 14:23:42] Login failed: Incorrect password for email: super_admin@gmail.com
+[2025-05-16 14:23:51] Received login request from origin: http://localhost, IP: ::1
+[2025-05-16 14:23:51] Session started with ID: j3tp88johfk04feakhup60adl9
+[2025-05-16 14:23:51] Received JSON data: {"email":"super_admin@gmail.com","password":"Pass@SUPERADMIN1538"}
+[2025-05-16 14:23:51] User found with email: super_admin@gmail.com, User ID: 17
+[2025-05-16 14:23:51] Account is activated for user: Super Admin
+[2025-05-16 14:23:52] Login successful for user: Super Admin. Session variables set.

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NIMS Add Item</title>
+    <link rel="stylesheet" href="../styles/add_item_equipment-styles.css" />
+    <link rel="stylesheet" href="../styles/sidenav_styles.css" />
+    <!--- Import for HMTL5QR Module!-->
+    <script src="../node_modules/html5-qrcode/html5-qrcode.min.js"></script>
+  </head>
+  <body>
+    <div id="sidebar-container"></div>
+    <div class="main-content">
+      <div class="main-wrapper">
+        <div class="header">
+          <h1>Add Item/Equipment</h1>
+
+          <button id="upload-csv-btn">+ Upload Items via CSV</button>
+          <br />
+          <div id="uploadCsvModal" class="modal">
+            <div class="modal-content">
+              <span class="close-button" id="closeCsvModal">&times;</span>
+              <h2>Upload Items via CSV</h2>
+              <br />
+              <label for="csvFile">Select CSV File:</label>
+              <input type="file" id="csvFile" accept=".csv" />
+              <br /><br />
+              <button id="uploadCsvConfirm" class="uploadCsvConfirm">
+                Upload CSV
+              </button>
+              <div id="csvUploadStatus"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="main-form-div">
+          <div class="left-side">
+            <div class="form-wrapper">
+              <br /><br /><label for="box_no">Box No.</label><br />
+              <input
+                type="text"
+                id="box_no"
+                name="box_no"
+                required
+              /><br /><br />
+            </div>
+            <div class="form-wrapper">
+              <label for="item_name">Item Name</label><br />
+              <select id="item_name"></select>
+              <br />
+              <br />
+            </div>
+            <div class="form-wrapper">
+              <label for="item-specs">Item Specification</label><br />
+              <textarea
+                id="item-specs"
+                class="item-specs"
+                rows="4"
+                readonly
+              ></textarea>
+              <br />
+              <br />
+              <span class="item-desc-anchor" id="item-desc-anchor">
+                Item not on the list?
+                <a href="#add-item-descriptions" style="color: #1c2143"
+                  >Go to Add Item Description.</a
+                >
+              </span>
+            </div>
+          </div>
+          <div class="right-side">
+            <div class="form-wrapper">
+              <label for="serial_no">Serial No.</label><br />
+              <input type="text" id="serial_no" name="serial_no" required />
+              <button id="scan-btn">Scan QR/Barcode</button><br /><br />
+            </div>
+            <div class="form-wrapper">
+              <label for="accountable">Accountable</label>
+              <br />
+              <select id="accountable"></select>
+            </div>
+            <div class="purchase-date">
+              <label for="purchase-date">Purchase Date</label>
+              <br />
+              <input type="date" id="purchase-date" />
+            </div>
+            <div class="form-wrapper">
+              <button class="submit-btn" id="submit">Submit</button>
+            </div>
+          </div>
+
+          <div id="overlayContainer" class="overlay">
+            <div class="popup">
+              <button class="close-btn" id="closePopupBtn">&times;</button>
+              <h2>Scan</h2>
+              <div id="reader"></div>
+            </div>
+          </div>
+        </div>
+
+        <!--This is the table for Item Descriptions-->
+        <div class="item-desc-view">
+          <div class="item-desc-header">
+            <h1 id="add-item-descriptions">Item Descriptions</h1>
+          </div>
+
+          <div class="item-desc-table-container">
+            <table id="item-descriptions" class="item-descriptions">
+              <thead>
+                <tr>
+                  <th>Action</th>
+                  <th>Item Name</th>
+                  <th>Category</th>
+                  <th>Item Specification</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- The data goes here -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="add-item-inputs-btn">
+            <div class="first-column">
+              <p>Add Item Name</p>
+              <input type="text" id="add-item-name" />
+            </div>
+            <div class="second-column">
+              <p>Category</p>
+              <select id="add-item-category" class="add-item-category"></select>
+              <br />
+              <span>
+                Category doesn't exist?
+                <button id="add-category-btn" class="add-category-btn">
+                  Add A Category
+                </button>
+              </span>
+              <br />
+              <div class="add-item-category-div" id="add-item-category-div">
+                <div class="add-item-category-header">
+                  <span> Add Item Category </span>
+                  <button id="close-new-category" class="close-new-category">
+                    Close
+                  </button>
+                </div>
+
+                <input
+                  type="text"
+                  id="add-item-category-input"
+                  class="add-item-category-input"
+                />
+                <br />
+
+                <button
+                  class="add-new-item-category"
+                  id="add-new-item-category"
+                >
+                  Add New Item Category
+                </button>
+              </div>
+            </div>
+            <div class="third-column">
+              <p>Add Item Specifications</p>
+              <textarea
+                id="add-item-specifications"
+                class="add-item-specifications"
+                rows="5"
+              ></textarea>
+            </div>
+            <div class="add-item-desc-btn-div">
+              <button
+                id="add-item-description-btn"
+                class="add-item-description-btn"
+              >
+                Add Item Description
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- This is the end of the table for item descriptions -->
+  </body>
+  <script src="../node_modules/papaparse.min.js"></script>
+  <script src="../scripts/sidebar.js"></script>
+  <script src="../scripts/add_item_equipment-script.js"></script>
+</html>

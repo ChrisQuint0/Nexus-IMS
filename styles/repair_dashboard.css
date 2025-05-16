@@ -1,0 +1,533 @@
+@font-face {
+  font-family: "Nunito-Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../assets/fonts/Nunito-Regular.ttf") format("truetype");
+}
+
+body {
+  font-family: "Nunito-Regular";
+}
+
+.main-content {
+  transition: margin-left 0.3s ease;
+  margin-left: 0;
+  width: 100%;
+}
+
+.sidebar-visible .main-content {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+}
+
+@media (max-width: 768px) {
+  .sidebar-visible .main-content {
+    margin-left: 280px;
+    width: calc(100% - 280px);
+  }
+}
+
+.main-wrapper {
+  width: 100dvw;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  display: flex;
+  height: max-content;
+  width: 100%;
+}
+.header h1 {
+  margin-left: 3dvw;
+  margin-top: 5dvw;
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+.searchbar-div h2 {
+  margin-left: 3dvw;
+  margin-top: 0.4dvw;
+  font-weight: 500;
+}
+#searchbar {
+  margin-left: 1dvw;
+}
+#filter {
+  display: flex;
+  width: max-content;
+  margin-left: 2dvw;
+  cursor: pointer;
+}
+
+#filter img {
+  margin-top: 0.3dvw;
+  min-width: 30px;
+  max-width: 30px;
+  min-height: 32px;
+  max-height: 32px;
+}
+
+#filter h2 {
+  margin-left: 0.2dvw;
+  color: #555fe4;
+}
+
+.save-btn-inactive {
+  padding: 1dvh 3dvw 1dvh 3dvw;
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  border-radius: 25px;
+}
+.save-btn-active {
+  padding: 1dvh 2dvw 1dvh 2dvw;
+  border-radius: 25px;
+  transition: 200ms;
+  background-color: #dddada;
+  color: black;
+  border: 2px dashed #858484;
+  cursor: pointer;
+}
+.save-btn-active:hover {
+  transition: 200ms;
+  color: #ffffff;
+  background-color: #14a514;
+  border: 2px solid #14a514;
+  cursor: pointer;
+}
+
+.status-option-inactive {
+  padding: 1dvh 0dvw 1dvh 0.6dvw;
+  border-radius: 20px;
+  border: 2px solid #dddada;
+  background-color: #dddada;
+}
+.status-option-active {
+  padding: 1dvh 0dvw 1dvh 0.6dvw;
+  border-radius: 20px;
+  border: 2px dashed #858484;
+  background-color: #dddada;
+}
+.status-option-active:hover {
+  cursor: pointer;
+}
+#edit-row {
+  cursor: pointer;
+  width: 70%;
+  text-align: center;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+}
+#edit-row-img {
+  width: 70%;
+}
+
+.generate-report-div {
+  padding: 4dvh 0dvw 4dvh 0dvw;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+#generate-repair-report-btn {
+  font-size: 0.97rem;
+  border: 0px;
+  background-color: #1c2143;
+  color: #f4f4f4;
+  padding: 1.2dvh 2.9dvw 1.2dvh 2.7dvw;
+  border-radius: 10px;
+  margin-left: 4dvw;
+  margin-right: 3rem;
+}
+
+#generate-repair-report-btn:hover {
+  transition: 250ms;
+  background-color: #555fe4;
+  color: #f4f4f4;
+  cursor: pointer;
+}
+
+table.table-table th:nth-child(1),
+table.table-table td:nth-child(1) {
+  min-width: 100px;
+  padding-left: 30px;
+}
+
+table.table-table th:nth-child(2),
+table.table-table td:nth-child(2) {
+  min-width: 200px;
+  max-width: 250px;
+}
+
+table.table-table th:nth-child(3),
+table.table-table td:nth-child(3) {
+  min-width: 100px;
+  max-width: 250px;
+}
+table.table-table th:nth-child(4),
+table.table-table td:nth-child(4) {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+table.table-table th:nth-child(5),
+table.table-table td:nth-child(5) {
+  min-width: 100px;
+  max-width: max-content;
+  padding-left: 10px;
+  padding-right: 30px;
+}
+
+table.table-table th:nth-child(6),
+table.table-table td:nth-child(6) {
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 0px;
+}
+
+table.table-table th:nth-child(7),
+table.table-table td:nth-child(7) {
+  min-width: 100px;
+  max-width: max-content;
+  padding-left: 50px;
+  padding-right: 30px;
+  text-align: left;
+}
+
+table.table-table th:nth-child(8),
+table.table-table td:nth-child(8) {
+  text-align: left;
+  padding-left: 30px;
+  padding-right: 20px;
+}
+
+table.table-table th:nth-child(9),
+table.table-table td:nth-child(9) {
+  text-align: left;
+  padding-left: 30px;
+  padding-right: 20px;
+}
+
+table.table-table th:nth-child(10),
+table.table-table td:nth-child(10) {
+  text-align: left;
+  padding-left: 30px;
+  padding-right: 20px;
+}
+
+table.table-table th:nth-child(11),
+table.table-table td:nth-child(11) {
+  text-align: left;
+  padding-left: 30px;
+  padding-right: 20px;
+}
+table.table-table th:nth-child(12),
+table.table-table td:nth-child(12) {
+  text-align: left;
+  padding-left: 30px;
+  padding-right: 20px;
+}
+
+.edit-btn {
+  padding: 5px 20px 5px 20px;
+  border-style: none;
+  background-color: #2c5b87;
+  color: white;
+  border-radius: 20px;
+}
+
+.save-btn {
+  padding: 5px 20px 5px 20px;
+  border-style: none;
+  background-color: green;
+  color: white;
+  border-radius: 20px;
+}
+
+.status-dropdown {
+  padding: 5px 20px 5px 20px;
+
+  color: black;
+  border-radius: 20px;
+}
+
+.downlaod-icons img {
+  max-width: 40px;
+  max-height: 40px;
+}
+
+.downlaod-icons {
+  display: flex;
+  justify-content: center;
+  width: max-content;
+}
+
+.downlaod-icons img:hover {
+  cursor: pointer;
+}
+
+
+.request-wrapper {
+  display: flex;
+  width: 94%;
+  margin-top: 2dvh;
+  text-align: end;
+  padding: 2dvh 0dvw;
+  justify-content: flex-end;
+  
+#csv_btn img {
+  max-width: 40px;
+  margin-left: auto;
+}
+
+.downloadOverlay {
+  display: none;
+  z-index: 9000;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #33333381;
+  justify-content: center;
+  align-items: center;
+}
+
+.datePicker {
+  width: 26dvw;
+  min-width: 400px;
+  background-color: #f4f4f4;
+  min-height: max-content;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.datePicker h3 {
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+.datePicker label {
+  margin-left: 50px;
+  margin-top: 20px;
+}
+
+.datePicker select {
+  margin-top: 10px;
+  margin-left: 50px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  font-family: "Nunito-Regular";
+  padding: 10px 5px;
+  min-width: 50%;
+  max-width: 150px;
+  margin: 0px 40px;
+}
+
+.adminDeptChoice {
+  display: none;
+  flex-direction: column;
+}
+
+.adminDeptChoice select {
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 60px;
+}
+
+.datePicker button {
+  margin: 18px 70px;
+  padding: 10px;
+  border: none;
+  background-color: #1c2143;
+  color: white;
+  font-family: "Nunito-Regular";
+  border-radius: 12px;
+}
+
+.datePicker button:hover {
+  cursor: pointer;
+}
+
+/* Styles For the multiselect CSV*/
+.column-selector {
+  font-family: 'Nunito-Regular';
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.column-selector p {
+  text-align: center;
+}
+
+.multiselect-container {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  position: relative;
+  width: 75%;
+  margin-left: 2.5dvw;
+}
+
+.multiselect-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.selected-count {
+  color: #666;
+  font-size: 14px;
+}
+
+.dropdown-icon {
+  transition: transform 0.2s;
+}
+
+.multiselect-dropdown {
+  display: none;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 10px;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+
+.multiselect-dropdown.show {
+  display: block;
+}
+
+.dropdown-icon.open {
+  transform: rotate(180deg);
+}
+
+.option-item {
+  padding: 6px 0;
+}
+
+.option-item label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.option-item input {
+  margin-right: 10px;
+}
+
+.action-buttons {
+  width: 80%;
+  display: flex;
+  padding-left: 33px;
+}
+
+.action-buttons button {
+  padding: 8px 12px;
+  background: #ccc;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  border-radius: 7px;
+  color: black;
+  min-width: 100px;
+  margin: 10px 15px;
+}
+
+#select-all {
+  margin-left: 2.5dvw;
+}
+
+#deselect-all {
+  margin-left: 1dvw;
+}
+
+.action-buttons button:hover {
+  background: #e0e0e0;
+}
+/* styles/repair_dashboard_table.css */
+
+.table-wrapper {
+  overflow-x: auto; /* Enable horizontal scrolling for smaller screens */
+}
+
+.table-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 800px; /* Ensure a minimum width to prevent content squeezing */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.table-table thead tr {
+  background-color: #0e2f65; /* Header background color */
+  color: #ffffff; /* Header text color */
+  text-align: left;
+  font-weight: bold;
+}
+
+.table-table th,
+.table-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #dddddd;
+}
+
+.table-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.table-table tbody tr:nth-child(even) {
+  background-color: #f3f3f3; /* Alternate row background color */
+}
+
+.table-table tbody tr:last-of-type {
+  border-bottom: 2px solid #0e2f65; /* Stronger border for the last row */
+}
+
+.table-table tbody tr:hover {
+  background-color: #cce5ff; /* Hover effect on rows */
+}
+
+.table-table td.action-column {
+  white-space: nowrap; /* Prevent "View More" from wrapping */
+}
+
+.table-table td.action-column button {
+  background-color: transparent;
+  color: #007bff; /* Example link color */
+  border: none;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.table-table td.action-column button:hover {
+  text-decoration: underline;
+}
+
+/* Adjustments for specific columns based on the image */
+.table-table th:nth-child(1), /* Action */
+.table-table td:nth-child(1) {
+  text-align: center; /* Center the "View More" button */
+}
+
+/* You might need to adjust column widths based on your content */
+.table-table th:nth-child(2), /* Box No. */
+.table-table td:nth-child(2) {
+  width: 50px; /* Example width */
+  text-align: center;
+}
+
+.table-table th:nth-child(10), /* Received Date */
+.table-table td:nth-child(10) {
+  white-space: nowrap; /* Prevent date wrapping */
+}

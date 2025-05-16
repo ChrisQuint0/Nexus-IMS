@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus IMS</title>
+    <link rel="stylesheet" href="../styles/sidenav_styles.css" />
+    <!--- using return logs' style! -->
+    <link rel="stylesheet" href="../styles/return_logs_styles.css" />
+    <!--- Import for HMTL5QR Module!-->
+    <script src="../node_modules/html5-qrcode/html5-qrcode.min.js"></script>
+  </head>
+  <body>
+    <div id="sidebar-container"></div>
+    <div class="main-content">
+      <div class="main-wrapper">
+        <!-- This is the end of the Nav Bar-->
+
+        <h1 id="top-text">Claim Logs</h1>
+        <!-- Nav Area for table -->
+        <div class="searchbar-div">
+          <input
+            id="searchbar"
+            type="text"
+            placeholder="⌕ Search by Name or Serial Number"
+          />
+          <button id="scan-btn">Scan QR/Barcode</button>
+        </div>
+        <div id="overlayContainer" class="overlay">
+          <div class="popup">
+            <button class="close-btn" id="closePopupBtn">&times;</button>
+            <h2>Scan</h2>
+            <div id="reader"></div>
+          </div>
+        </div>
+
+        <br />
+        <div class="table-wrapper">
+          <table class="table-table" id="tblReturnLogs">
+            <thead>
+              <th>Box Number</th>
+              <th>Receiver</th>
+              <th>Item Name</th>
+              <th>Quantity</th>
+              <th>Serial Number</th>
+              <th>Received Date</th>
+              <th>Return Date</th>
+              <th>Accountable</th>
+              <th>Status</th>
+              <th>Remarks</th>
+              <th>Staff</th>
+            </thead>
+
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <div class="csv_logs_dowload_wrapper">
+          <div id="csv_btn" class="downlaod-icons">
+            <img src="../assets/images/generate_csv.png" alt="" />
+          </div>
+          <div id="pdf_btn" class="downlaod-icons">
+            <img src="/assets/images/generate_pdf.png" alt="" />
+          </div>
+        </div>
+
+        <br />
+      </div>
+    </div>
+    <div id="downloadOverlay-csv" class="downloadOverlay">
+      <div class="datePicker">
+        <span
+          style="
+            margin-left: auto;
+            margin-right: 30px;
+            margin-top: 20px;
+            cursor: pointer;
+          "
+          class="close"
+          >&times;</span
+        >
+        <div class="column-selector">
+          <p>Select columns to include in your CSV export:</p>
+
+          <div class="multiselect-container">
+            <div class="multiselect-header">
+              <span>Selected Columns</span>
+              <div class="selected-count">
+                <span class="selected-count-value">0</span> selected
+              </div>
+              <span class="dropdown-icon">▼</span>
+            </div>
+
+            <div class="multiselect-dropdown">
+              <!-- Column options will be inserted here by JavaScript -->
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            <button class="select-all">Select All</button>
+            <button class="deselect-all">Deselect All</button>
+          </div>
+        </div>
+        <div class="adminDeptChoice">
+          <label for="">Department</label><br />
+          <select class="department-select"></select>
+        </div>
+
+        <div id="datepickers">
+          <h3
+            style="
+              margin-bottom: 1dvh;
+              font-weight: 500;
+              font-size: 1rem;
+              margin-left: 2.5dvw;
+            "
+          >
+            Select a range
+          </h3>
+          <label for="">Start</label><br />
+          <input type="date" name="" id="start_date" /><br />
+          <label for="">End</label><br />
+          <input type="date" name="" id="end_date" />
+        </div>
+
+        <button onclick="downloadLogsCSV('claims')">Download CSV</button>
+      </div>
+    </div>
+
+    <!-- PDF Download Overlay -->
+    <div id="downloadOverlay-pdf" class="downloadOverlay">
+      <div class="datePicker">
+        <span
+          style="
+            margin-left: auto;
+            margin-right: 30px;
+            margin-top: 20px;
+            cursor: pointer;
+          "
+          class="close"
+          >&times;</span
+        >
+        <div class="column-selector">
+          <p>Select columns to include in your PDF export:</p>
+
+          <div class="multiselect-container">
+            <div class="multiselect-header">
+              <span>Selected Columns</span>
+              <div class="selected-count">
+                <span class="selected-count-value">0</span> selected
+              </div>
+              <span class="dropdown-icon">▼</span>
+            </div>
+
+            <div class="multiselect-dropdown">
+              <!-- Column options will be inserted here by JavaScript -->
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            <button class="select-all">Select All</button>
+            <button class="deselect-all">Deselect All</button>
+          </div>
+        </div>
+        <div class="adminDeptChoice">
+          <label for="">Department</label><br />
+          <select class="department-select"></select>
+        </div>
+
+        <div id="datepickers">
+          <h3
+            style="
+              margin-bottom: 1dvh;
+              font-weight: 500;
+              font-size: 1rem;
+              margin-left: 2.5dvw;
+            "
+          >
+            Select a range
+          </h3>
+          <label for="">Start</label><br />
+          <input type="date" name="" id="start_date" /><br />
+          <label for="">End</label><br />
+          <input type="date" name="" id="end_date" />
+        </div>
+
+        <button onclick="downloadLogsPDF('claims')">Download PDF</button>
+      </div>
+    </div>
+  </body>
+  <script src="../scripts/download_logs_handler.js"></script>
+
+  <script src="../scripts/sidebar.js"></script>
+  <script src="../scripts/return_logs.js"></script>
+</html>

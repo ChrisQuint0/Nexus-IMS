@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus IMS - Create new User</title>
+
+    <link rel="stylesheet" href="../styles/sidenav_styles.css" />
+
+    <link rel="stylesheet" href="../styles/new_user_styles.css" />
+  </head>
+  <body>
+    <div id="sidebar-container"></div>
+    <div class="main-content">
+      <div class="main-wrapper">
+        <div class="container">
+          <div class="login-section">
+            <h1>Create New User</h1>
+            <form id="registerForm">
+              <label for="username">Username*</label>
+              <input
+                type="text"
+                id="username"
+                placeholder="Enter your Username"
+              />
+
+              <label for="email">Email*</label>
+              <input type="email" id="email" placeholder="Enter your Email" />
+
+              <label for="password">Password*</label>
+              <input type="password" id="password" placeholder="" />
+
+              <label for="confirm_password">Confirm Password*</label>
+              <input type="password" id="confirm_password" placeholder="" />
+
+              <label for="userType">User Type*</label>
+              <select id="userType" required>
+                <option value="" disabled selected>Select User Type</option>
+                <option value="admin">Admin</option>
+                <option value="dept_head">Department Head</option>
+              </select>
+
+              <label for="departmentId">Department*</label>
+              <select id="departmentId" required>
+                <option value="" disabled selected>Select Department</option>
+              </select>
+
+              <div class="show-password">
+                <input type="checkbox" id="togglePassword" />
+                <label for="togglePassword">Show Password</label>
+              </div>
+
+              <button type="submit">Create Account</button>
+            </form>
+          </div>
+
+          <div class="table-container">
+            <table
+              id="userTable"
+              border="1"
+              style="margin-top: 20px; width: 100%"
+            >
+              <thead>
+                <tr>
+                  <th>Action</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Password</th>
+                  <th>Role</th>
+                  <th>Department</th>
+                  <th>Account Status</th>
+                </tr>
+              </thead>
+              <tbody id="userTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../scripts/sidebar.js"></script>
+    <script src="../scripts/new_user.js"></script>
+    <script src="../scripts/populate_users_table.js"></script>
+  </body>
+</html>

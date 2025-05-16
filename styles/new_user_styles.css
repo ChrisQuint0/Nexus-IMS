@@ -1,0 +1,175 @@
+/* General Reset and Base */
+@font-face {
+  font-family: "Nunito-Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../assets/fonts/Nunito-Regular.ttf") format("truetype");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f2f0e4;
+  color: #212547;
+  font-family: "Nunito-Regular";
+}
+
+/* Layout Container */
+.container {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+/* Left - Form Section */
+.login-section {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 50px 40px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+  max-width: 600px;
+  width: 100%;
+  margin-left: 50px;
+  margin-top: 30px;
+}
+
+.login-form-wrapper {
+  width: 100%;
+}
+
+.login-section h1 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  font-weight: 600;
+  color: #1c2143;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #212547;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+  padding: 12px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  width: 100%;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+input:focus,
+select:focus {
+  border-color: #1c2143;
+  outline: none;
+  box-shadow: 0 0 6px rgba(28, 33, 67, 0.3);
+}
+
+.show-password {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.show-password label {
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Submit Button */
+button {
+  padding: 14px;
+  background-color: #1c2143;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #303066;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .login-section,
+  .table-section {
+    max-width: 100%;
+    padding: 30px 20px;
+  }
+}
+
+.table-container {
+  overflow-x: auto; /* Enable horizontal scrolling for overflow */
+  overflow-y: auto;
+  border-radius: 8px; /* Add rounded corners to the container */
+  width: 1000px; /* Or a specific width if needed, but consider responsiveness */
+  height: auto;
+  margin-right: 50px;
+  margin-top: 30px;
+  box-shadow: 0 2px 0px rgba(0, 0, 0, 0.1); /* Keep the subtle shadow */
+}
+
+#userTable {
+  width: auto; /* Let the content determine the width of the table */
+  border-collapse: collapse; /* Collapse borders for cleaner look */
+  border-radius: 8px; /* Apply rounded corners to the table */
+  table-layout: auto; /* Ensure columns adjust based on content */
+}
+
+#userTable thead th {
+  background-color: #0e2f56; /* Header background color */
+  color: white; /* Header text color */
+  padding: 12px 15px;
+  text-align: left;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+#userTable th,
+#userTable td {
+  padding: 8px 15px;
+  border-bottom: 1px solid #ddd; /* Add bottom border to rows */
+  white-space: nowrap; /* Prevent cell content from wrapping */
+  width: auto;
+  word-break: break-word; /* Allow breaking long words if nowrap isn't enough */
+}
+
+#userTable tbody tr:nth-child(odd) {
+  background-color: white; /* Light gray for odd rows */
+}
+
+#userTable tbody tr:last-child td {
+  border-bottom: none; /* Remove bottom border from the last row */
+}

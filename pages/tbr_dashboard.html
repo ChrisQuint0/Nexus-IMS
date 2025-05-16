@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus IMS</title>
+    <link rel="stylesheet" href="/styles/return_logs_styles.css" />
+    <link rel="stylesheet" href="/styles/sidenav_styles.css" />
+    <link rel="stylesheet" href="/styles/tbr_dashboard_styles.css" />
+    <!--- Import for HMTL5QR Module!-->
+    <script src="/node_modules/html5-qrcode/html5-qrcode.min.js"></script>
+  </head>
+  <body>
+    <!-- This is the Nav Bar-->
+    <div id="sidebar-container"></div>
+    <div class="main-content">
+      <div class="main-wrapper">
+        <div class="header">
+          <h1>Anticipated to be Returned</h1>
+        </div>
+        <!-- Nav Area for table -->
+        <div class="searchbar-div">
+          <h2>Search</h2>
+          <input
+            id="searchbar"
+            type="text"
+            placeholder="⌕ Search by Name or Serial Number"
+          />
+          <button id="scan-btn">Scan QR/Barcode</button>
+
+          <div id="filter">
+            <img src="../assets/images/filter-img.png" id="filter-img" alt="" />
+            <h2>Filter</h2>
+          </div>
+        </div>
+
+        <div id="overlayContainer" class="overlay">
+          <div class="popup">
+            <button class="close-btn" id="closePopupBtn">&times;</button>
+            <h2>Scan</h2>
+            <div id="reader"></div>
+          </div>
+        </div>
+        <div class="table-wrapper">
+          <div>
+            <table class="table-table">
+              <thead>
+                <tr>
+                  <td>Action</td>
+                  <td>Box No.</td>
+                  <td>Name</td>
+                  <td>Department</td>
+                  <td>Item Name</td>
+                  <td>Quantity</td>
+                  <td>Serial No.</td>
+                  <td>Received Date</td>
+                  <td>Return Date</td>
+                  <td>Accountable</td>
+                  <td>Status</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <button class="delete-tbr-btn" id="delete-row">
+                      Archive
+                    </button>
+                  </td>
+                  <td>1</td>
+                  <td>Goto, Ipei B.</td>
+                  <td>College of Computer Studies</td>
+                  <td>MIS-TABLET-T30PRO-0001</td>
+                  <td>1</td>
+                  <td>T30PRO0000000034060</td>
+                  <td>9/23/2023</td>
+                  <td>N/A</td>
+                  <td>Majorne Arce</td>
+                  <td>Claimed</td>
+                </tr>
+                <tr>
+                  <td>
+                    <button class="delete-tbr-btn" id="delete-row">
+                      Archive
+                    </button>
+                  </td>
+                  <td>1</td>
+                  <td>Peligro, John Michael</td>
+                  <td>College of Computer Studies</td>
+                  <td>MIS-TABLET-T30PRO-0001</td>
+                  <td>1</td>
+                  <td>T30PRO0000000034060</td>
+                  <td>9/23/2023</td>
+                  <td>N/A</td>
+                  <td>Majorne Arce</td>
+                  <td>Claimed</td>
+                </tr>
+                <tr>
+                  <td>
+                    <button class="delete-tbr-btn" id="delete-row">
+                      Archive
+                    </button>
+                  </td>
+                  <td>1</td>
+                  <td>Tornea, Keith Andrea</td>
+                  <td>College of Computer Studies</td>
+                  <td>MIS-TABLET-T30PRO-0001</td>
+                  <td>1</td>
+                  <td>T30PRO0000000034060</td>
+                  <td>9/23/2023</td>
+                  <td>N/A</td>
+                  <td>Majorne Arce</td>
+                  <td>Claimed</td>
+                </tr>
+                <tr>
+                  <td>
+                    <button class="delete-tbr-btn" id="delete-row">
+                      Archive
+                    </button>
+                  </td>
+                  <td>1</td>
+                  <td>Manuel, Sofia Nicole</td>
+                  <td>College of Computer Studies</td>
+                  <td>MIS-TABLET-T30PRO-0001</td>
+                  <td>1</td>
+                  <td>T30PRO0000000034060</td>
+                  <td>9/23/2023</td>
+                  <td>N/A</td>
+                  <td>Majorne Arce</td>
+                  <td>Claimed</td>
+                </tr>
+                <tr>
+                  <td>
+                    <button class="delete-tbr-btn" id="delete-row">
+                      Archive
+                    </button>
+                  </td>
+                  <td>1</td>
+                  <td>Quinto, Christopher A.</td>
+                  <td>College of Computer Studies</td>
+                  <td>MIS-TABLET-T30PRO-0001</td>
+                  <td>1</td>
+                  <td>T30PRO0000000034060</td>
+                  <td>9/23/2023</td>
+                  <td>N/A</td>
+                  <td>Majorne Arce</td>
+                  <td>Claimed</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="generate-report-div">
+          <button id="generate-tbr-report-btn">Generate Report</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="../scripts/sidebar.js"></script>
+  <script src="../scripts/tbr_dashboard.js"></script>
+</html>

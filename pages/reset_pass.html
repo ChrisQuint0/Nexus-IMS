@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus IMS</title>
+    <link rel="stylesheet" href="../styles/reset_pass_styles.css" />
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <div id="left-div">
+        <div id="logo-div">
+          <img src="../assets/images/Nexus_GMS_Logo_3.png" alt="" />
+          <h1>Nexus IMS</h1>
+        </div>
+        <div id="prompt-div">
+          <h1 id="prompt-div-login">Password Recovery</h1>
+
+          <form
+            action="../php/reset_pass.php"
+            method="post"
+            id="reset-pass-form"
+          >
+            <div id="error-message" style="color: red; display: none"></div>
+            <input type="hidden" name="token" id="token-field" />
+
+            <!-- New Password -->
+            <label for="new-pass">New Password</label><br />
+            <input
+              type="password"
+              name="password"
+              required
+              id="new-pass"
+            /><br />
+
+            <!-- Confirm Password -->
+            <label for="confirm-pass">Confirm Password</label><br />
+            <input
+              type="password"
+              name="confirm_password"
+              required
+              id="confirm-pass"
+            /><br />
+
+            <!-- Show Passwords -->
+            <input
+              type="checkbox"
+              onclick="toggleBothPasswords()"
+              id="show-passwords"
+            />
+            <label for="show-passwords">Show Passwords</label><br /><br />
+
+            <button type="submit" class="update-pass-btn" id="update-pass-btn">
+              Update
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div id="right-div">
+        <img id="login-image" src="../assets/images/login_image.png" alt="" />
+        <h1 id="right-div-h1">Asset Management</h1>
+        <h3 id="right-div-h3">Made Simple and More Convenient</h3>
+      </div>
+    </div>
+    <script>
+      function toggleBothPasswords() {
+        const newPass = document.getElementById("new-pass");
+        const confirmPass = document.getElementById("confirm-pass");
+        const isChecked = document.getElementById("show-passwords").checked;
+
+        newPass.type = isChecked ? "text" : "password";
+        confirmPass.type = isChecked ? "text" : "password";
+      }
+    </script>
+  </body>
+  <script src="../scripts/reset_pass.js"></script>
+</html>

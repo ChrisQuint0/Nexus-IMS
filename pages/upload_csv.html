@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Upload CSV</title>
+    <link rel="stylesheet" href="../styles/upload_csv.css" />
+    <link rel="stylesheet" href="../styles/sidenav_styles.css" />
+    <script src="../scripts/sidebar.js" defer></script>
+    <script src="../node_modules/papaparse.min.js"></script>
+  </head>
+  <body>
+    <div id="sidebar-container"></div>
+    <div class="main-content">
+      <div class="main-wrapper">
+        <main class="content">
+          <h1>
+            <img src="../assets/images/upload_csv.png" class="icon" />Upload CSV
+          </h1>
+          <p class="description">
+            Add items and borrower information using CSV files. Download the
+            provided template to format your data correctly, then upload your
+            completed CSV file.
+          </p>
+          <section class="upload-box">
+            <h2>
+              <img src="../assets/images/add_items.png" class="icon" />Add Items
+            </h2>
+            <div class="button-group">
+              <button
+                type="button"
+                class="outline-btn"
+                id="downloadItemsTemplateButton"
+              >
+                Download Template
+              </button>
+              <form method="post" enctype="multipart/form-data">
+                <input
+                  type="file"
+                  name="csv_file"
+                  accept=".csv"
+                  required
+                  hidden
+                  id="itemsCSVFile"
+                />
+                <input type="hidden" name="type" value="items" />
+                <button
+                  type="button"
+                  class="filled-btn"
+                  onclick="document.getElementById('itemsCSVFile').click()"
+                >
+                  Upload Items CSV
+                </button>
+              </form>
+            </div>
+          </section>
+          <section class="upload-box">
+            <h2>
+              <img src="../assets/images/add_info_img.png" class="icon" />Add
+              Student Information
+            </h2>
+            <div class="button-group">
+              <button
+                type="button"
+                class="outline-btn"
+                id="downloadStudentTemplateButton"
+              >
+                Download Template
+              </button>
+              <form method="post" enctype="multipart/form-data">
+                <input
+                  type="file"
+                  name="csv_file"
+                  accept=".csv"
+                  required
+                  hidden
+                  id="studentCSVFile"
+                />
+                <input
+                  type="hidden"
+                  name="type"
+                  value="upload-std-info-csv-btn"
+                />
+                <button
+                  type="button"
+                  class="filled-btn"
+                  id="uploadStudentCSVButton"
+                >
+                  Upload Student Information CSV
+                </button>
+              </form>
+            </div>
+          </section>
+          <section class="upload-box">
+            <h2>
+              <img src="../assets/images/add_info_img.png" class="icon" />Add
+              Employee Information
+            </h2>
+            <div class="button-group">
+              <button
+                type="button"
+                class="outline-btn"
+                id="downloadEmployeeTemplateButton"
+              >
+                Download Template
+              </button>
+              <form method="post" enctype="multipart/form-data">
+                <input
+                  type="file"
+                  name="csv_file"
+                  accept=".csv"
+                  required
+                  hidden
+                  id="employeeCSVFile"
+                />
+                <input type="hidden" name="type" value="borrowers" />
+                <button
+                  type="button"
+                  class="filled-btn"
+                  id="uploadEmployeeCSVButton"
+                >
+                  Upload Employee Information CSV
+                </button>
+              </form>
+            </div>
+          </section>
+          <section class="upload-box" style="">
+            <h2>
+              <img src="../assets/images/add_claimed.png" class="icon" />Add
+              Claimed
+            </h2>
+            <div class="button-group">
+              <button
+                type="button"
+                class="outline-btn"
+                id="downloadClaimedTemplateButton"
+              >
+                Download Template
+              </button>
+              <form method="post" enctype="multipart/form-data">
+                <input
+                  type="file"
+                  name="csv_file"
+                  accept=".csv"
+                  required
+                  hidden
+                  id="claimedCSVFile"
+                />
+                <input type="hidden" name="type" value="claimed" />
+                <button
+                  type="button"
+                  class="filled-btn"
+                  id="uploadClaimedCSVButton"
+                >
+                  Upload Claimed CSV
+                </button>
+              </form>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script src="../scripts/upload_claimed_csv.js"></script>
+    <script src="../scripts/upload_student_csv.js"></script>
+    <script src="../scripts/upload_employee_csv.js"></script>
+    <script src="../scripts/upload_item_csv.js"></script>
+  </body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus IMS</title>
+    <link rel="stylesheet" href="../styles/add_info.css" />
+    <link rel="stylesheet" href="../styles/sidenav_styles.css" />
+  </head>
+  <body>
+    <div id="sidebar-container"></div>
+    <div class="main-content">
+      <div class="main-wrapper">
+        <div class="header">
+          <h1>Add Information</h1>
+        </div>
+        <div class="form-wrapper">
+          <div class="type-selection">
+            <div class="info-type-select-div" style="display: flex">
+              <div class="select-into-type">
+                <label for="Info Type">Info Type</label><br />
+                <select name="info-type" id="info-type">
+                  <option value="Student">Student</option>
+                  <option value="Employee">Employee</option>
+                </select>
+              </div>
+
+              <div class="id-container">
+                <div class="form-inputs" id="stud-id-container">
+                  <label for="Student ID" id="student-id-label">
+                    Student ID </label
+                  ><br />
+                  <input type="text" name="studentID" id="studentID" />
+                </div>
+                <div class="form-inputs" id="emp-id-container">
+                  <label for="emp-id" id="emp-id-label" style="margin-top: 0"
+                    >Employee ID</label
+                  ><br />
+                  <input type="text" name="emp-id" id="emp-id" />
+                </div>
+              </div>
+
+              <div
+                class="form-inputs"
+                id="employee-cat-container"
+                style="display: flex; flex-direction: column"
+              >
+                <label for="emp-category">Category</label>
+                <select name="" id="emp-category">
+                  <option value="Teaching Staff">Teaching Staff</option>
+                  <option value="Non-Teaching Staff">Non-Teaching Staff</option>
+                </select>
+              </div>
+
+              <div
+                class="form-inputs"
+                id="employee-dept-container"
+                style="flex: 1"
+              >
+                <label for="employee-department">Department</label><br />
+                <select
+                  name="emp-department"
+                  id="employee-department"
+                  style="width: 40dvh"
+                >
+                  <option value="">Select Department</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- <button class="upload-csv-btn" id="upload-std-info-csv-btn">
+              + Upload Student Info via CSV
+            </button>
+            <button class="upload-csv-btn" id="upload-emp-info-csv-btn">
+              + Upload Employee Info via CSV
+            </button>
+            <div style="display: none">
+              <input type="file" id="student-csv-file" accept=".csv" />
+            </div>
+            <div style="display: none">
+              <input type="file" id="employee-csv-file" accept=".csv" />
+            </div> -->
+          </div>
+          <div class="new-student-info-form-wrapper">
+            <form id="new-std-info">
+              <div class="form-row">
+                <div class="form-inputs">
+                  <label for="First Name">First Name</label>
+                  <input type="text" name="first-name" id="first-name" />
+                </div>
+                <div class="form-inputs">
+                  <label for="Last Name">Last Name</label>
+                  <input type="text" name="last-name" id="last-name" />
+                </div>
+                <div class="form-inputs">
+                  <label for="Middle Name">Middle Name</label>
+                  <input type="text" name="middle-name" id="middle-name" />
+                </div>
+                <div class="form-inputs">
+                  <label for="Suffix">Suffix</label>
+                  <input type="text" name="suffix-name" id="suffix-name" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-inputs">
+                  <label for="department">Department</label><br />
+                  <select
+                    name="department"
+                    id="student-department"
+                    style="width: 20.3dvw"
+                  >
+                    <option value="">Select Department</option>
+                  </select>
+                </div>
+                <div class="form-inputs">
+                  <label for="section">Section</label><br />
+                  <input
+                    type="text"
+                    id="section"
+                    style="width: 17.5dvw"
+                    name="section"
+                  />
+                </div>
+                <div class="form-inputs">
+                  <label for="contact number">Contact Number</label><br />
+                  <input
+                    type="text"
+                    name="contact_number"
+                    id="contact-number"
+                  />
+                </div>
+                <div class="form-inputs">
+                  <label for="gender">Gender</label>
+                  <br />
+                  <select
+                    name="gender"
+                    id="gender-select"
+                    style="width: 12.5dvw"
+                  >
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-inputs">
+                  <label for="email">Email</label>
+                  <br />
+                  <input
+                    type="text"
+                    name="email"
+                    id="email"
+                    style="width: 29dvw"
+                  />
+                </div>
+                <div class="form-inputs">
+                  <label for="address">Address</label><br />
+                  <input
+                    type="text"
+                    name="address"
+                    id="address"
+                    style="width: 41dvw"
+                  />
+                </div>
+              </div>
+              <div class="form-row"></div>
+              <div style="width: 100%; display: flex">
+                <button class="submit-btn" id="submit-new-std-info">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="new-employee-info-form-wrapper">
+            <form id="new-emp-info">
+              <div class="form-row">
+                <div class="form-inputs">
+                  <label for="emp-first-name">First Name</label>
+                  <input
+                    type="text"
+                    name="emp-first-name"
+                    id="emp-first-name"
+                    style="width: 17dvw"
+                  />
+                </div>
+                <div class="form-inputs">
+                  <label for="emp-last-name">Last Name</label>
+                  <input type="text" name="emp-last-name" id="emp-last-name" />
+                </div>
+                <div class="form-inputs">
+                  <label for="middle-initial">Middle Initial</label>
+                  <input
+                    type="text"
+                    name="middle-initial"
+                    id="middle-initial"
+                  />
+                </div>
+                <div class="form-inputs">
+                  <label for="suffix">Suffix</label><br />
+                  <input
+                    type="text"
+                    name="suffix"
+                    id="suffix"
+                    style="width: 16dvw"
+                  />
+                </div>
+              </div>
+
+              <div class="form-row" style="display: flex">
+                <div class="form-inputs" style="flex: 1">
+                  <label for="emp-email">Email</label><br />
+                  <input
+                    type="text"
+                    name="emp-email"
+                    id="emp-email"
+                    style="width: 17dvw"
+                  />
+                </div>
+
+                <div class="form-inputs" style="flex: 1">
+                  <label for="emp-contact">Contact Number</label><br />
+                  <input
+                    type="text"
+                    name="emp-contact"
+                    id="emp-contact"
+                    style="width: 17.5dvw"
+                  />
+                </div>
+                <div class="form-inputs" style="flex: 2">
+                  <label for="emp-address">Address</label><br />
+                  <input
+                    type="text"
+                    name="emp-address"
+                    id="emp-address"
+                    style="width: 37dvw"
+                  />
+                </div>
+              </div>
+              <br />
+              <br />
+
+              <div style="width: 100%; display: flex">
+                <button class="submit-btn" id="submit-new-emp-info">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../node_modules/papaparse.min.js"></script>
+    <script src="../scripts/sidebar.js"></script>
+    <script src="../scripts/add_info.js"></script>
+  </body>
+</html>

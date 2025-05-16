@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus IMS</title>
+    <link rel="stylesheet" href="../styles/login_style.css" />
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <div id="logo-div">
+        <img
+          src="../assets/images/nexus_logo_rebirth.png"
+          alt=""
+          style="height: 10%; width: 10%; margin-top: 3%"
+        />
+        <h1>Nexus IMS</h1>
+      </div>
+      <div id="left-div">
+        <div id="prompt-div">
+          <h1 id="prompt-div-login">Login</h1>
+          <form id="login-form">
+            <div id="error-message" style="color: red; display: none"></div>
+            <label for="Email">Email</label><br />
+            <input
+              type="text"
+              name="email"
+              required
+              placeholder="juan_delacruz@email.com"
+              id="login-email"
+            />
+            <br />
+            <label for="login-pass">Password</label><br />
+            <input
+              type="password"
+              name="password"
+              required
+              id="login-pass"
+            /><br />
+            <div class="password-options">
+              <div class="show-password">
+                <input
+                  onclick="showPass()"
+                  type="checkbox"
+                  name="checkbox"
+                  id="checkbox"
+                  class="checkmark"
+                />
+                <label for="checkbox">Show Password</label>
+              </div>
+              <div class="forgot-password-link">
+                <a href="request_email.html" id="forgot-password-link"
+                  >Forgot Password?</a
+                >
+              </div>
+            </div>
+            <br /><br /><br />
+            <button type="submit" id="login-btn" class="login-btn">
+              Login
+            </button>
+          </form>
+        </div>
+      </div>
+      <div id="right-div">
+        <img
+          id="login-image"
+          src="../assets/images/login_page_art.png"
+          alt=""
+        />
+        <h1 id="right-div-h1">Asset Management</h1>
+        <h3 id="right-div-h3">Made Simple and More Convenient</h3>
+      </div>
+    </div>
+  </body>
+  <script src="../scripts/login.js"></script>
+</html>

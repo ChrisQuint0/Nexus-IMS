@@ -1,0 +1,165 @@
+@font-face {
+  font-family: "Nunito-Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../assets/fonts/Nunito-Regular.ttf") format("truetype");
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Nunito-Regular";
+}
+
+.main-content {
+  transition: margin-left 0.3s ease;
+  margin-left: 0;
+  width: 100%;
+  overflow-x: auto;
+  /* min-width: fit-content; */
+}
+
+.sidebar-visible .main-content {
+  margin-left: 250px;
+  width: auto;
+}
+
+@media (max-width: 768px) {
+  .sidebar-visible .main-content {
+    margin-left: 280px;
+    width: calc(100% - 280px);
+  }
+}
+
+.header-section {
+  margin-left: 70px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.main-header-section {
+  display: flex;
+}
+
+.heading {
+  font-size: 50px;
+  margin-left: 20px;
+  color: #0e2f65;
+}
+
+.subheading {
+  font-size: 20px;
+  margin-left: 95px;
+}
+
+.search-bar-section {
+  display: flex;
+  margin-left: 100px;
+
+  align-items: center;
+}
+
+.student-table-searchbar,
+.employee-table-searchbar,
+.item-table-searchbar,
+.dept-table-searchbar,
+.cat-table-searchbar,
+.status-table-searchbar {
+  height: 30px;
+  width: 200px;
+  margin-left: 20px;
+  border-radius: 10px;
+  border: solid 1px #0e2f56;
+  padding: 5px 20px;
+  font-size: 15px;
+}
+.stud-table-header-section,
+.emp-table-header-section,
+.items-table-header-section,
+.depts-table-header-section,
+.cats-table-header-section,
+.status-table-header-section {
+  display: flex;
+
+  align-items: center;
+  justify-content: start;
+}
+
+.student-heading,
+.employee-heading,
+.item-heading,
+.dept-heading,
+.cat-heading,
+.status-heading {
+  color: #0e2f56;
+}
+
+.students-table-section,
+.employees-table-section,
+.items-table-section,
+.depts-table-section,
+.cats-table-section,
+.statuses-table-section {
+  margin-left: 70px;
+  margin-top: 50px;
+}
+
+.search-bar-label {
+  font-size: 20px;
+}
+
+.styled-table-container {
+  width: 95%; /* Adjust as needed for your fixed width */
+  max-height: 400px; /* Adjust as needed for your fixed height */
+  overflow: auto; /* Enable both vertical and horizontal scrolling */
+  border-radius: 10px; /* Rounded corners for the container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for the container */
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.styled-table {
+  border-collapse: collapse;
+  width: 100%; /* Table takes full width of its container */
+}
+
+.styled-table thead tr {
+  background-color: #0e2f56;
+  color: #ffffff;
+  text-align: left;
+  border-top-left-radius: 10px; /* Rounded top-left for the first cell in the header */
+  border-top-right-radius: 10px; /* Rounded top-right for the last cell in the header */
+  overflow: hidden; /* To contain the border-radius within the row */
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+  white-space: nowrap; /* Prevent text wrapping in cells */
+}
+
+.styled-table th:first-child {
+  border-top-left-radius: 10px;
+}
+
+.styled-table th:last-child {
+  border-top-right-radius: 10px;
+}
+
+.styled-table tbody tr:nth-child(odd) {
+  background-color: #f2f2f2; /* Light grey for odd rows */
+}
+
+/* Optional: Style the last row to have rounded bottom corners */
+.styled-table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+.styled-table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}

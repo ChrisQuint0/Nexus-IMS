@@ -1,0 +1,222 @@
+@font-face {
+  font-family: "Nunito-Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../assets/fonts/Nunito-Regular.ttf") format("truetype");
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Nunito-Regular";
+}
+
+.main-content {
+  transition: margin-left 0.3s ease;
+  margin-left: 0;
+  width: 100%;
+}
+
+.sidebar-visible .main-content {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+}
+
+@media (max-width: 768px) {
+  .sidebar-visible .main-content {
+    margin-left: 280px;
+    width: calc(100% - 280px);
+  }
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: max-content;
+  overflow-x: hidden;
+  /* background-color: antiquewhite; */
+}
+
+.header {
+  display: flex;
+  width: 100dvw;
+  height: max-content;
+}
+
+.header h1 {
+  font-weight: 500;
+  margin-top: 8dvh;
+  margin-left: 4.5dvw;
+  font-size: 3rem;
+}
+.upload-csv-btn {
+  height: max-content;
+  width: fit-content;
+  padding: 1.4dvh 1.4dvw 1.4dvh 1dvw;
+  font-size: 1.2rem;
+  border: none;
+  background-color: #1c2143;
+  color: #f4f4f4;
+  border-radius: 10px;
+  align-self: flex-end;
+  margin-bottom: 1dvh;
+  box-shadow: 10px 11px 23px -13px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 10px 11px 23px -13px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 11px 23px -13px rgba(0, 0, 0, 0.75);
+  margin-left: auto;
+  margin-right: 3dvw;
+}
+.upload-csv-btn:hover {
+  transition: 250ms;
+  background-color: #f4f4f4;
+  color: #1c2143;
+  border: 1px solid #1c2143;
+  box-shadow: 10px 11px 23px -20px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 10px 11px 23px -20px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 11px 23px -20px rgba(0, 0, 0, 0.75);
+  cursor: pointer;
+}
+.submit-btn {
+  height: max-content;
+  width: fit-content;
+  padding: 1.4dvh 3dvw 1.4dvh 3dvw;
+  font-size: 1.2rem;
+  border: none;
+  background-color: #1c2143;
+  color: #f4f4f4;
+  border-radius: 10px;
+  align-self: flex-end;
+  margin-bottom: 1dvh;
+  box-shadow: 10px 11px 23px -13px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 10px 11px 23px -13px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 11px 23px -13px rgba(0, 0, 0, 0.75);
+  margin-left: auto;
+  margin-right: 3dvw;
+}
+.submit-btn:hover {
+  transition: 250ms;
+  background-color: #f4f4f4;
+  color: #1c2143;
+  border: 1px solid #1c2143;
+  box-shadow: 10px 11px 23px -20px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 10px 11px 23px -20px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 11px 23px -20px rgba(0, 0, 0, 0.75);
+  cursor: pointer;
+}
+
+.main-form {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: flex-start;
+  height: max-content;
+  padding-bottom: 200px;
+}
+.main-form-div {
+  margin-left: 3dvw;
+  margin-top: 2dvh;
+}
+.type-selection {
+  padding-top: 30px;
+  display: flex;
+}
+.info-type-select-div {
+  margin-left: 3dvw;
+}
+.info-type-select-div select {
+  cursor: pointer;
+}
+.form-wrapper {
+  margin-bottom: 2dvh;
+}
+.form-wrapper label {
+  margin-left: 1.5dvw;
+  font-size: 1.3rem;
+}
+.form-wrapper select {
+  margin-top: 1dvh;
+  margin-left: 1.5dvw;
+  border-radius: 9px;
+  border: 1.9px solid #808080;
+  background-color: #ffffff;
+  color: #4c4c4c;
+  font-size: 1.2rem;
+  padding: 1dvh 1dvw 1dvh 1.7dvw;
+  width: 20dvw;
+}
+
+.form-inputs label {
+  margin-left: 1.5dvw;
+  font-size: 1.3rem;
+}
+
+.form-inputs select {
+  margin-top: 1dvh;
+  margin-left: 1dvw;
+  border: 1.9px solid #808080;
+  background-color: #ffffff;
+  color: #4c4c4c;
+  font-size: 1.2rem;
+  padding: 1dvh 1dvw 1dvh 1.7dvw;
+  width: 20dvw;
+  border-radius: 10px;
+}
+
+.form-inputs select:hover {
+  cursor: pointer;
+}
+
+.form-inputs input[type="text"] {
+  margin-top: 1dvh;
+  margin-left: 1dvw;
+  border: 1.9px solid #808080;
+  background-color: #ffffff;
+  color: #4c4c4c;
+  font-size: 1.2rem;
+  padding: 1dvh 1dvw 1dvh 1.7dvw;
+  width: 17.4dvw;
+  border-radius: 10px;
+}
+
+.form-inputs input[type="date"] {
+  margin-top: 1dvh;
+  margin-left: 1.5dvw;
+  border: 1.9px solid #808080;
+  background-color: #ffffff;
+  color: #4c4c4c;
+  font-size: 1.2rem;
+  padding: 1dvh 0dvw 1dvh 1.7dvw;
+  width: 17.4dvw;
+}
+.form-row {
+  padding-top: 2rem;
+  display: flex;
+  width: 70%;
+  margin-left: 3.5dvw;
+}
+#suffix-name {
+  width: 150px;
+}
+
+/* Additional styling for form visibility */
+.new-employee-info-form-wrapper {
+  display: none;
+  /* Hide employee form by default since Student is the default option */
+}
+
+#upload-emp-info-csv-btn {
+  display: none;
+  /* Hide employee CSV button by default */
+}
+
+/* Ensure smooth transitions when switching forms */
+.new-student-info-form-wrapper,
+.new-employee-info-form-wrapper,
+#upload-std-info-csv-btn,
+#upload-emp-info-csv-btn {
+  transition: all 0.3s ease;
+}

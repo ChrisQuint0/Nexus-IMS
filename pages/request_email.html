@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus IMS</title>
+    <link rel="stylesheet" href="../styles/request_email_styles.css" />
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <div id="left-div">
+        <div id="logo-div">
+          <img
+            src="../assets/images/nexus_logo_rebirth.png"
+            style="height: 10%; width: 10%; margin-top: 3%"
+            alt=""
+          />
+          <h1>Nexus IMS</h1>
+        </div>
+        <div id="prompt-div">
+          <h1 id="prompt-div-login">Password Recovery</h1>
+          <form
+            action="../php/request_email.php"
+            method="post"
+            id="request-email-form"
+          >
+            <div id="error-message" style="color: red; display: none"></div>
+            <label for="reset-pass-email">Email</label><br />
+            <input
+              type="text"
+              name="email"
+              required
+              placeholder="juan_delacruz@email.com"
+              id="reset-pass-email"
+            />
+            <br />
+            <button class="send-email-btn" type="submit">Send to email</button
+            ><br /><br /><br />
+          </form>
+        </div>
+      </div>
+
+      <div id="right-div">
+        <img
+          id="login-image"
+          src="../assets/images/login_page_art.png"
+          alt=""
+        />
+        <h1 id="right-div-h1">Asset Management</h1>
+        <h3 id="right-div-h3">Made Simple and More Convenient</h3>
+      </div>
+    </div>
+  </body>
+  <script src="../scripts/request_email.js"></script>
+</html>

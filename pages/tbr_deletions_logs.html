@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus IMS</title>
+    <link rel="stylesheet" href="/styles/sidenav_styles.css" />
+    <!--- WARNING ! USING RETURN LOGS STYLE SHEET!-->
+    <link rel="stylesheet" href="/styles/return_logs_styles.css" />
+    <!--- Import for HMTL5QR Module!-->
+    <script src="/node_modules/html5-qrcode/html5-qrcode.min.js"></script>
+  </head>
+  <body>
+    <!-- This is the Nav Bar-->
+    <div id="sidebar-container"></div>
+    <div class="main-content">
+    <div class="main-wrapper">
+
+      <!-- This is the end of the Nav Bar-->
+
+      <h1 id="top-text">To be Returned Deletion Logs</h1>
+      <!-- Nav Area for table -->
+      <div class="searchbar-div">
+        <input
+          id="searchbar"
+          type="text"
+          placeholder="⌕ Search by Name or Serial Number"
+        />
+        <button id="scan-btn">Scan QR/Barcode</button>
+        <div id="filter">
+          <img src="/assets/images/filter-img.png" id="filter-img" alt="" />
+          <h2>Filter</h2>
+        </div>
+      </div>
+      <div id="overlayContainer" class="overlay">
+        <div class="popup">
+          <button class="close-btn" id="closePopupBtn">&times;</button>
+          <h2>Scan</h2>
+          <div id="reader"></div>
+        </div>
+      </div>
+
+      <br />
+      <div class="table-wrapper">
+        <div>
+          <table class="table-table" id="tblReturnLogs">
+            <thead>
+              <th>Box Number</th>
+              <th>Receiver</th>
+              <th>Item Name</th>
+              <th>Quantity</th>
+              <th>Serial Number</th>
+              <th>Received Date</th>
+              <th>Return Date</th>
+              <th>Accountable</th>
+              <th>Deleted By</th>
+              <th>Reason</th>
+              <th>Deleted At</th>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>000</td>
+                <td>Quinto, Christopher A.</td>
+                <td>ACER THDDSJKS908 & Acer Bag</td>
+                <td>1</td>
+                <td>029FHDJ-FJDCI</td>
+                <td>4/18/25</td>
+                <td>4/18/26</td>
+                <td>Regie Tan</td>
+                <td>Regie Tan</td>
+                <td>Secret</td>
+                <td>4/20/29</td>
+              </tr>
+              <tr>
+                <td>111</td>
+                <td>Goto, Ipei</td>
+                <td>SAMSUNG GALAXY TAB S9 FE</td>
+                <td>1</td>
+                <td>NXVPXSP009876543B12345</td>
+                <td>4/18/25</td>
+                <td>4/18/26</td>
+                <td>Regie Tan</td>
+                <td>Regie Tan</td>
+                <td>Tanong mo sa pagong</td>
+                <td>4/20/29</td>
+              </tr>
+              <tr>
+                <td>222</td>
+                <td>Balbalcal, Chrisha Mazel</td>
+                <td>
+                  ACER TRAVELMATE P2 TMP215-53G-51PH LAPTOP BAG, BLACK, BACKPACK
+                </td>
+                <td>1</td>
+                <td>NXVPXSP009876543B12345</td>
+                <td>4/18/25</td>
+                <td>4/18/26</td>
+                <td>Regie Tan</td>
+                <td>Regie Tan</td>
+                <td>Tinamad na pumasok</td>
+                <td>4/20/29</td>
+              </tr>
+              <tr>
+                <td>222</td>
+                <td>Manuel, Sofia Nicole</td>
+                <td>TAB-2025-PHL-QZN-98765432</td>
+                <td>1</td>
+                <td>TAB-2025-PHL-QZN-98765432</td>
+                <td>4/18/25</td>
+                <td>4/18/26</td>
+                <td>Regie Tan</td>
+                <td>Regie Tan</td>
+                <td>Ala lang trip ko lang</td>
+                <td>4/20/29</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div
+        class="ranged-report-wrapper"
+        style="
+          display: flex;
+          gap: 20px;
+          align-items: center;
+          justify-content: space-between;
+          padding: 10px;
+        "
+      >
+        <div style="display: flex; align-items: center; gap: 5px">
+          <input type="checkbox" id="rangedReportCheckbox" />
+          <label for="rangedReportCheckbox">Ranged Reporting</label>
+        </div>
+        <div style="display: flex; align-items: center; gap: 5px">
+          <label for="dateFrom">Generate Report from:</label>
+          <input type="date" id="dateFrom" style="width: 150px" />
+        </div>
+        <div style="display: flex; align-items: center; gap: 5px">
+          <label for="dateTo">To:</label>
+          <input type="date" id="dateTo" style="width: 150px" />
+        </div>
+        <div>
+          <button
+            id="btnGenReport"
+            style="padding: 5px 15px; margin-right: 10px"
+          >
+            Generate Report
+          </button>
+        </div>
+      </div>
+      <br />
+    </div>
+    </div>
+  </body>
+  <script src="/scripts/sidebar.js"></script>
+  <script src="/scripts/tbr_deletions_log.js"></script>
+</html>

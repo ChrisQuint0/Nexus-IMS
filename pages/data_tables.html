@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Data Tables</title>
+    <link rel="stylesheet" href="../styles/data_tables.css" />
+    <link rel="stylesheet" href="../styles/sidenav_styles.css" />
+  </head>
+  <body>
+    <div id="sidebar-container"></div>
+    <div class="main-content">
+      <div class="main-wrapper">
+        <div class="header-section">
+          <div class="main-header-section">
+            <img
+              src="../assets/images/data_table_icon_page.png"
+              alt=""
+              style="width: 70px; height: 70px"
+            />
+            <h1 class="heading">Data Tables</h1>
+          </div>
+          <div class="subheader-section">
+            <p class="subheading">A view of all editable tables</p>
+          </div>
+        </div>
+        <div class="students-table-section" id="students-table-section">
+          <div class="stud-table-header-section">
+            <div class="student-heading"><h1>Students</h1></div>
+            <div class="search-bar-section">
+              <p class="search-bar-label">Search</p>
+              <input
+                type="text"
+                id="student-table-searchbar"
+                class="student-table-searchbar"
+                placeholder="⌕ Search by Student ID"
+              />
+            </div>
+          </div>
+          <div class="stud-data-table-container styled-table-container">
+            <table class="stud-data-table styled-table" id="stud-data-table">
+              <thead>
+                <tr>
+                  <th>Action</th>
+                  <th>Student ID</th>
+                  <th>First Name</th>
+                  <th>Middle Name</th>
+                  <th>Last Name</th>
+                  <th>Suffix</th>
+                  <th>Gender</th>
+                  <th>Section</th>
+                  <th>Department</th>
+                  <th>Contact Number</th>
+                  <th>Email</th>
+                  <th>Address</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="employees-table-section" id="employees-table-section">
+          <div class="emp-table-header-section">
+            <div class="employee-heading"><h1>Employees</h1></div>
+            <div class="search-bar-section">
+              <p class="search-bar-label">Search</p>
+              <input
+                type="text"
+                id="employee-table-searchbar"
+                class="employee-table-searchbar"
+                placeholder="⌕ Search by Emp ID"
+              />
+            </div>
+          </div>
+          <div class="emp-data-table-container styled-table-container">
+            <table class="emp-data-table styled-table" id="emp-data-table">
+              <thead>
+                <tr>
+                  <th>Action</th>
+                  <th>Employee ID</th>
+                  <th>First Name</th>
+                  <th>Middle Initial</th>
+                  <th>Last Name</th>
+                  <th>Suffix</th>
+                  <th>Email</th>
+                  <th>Contact Number</th>
+                  <th>Address</th>
+                  <th>Category</th>
+                  <th>Department</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="items-table-section" id="items-table-section">
+          <div class="items-table-header-section">
+            <div class="item-heading"><h1>Items</h1></div>
+            <div class="search-bar-section">
+              <p class="search-bar-label">Search</p>
+              <input
+                type="text"
+                id="item-table-searchbar"
+                class="item-table-searchbar"
+                placeholder="⌕ Search Item"
+              />
+            </div>
+          </div>
+          <div class="item-data-table-container styled-table-container">
+            <table class="item-data-table styled-table" id="item-data-table">
+              <thead>
+                <tr>
+                  <th>Action</th>
+                  <th>Box Number</th>
+                  <th>Item Name</th>
+                  <th>Serial Number</th>
+                  <th>Purchase Date</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="depts-table-section" id="depts-table-section">
+          <div class="depts-table-header-section">
+            <div class="dept-heading"><h1>Departments</h1></div>
+            <div class="search-bar-section">
+              <p class="search-bar-label">Search</p>
+              <input
+                type="text"
+                id="dept-table-searchbar"
+                class="dept-table-searchbar"
+                placeholder="⌕ Search by Dept Name"
+              />
+            </div>
+          </div>
+          <div class="dept-data-table-container styled-table-container">
+            <table class="dept-data-table styled-table" id="item-data-table">
+              <thead>
+                <tr>
+                  <th>Action</th>
+                  <th>Department Name</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div
+            class="add-dept"
+            style="
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              margin-bottom: 50px;
+            "
+          >
+            <span style="font-size: 20px; margin-right: 20px"
+              >Add New Department</span
+            >
+            <input
+              type="text"
+              id="new-dept-name"
+              style="
+                margin-right: 20px;
+                width: 20dvw;
+                font-size: 20px;
+                padding: 10px;
+                border-radius: 10px;
+                border: solid 1px #0e2f56;
+              "
+            />
+            <button
+              id="add-department"
+              style="
+                background-color: #0e2f56;
+                color: white;
+                padding: 15px 25px;
+                border: none;
+                border-radius: 15px;
+              "
+            >
+              Add Department
+            </button>
+          </div>
+        </div>
+
+        <div class="cats-table-section" id="cats-table-section">
+          <div class="cats-table-header-section">
+            <div class="cat-heading"><h1>Categories</h1></div>
+            <div class="search-bar-section">
+              <p class="search-bar-label">Search</p>
+              <input
+                type="text"
+                id="cat-table-searchbar"
+                class="cat-table-searchbar"
+                placeholder="⌕ Search by Category Name"
+              />
+            </div>
+          </div>
+          <div class="cat-data-table-container styled-table-container">
+            <table class="cat-data-table styled-table" id="cat-data-table">
+              <thead>
+                <tr>
+                  <th>Action</th>
+                  <th>Category Name</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div
+            class="add-cat"
+            style="
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              margin-bottom: 50px;
+            "
+          >
+            <span style="font-size: 20px; margin-right: 20px"
+              >Add New Category</span
+            >
+            <input
+              type="text"
+              id="new-cat-name"
+              style="
+                margin-right: 20px;
+                width: 20dvw;
+                font-size: 20px;
+                padding: 10px;
+                border-radius: 10px;
+                border: solid 1px #0e2f56;
+              "
+            />
+            <button
+              id="add-category"
+              style="
+                background-color: #0e2f56;
+                color: white;
+                padding: 15px 25px;
+                border: none;
+                border-radius: 15px;
+              "
+            >
+              Add Category
+            </button>
+          </div>
+        </div>
+
+        <div class="statuses-table-section" id="statuses-table-section">
+          <div class="status-table-header-section">
+            <div class="status-heading"><h1>Statuses</h1></div>
+            <div class="search-bar-section">
+              <p class="search-bar-label">Search</p>
+              <input
+                type="text"
+                id="status-table-searchbar"
+                class="status-table-searchbar"
+                placeholder="⌕ Search by Status Name"
+              />
+            </div>
+          </div>
+          <div class="status-data-table-container styled-table-container">
+            <table
+              class="status-data-table styled-table"
+              id="status-data-table"
+            >
+              <thead>
+                <tr>
+                  <th>Action</th>
+                  <th>Status Name</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div
+            class="add-status"
+            style="
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              margin-bottom: 50px;
+            "
+          >
+            <span style="font-size: 20px; margin-right: 20px"
+              >Add New Status</span
+            >
+            <input
+              type="text"
+              id="new-status-name"
+              style="
+                margin-right: 20px;
+                width: 20dvw;
+                font-size: 20px;
+                padding: 10px;
+                border-radius: 10px;
+                border: solid 1px #0e2f56;
+              "
+            />
+            <button
+              id="add-status"
+              style="
+                background-color: #0e2f56;
+                color: white;
+                padding: 15px 25px;
+                border: none;
+                border-radius: 15px;
+              "
+            >
+              Add Status
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../scripts/sidebar.js"></script>
+    <script src="../scripts/add_info_student_table.js"></script>
+    <script src="../scripts/add_info_employee_table.js"></script>
+    <script src="../scripts/add_info_items_table.js"></script>
+    <script src="../scripts/display_depts.js"></script>
+    <script src="../scripts/display_categories.js"></script>
+    <script src="../scripts/display_statuses.js"></script>
+  </body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Activity Logs</title>
+    <link rel="stylesheet" href="../styles/activity_logs.css" />
+    <link rel="stylesheet" href="../styles/sidenav_styles.css" />
+  </head>
+  <body>
+    <div id="sidebar-container"></div>
+    <div class="main-content">
+      <div class="main-wrapper">
+        <div class="header" style="padding-top: 50px; padding-left: 50px">
+          <img
+            src="../assets/images/activity_logs_icon.png"
+            class="activity-logs-icon"
+          />
+          <h1 class="heading">Activity Logs</h1>
+          <div
+            class="filter-wrapper"
+            style="
+              padding-left: 50px;
+              padding-right: 20px;
+              padding-top: 10px;
+              display: flex;
+              align-items: center;
+            "
+          >
+            <label
+              for="action-filter"
+              style="font-size: 16px; padding-right: 10px"
+            >
+              Filter By Action:
+            </label>
+            <select
+              id="action-filter"
+              style="
+                padding: 8px 12px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                font-size: 15px;
+              "
+            >
+              <option value="">All Actions</option>
+              <option value="Add">Add</option>
+              <option value="Edit">Edit</option>
+              <option value="Update">Update</option>
+              <option value="Delete">Delete</option>
+            </select>
+          </div>
+
+          <div class="download-wrapper">
+            <div id="csv_btn" class="downlaod-icons" title="Download as CSV">
+              <img
+                src="../assets/images/generate_csv.png"
+                alt="CSV"
+                style="height: 50px; width: 50px"
+              />
+            </div>
+            <div id="pdf_btn" class="downlaod-icons" title="Download as PDF">
+              <img
+                src="../assets/images/generate_pdf.png"
+                alt="PDF"
+                style="height: 50px; width: 50px"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="table-container">
+          <table class="activity-logs-table" id="activity-logs-table">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Action</th>
+                <th>Timestamp</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div id="downloadOverlay-csv" class="downloadOverlay">
+      <div class="datePicker">
+        <span
+          style="
+            margin-left: auto;
+            margin-right: 30px;
+            margin-top: 20px;
+            cursor: pointer;
+          "
+          class="close"
+          >&times;</span
+        >
+        <div class="column-selector">
+          <p>Select columns to include in your CSV export:</p>
+
+          <div class="multiselect-container">
+            <div class="multiselect-header">
+              <span>Selected Columns</span>
+              <div class="selected-count">
+                <span class="selected-count-value">0</span> selected
+              </div>
+              <span class="dropdown-icon">▼</span>
+            </div>
+
+            <div class="multiselect-dropdown">
+              <!-- Column options will be inserted here by JavaScript -->
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            <button class="select-all">Select All</button>
+            <button class="deselect-all">Deselect All</button>
+          </div>
+        </div>
+        <div class="adminDeptChoice" style="margin-top: 15px">
+          <label for="">Department</label><br />
+          <select
+            class="department-select"
+            style="width: 100%; padding: 5px"
+          ></select>
+        </div>
+
+        <button onclick="downloadInventoryCSV()">Download CSV</button>
+      </div>
+    </div>
+
+    <!-- PDF Download Overlay -->
+    <div id="downloadOverlay-pdf" class="downloadOverlay">
+      <div class="datePicker">
+        <span
+          style="
+            margin-left: auto;
+            margin-right: 30px;
+            margin-top: 20px;
+            cursor: pointer;
+          "
+          class="close"
+          >&times;</span
+        >
+        <div class="column-selector">
+          <p>Select columns to include in your PDF export:</p>
+
+          <div class="multiselect-container">
+            <div class="multiselect-header">
+              <span>Selected Columns</span>
+              <div class="selected-count">
+                <span class="selected-count-value">0</span> selected
+              </div>
+              <span class="dropdown-icon">▼</span>
+            </div>
+
+            <div class="multiselect-dropdown">
+              <!-- Column options will be inserted here by JavaScript -->
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            <button class="select-all">Select All</button>
+            <button class="deselect-all">Deselect All</button>
+          </div>
+        </div>
+        <div class="adminDeptChoice" style="margin-top: 15px">
+          <label for="">Department</label><br />
+          <select
+            class="department-select"
+            style="width: 100%; padding: 5px"
+          ></select>
+        </div>
+
+        <button onclick="downloadInventoryPDF()">Download PDF</button>
+      </div>
+    </div>
+    <script src="../scripts/sidebar.js"></script>
+    <script src="../scripts/activity_logs.js"></script>
+  </body>
+</html>

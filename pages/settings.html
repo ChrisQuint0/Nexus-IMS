@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload CSV</title>
+  <link rel="stylesheet" href="../styles/settings_style.css" />
+  <link rel="stylesheet" href="../styles/sidenav_styles.css" />
+</head>
+
+<body>
+    <main class="content">
+      <h1><img src="images/upload_csv.png">Upload CSV</h1>
+      <p class="description">Add items and borrower information using CSV files. Download the provided template to format your data correctly, then upload your completed CSV file.</p>
+      <section class="upload-box">
+        <h2><img src="images/add_items.png">Add Items</h2>
+        <div class="button-group">
+          <a href="templates/items_template.csv" class="outline-btn">Download Template</a>
+          <form action="settings.php" method="post" enctype="multipart/form-data">
+            <input type="file" name="csv_file" accept=".csv" required hidden id="itemsCSV">
+            <input type="hidden" name="type" value="items">
+            <label for="itemsCSV" class="filled-btn">Upload Items CSV</label>
+          </form>
+        </div>
+      </section>
+      <section class="upload-box">
+        <h2><img src="images/add-info-img.png">Add Borrowers’ Info</h2>
+        <div class="button-group">
+          <a href="templates/borrowers_template.csv" class="outline-btn">Download Template</a>
+          <form action="settings.php" method="post" enctype="multipart/form-data">
+            <input type="file" name="csv_file" accept=".csv" required hidden id="borrowersCSV">
+            <input type="hidden" name="type" value="borrowers">
+            <label for="borrowersCSV" class="filled-btn">Upload Info CSV</label>
+          </form>
+        </div>
+      </section>
+      <section class="upload-box">
+        <h2><img src="images/add_claimed.png">Add Claimed</h2>
+        <div class="button-group">
+          <a href="templates/claimed_template.csv" class="outline-btn">Download Template</a>
+          <form action="settings.php" method="post" enctype="multipart/form-data">
+            <input type="file" name="csv_file" accept=".csv" required hidden id="claimedCSV">
+            <input type="hidden" name="type" value="claimed">
+            <label for="claimedCSV" class="filled-btn">Upload Info CSV</label>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

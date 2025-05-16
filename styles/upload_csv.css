@@ -1,0 +1,113 @@
+@font-face {
+  font-family: "Nunito-Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../assets/fonts/Nunito-Regular.ttf") format("truetype");
+}
+
+* {
+  font-family: "Nunito-Regular";
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.main-content {
+  transition: margin-left 0.3s ease;
+  margin-left: 0;
+  width: 100%;
+  overflow-x: auto;
+  min-width: fit-content;
+}
+
+.sidebar-visible .main-content {
+  margin-left: 250px;
+  width: auto;
+}
+
+@media (max-width: 768px) {
+  .sidebar-visible .main-content {
+    margin-left: 280px;
+    width: calc(100% - 280px);
+  }
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+body {
+  font-family: "Nunito", sans-serif;
+  display: flex;
+  background-color: #f2f0e4;
+  color: #1a1a2e;
+}
+.layout {
+  display: flex;
+  width: 100%;
+}
+.content {
+  flex-grow: 1;
+  padding: 40px;
+}
+h1 {
+  font-size: 1.8em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.description {
+  font-size: 0.95em;
+  margin-bottom: 25px;
+  color: #555;
+}
+.upload-box {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+.upload-box h2 {
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.button-group {
+  display: flex;
+  gap: 15px;
+}
+.outline-btn,
+.filled-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+}
+.outline-btn {
+  border: 1px solid #131944;
+  color: #131944;
+  background: white;
+}
+
+.outline-btn:hover {
+  cursor: pointer;
+}
+.filled-btn {
+  border: none;
+  background: #131944;
+  color: white;
+}
+.icon {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 8px;
+}

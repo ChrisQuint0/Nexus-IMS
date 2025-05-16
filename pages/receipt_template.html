@@ -1,0 +1,303 @@
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  table.main,
+  table.main td {
+    border: 1px solid #000;
+  }
+
+  table.assessment {
+    margin-top: 5px;
+  }
+
+  .header {
+    background-color: #4682b4;
+    color: white;
+    font-weight: bold;
+    padding: 8px;
+    text-align: center;
+  }
+  li {
+    text-align: justify;
+  }
+  .title {
+    font-weight: bold;
+    text-align: center;
+    padding: 5px;
+  }
+
+  .label {
+    font-weight: bold;
+    width: 30%;
+  }
+
+  .value {
+    width: 50%;
+  }
+
+  .date-section {
+    text-align: left;
+    padding-bottom: 5px;
+  }
+
+  .page-number {
+    text-align: right;
+    font-size: 9pt;
+  }
+
+  .guidelines {
+    font-size: 6pt;
+    text-align: justify;
+  }
+
+  .checkbox {
+    width: 10px;
+    height: 10px;
+    border: 1px solid #000;
+    display: inline-block;
+  }
+
+  .signature-line {
+    border-top: 1px solid black;
+    margin-top: 50px;
+    text-align: center;
+  }
+</style>
+<body>
+  <table style="width: 100%; margin-bottom: 10px">
+    <tr>
+      <td style="width: 20%; text-align: left; height: 30mm">
+        <!-- Logo will be added by TCPDF -->
+      </td>
+      <td style="width: 80%; text-align: center">
+        <div class="header" style="margin-bottom: 5px">
+          PLP – Management Information System Office
+        </div>
+        <div style="font-size: 9pt; text-align: right">
+          Alcalde Jose St. Kapasigan, Pasig City
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <table class="main" style="width: 100%">
+    <tr>
+      <td class="date-section" style="border-right: none">
+        ' . date('d-M-y') . '
+      </td>
+      <td colspan="2" class="title">ICT ACKNOWLEDGEMENT RECEIPT</td>
+      <td class="page-number">Page 1 of 1</td>
+    </tr>
+    <tr>
+      <td class="label">NAME:</td>
+      <td class="value" id="name"></td>
+      <td style="width: 20%; text-align: center" rowspan="5" id="photo">
+        <!-- Photo placeholder -->
+        [PHOTO PLACEHOLDER]
+      </td>
+    </tr>
+    <tr>
+      <td class="label">OFFICE/DEPARTMENT:</td>
+      <td class="value" id="office-dept"></td>
+    </tr>
+    <tr>
+      <td class="label">SECTION:</td>
+      <td class="value" id="section"></td>
+    </tr>
+    <tr>
+      <td class="label">EMAIL ADDRESS:</td>
+      <td class="value" id="email-address"></td>
+    </tr>
+    <tr>
+      <td class="label">CONTACT NO.:</td>
+      <td class="value" id="contact-no"></td>
+    </tr>
+  </table>
+
+  <table class="main" style="margin-top: 5px; width: 100%">
+    <tr>
+      <td style="text-align: center; width: 10%">Item No.</td>
+      <td style="text-align: center; width: 45%">
+        Item Description and Serial Number
+      </td>
+      <td style="text-align: center; width: 10%">Quantity</td>
+      <td style="text-align: center; width: 10%">Received Date</td>
+      <td style="text-align: center; width: 10%">Returned Date</td>
+      <td style="text-align: center; width: 15%">Remarks</td>
+    </tr>
+    <tr>
+      <td style="text-align: center" id="item-no">placeholder</td>
+      <td id="item-desc-serial-num">placeholder</td>
+      <td style="text-align: center" id="quantity">placeholder</td>
+      <td style="text-align: center" id="receivedDate">placeholder</td>
+      <td style="text-align: center" id="returnedDate">placeholder</td>
+      <td id="remarks">placeholder</td>
+    </tr>
+  </table>
+
+  <table class="main assessment" style="margin-top: 5px; width: 100%">
+    <tr>
+      <td colspan="3" class="title">GADGET/EQUIPMENT ASSESSMENT</td>
+    </tr>
+    <tr>
+      <td style="width: 33%; padding: 10px">[ ] Working properly</td>
+      <td style="width: 33%; padding: 10px">[ ] Pull out</td>
+      <td style="width: 33%; padding: 10px">[ ] Defective</td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <div style="padding: 5px">Problem Found:</div>
+        <div style="border-bottom: 1px solid #000; height: 20px"></div>
+        <div style="border-bottom: 1px solid #000; height: 20px"></div>
+        <div style="border-bottom: 1px solid #000; height: 20px"></div>
+      </td>
+    </tr>
+  </table>
+
+  <table style="margin-top: 5px; font-size: 6px; width: 100%">
+    <tr>
+      <td style="width: 70%; vertical-align: top" class="guidelines">
+        <strong>General Guidelines:</strong><br />
+        <ol>
+          <li style="text-align: justify">
+            The gadget/equipment issued to you is only borrowed from the City
+            Government of Pasig and will be returned once you leave Pamantasan
+            ng Lungsod ng Pasig.
+          </li>
+          <li style="text-align: justify">
+            In case of Loss, Theft, or Damage of the borrowed gadget, it is your
+            duty and diligence to the device lent. Notify the bearer immediately
+            not later than twenty (20) days after the incident happened to the
+            custodian of the "Pamantasan ng Lungsod ng Pasig" of such fact.
+            Provided that, if the gadget lost is willfully or negligently lost,
+            the applicable surcharge shall be imposed against me, in the amount
+            of replacement, to replace the property with the same specifications
+            as the device lent and without prejudice to another sanction which
+            the City of Pasig may further impose against me. In case of damage,
+            I shall be liable for the item repaired at my own expense to bring
+            it back to working condition. However, in case it cannot be
+            repaired, or the cost is excessive, I shall undertake to pay the
+            actual price and surcharge.
+          </li>
+          <li style="text-align: justify">
+            For cases attributed to Loss or Damage due to unavoidable
+            circumstances, notify immediately the class adviser and MIS
+            Personnel. Please prepare the following documents:
+            <ol type="a">
+              <li>Affidavit of Loss or Damage</li>
+              <li>
+                Affidavit of two disinterested persons who have personal
+                knowledge of such fact/loss
+              </li>
+              <li>
+                Additional documents for the following incident/circumstances:
+                In the case of the following incident/occurrences:
+                <ol type="c.1">
+                  <li>
+                    FIRE
+                    <ol type="c.1.a">
+                      <li>
+                        Progress and/or final report of the local Police/Fire
+                        Department or Station on the incident.
+                      </li>
+                      <li>
+                        List or Inventory of burned or destroyed properties.
+                      </li>
+                      <li>
+                        Authenticated picture(s) showing the city office or
+                        government properties razed by the fire.
+                      </li>
+                    </ol>
+                  </li>
+                  <li>
+                    THEFT OR ROBBERY
+                    <ol type="c.2.a">
+                      <li>
+                        Progress and/or Final Police report on the theft or
+                        robbery case.
+                      </li>
+                      <li>
+                        Authenticated picture(s) taken relative to the robbery
+                        or theft incident.
+                      </li>
+                    </ol>
+                  </li>
+                  <li>
+                    FORCE MAJEURE (EARTHQUAKE, TYPHOONS, AND OTHER NATURAL
+                    CALAMITIES)
+                    <ol type="c.3.a">
+                      <li>
+                        Detailed list/inventory of damaged government
+                        property/ies and those property/ies destroyed after the
+                        calamity.
+                      </li>
+                      <li>
+                        Certification issued by the official local weather
+                        bureau (PAGASA) or other similar government agency on
+                        the actual occurrence of the calamity.
+                      </li>
+                    </ol>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </td>
+      <td style="width: 30%; vertical-align: top">
+        <div style="border: 1px solid #000; padding: 5px">
+          <strong>Essential Reminders in Using your Gadget/Equipment:</strong
+          ><br />
+          <ol>
+            <li>
+              Formatting or reinstalling the system software is strictly
+              forbidden to avoid the loss of its license.
+            </li>
+            <li>
+              The gadget/equipment is under warranty so do not attempt to open
+              or repair it with an unauthorized technician in order not to void
+              the manufacturer\'s warranty.
+            </li>
+            <li>
+              For any concerns on the gadget/equipment, please report it
+              immediately to the PLP-MIS office, or you can email at
+              mis@plpasig.edu.ph. In sending your concern via email, please
+              include a video or screenshot of the problem so that we can
+              initially assess it and make necessary recommendations to remedy
+              the problem.
+            </li>
+          </ol>
+        </div>
+        <div style="text-align: center; margin-top: 30px">
+          <!-- QR Code placeholder -->
+          SCAN ME<br />
+          <!-- [QR CODE PLACEHOLDER] -->
+        </div>
+      </td>
+    </tr>
+  </table>
+  <br /><br /><br /><br /><br />
+  <br /><br /><br /><br /><br />
+
+  <table style="width: 95%; margin-top: 100px">
+    <tr>
+      <td style="width: 50%">
+        <div class="signature-line">Signature over Printed Name</div>
+      </td>
+      <td style="width: 50%">
+        <div class="signature-line">Checked and Assisted by:</div>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 50%; padding-top: 30px">
+        <div class="signature-line">Date</div>
+      </td>
+      <td style="width: 50%; padding-top: 30px">
+        <div class="signature-line">Date</div>
+      </td>
+    </tr>
+  </table>
+</body>

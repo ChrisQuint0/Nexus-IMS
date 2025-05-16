@@ -1,0 +1,172 @@
+@font-face {
+  font-family: "Nunito-Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../assets/fonts/Nunito-Regular.ttf") format("truetype");
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Nunito-Regular";
+  background-color: #fdfbfb;
+}
+
+.main-content {
+  transition: margin-left 0.3s ease;
+  margin-left: 0;
+  width: 100%;
+}
+
+.sidebar-visible .main-content {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+}
+
+@media (max-width: 768px) {
+  .sidebar-visible .main-content {
+    margin-left: 280px;
+    width: calc(100% - 280px);
+  }
+}
+
+.search-section {
+  margin: 2rem 50px;
+}
+
+.search-bar-label {
+  font-size: 1.1rem;
+  color: #0e2f56;
+  margin-bottom: 0.5rem;
+}
+
+#search-item {
+  width: 300px;
+  padding: 0.8rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+#search-item:focus {
+  border-color: #0e2f56;
+  box-shadow: 0 0 0 2px rgba(14, 47, 86, 0.1);
+}
+
+#search-item::placeholder {
+  color: #999;
+}
+
+.table-container {
+  margin: 0 50px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: auto;
+  max-height: calc(100vh - 300px);
+  max-width: calc(100vw - 100px);
+}
+
+.unrecoverables-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1000px; /* Ensures table doesn't get too squeezed */
+}
+
+.unrecoverables-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.unrecoverables-table th {
+  background-color: #0e2f56;
+  color: white;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 500;
+}
+
+.unrecoverables-table th:first-child {
+  border-top-left-radius: 12px;
+}
+
+.unrecoverables-table th:last-child {
+  border-top-right-radius: 12px;
+}
+
+.unrecoverables-table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.unrecoverables-table tr:nth-child(odd) {
+  background-color: white;
+}
+
+.unrecoverables-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.unrecoverables-table tbody tr:hover {
+  background-color: #f0f4f8;
+  transition: background-color 0.2s ease;
+}
+
+/* Custom scrollbar styles */
+.table-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+.modern-dropdown {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 16px;
+  color: #444;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  /* Simple arrow using a pseudo-element */
+  background-image: linear-gradient(45deg, transparent 50%, gray 50%),
+    linear-gradient(135deg, gray 50%, transparent 50%);
+  background-position: right 10px top 50%, right 6px top 50%;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+}
+
+.modern-dropdown:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 3px rgba(0, 123, 255, 0.3);
+}
+
+.modern-dropdown option {
+  padding: 8px;
+  font-size: 16px;
+}

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus IMS</title>
+    <link rel="stylesheet" href="../styles/add_borrower_styles.css" />
+    <link rel="stylesheet" href="../styles/sidenav_styles.css" />
+    <script src="../node_modules/html5-qrcode/html5-qrcode.min.js"></script>
+  </head>
+  <body>
+    <div id="sidebar-container"></div>
+    <div class="main-content">
+      <div class="main-wrapper">
+        <div class="header" style="padding-top: 50px; padding-left: 50px">
+          <h1 style="color: #0e2f56">Claim an Item</h1>
+        </div>
+        <div class="main-form-div">
+          <form class="main-form" action="">
+            <div class="main-form-top">
+              <h2 style="margin-bottom: 2dvh">Profile</h2>
+              <!-- Borrower type and student ID-->
+              <div class="form-row">
+                <div class="form-inputs">
+                  <label for="">Borrower Type</label><br />
+                  <select name="" id="borrower-type">
+                    <option value="student">Student</option>
+                    <option value="employee">Employee</option>
+                  </select>
+                </div>
+                <div class="form-inputs" id="form-div-id">
+                  <label for="">Receiver ID</label>
+                  <br />
+                  <input type="text" id="receiver-id" />
+                </div>
+              </div>
+              <!-- Name -->
+              <div class="form-row">
+                <div class="form-inputs">
+                  <label for="First Name">First Name</label>
+                  <input type="text" name="first-name" id="first-name" />
+                </div>
+                <div class="form-inputs">
+                  <label for="Last Name">Last Name</label>
+                  <input type="text" name=last-name" id="last-name" />
+                </div>
+                <div class="form-inputs">
+                  <label for="Middle Name">Middle Name</label>
+                  <input type="text" name="middle-name" id="middle-name" />
+                </div>
+                <div class="form-inputs">
+                  <label for="Suffix">Suffix</label>
+                  <input type="text" name="suffix-name" id="suffix-name" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-inputs">
+                  <label for="gender">Gender</label>
+                  <br />
+                  <select name="gender" id="gender-select" style="width: 14dvw">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
+                <div class="form-inputs">
+                  <label for="department">Department</label><br />
+                  <select name="" id="department"></select>
+                </div>
+                <div class="form-inputs">
+                  <label for="section">Section</label><br />
+                  <input type="text" id="section" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-inputs">
+                  <label for="contact number">Contact Number</label><br />
+                  <input
+                    type="text"
+                    name="contact number"
+                    id="contact-number"
+                  />
+                </div>
+                <div class="form-inputs">
+                  <label for="email">Email</label>
+                  <br />
+                  <input type="text" name="enamil" id="email" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-inputs">
+                  <label for="address">Address</label><br />
+                  <input
+                    type="text"
+                    name="address"
+                    id="address"
+                    style="width: 49.6dvw"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="main-form-bottom">
+              <div class="main-form-left">
+                <div class="form-row">
+                  <h2 style="margin-top: 2dvh; margin-bottom: 2dvh">Item</h2>
+                </div>
+                <div class="form-row" style="width: 50%">
+                  <div class="form-inputs">
+                    <label for="serial-number">Serial Number</label><br />
+                    <input type="text" name="" id="serial-number" />
+                  </div>
+                  <div class="scan-buttons">
+                    <button id="scan-btn">Scan QR/Barcode</button>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-inputs">
+                    <label for="box-number">Box Number</label><br />
+                    <input type="text" name="" id="box-number" />
+                  </div>
+                  <div class="form-inputs">
+                    <label for="accountable-select">Accountable</label><br />
+                    <select name="" id="accountable-select">
+                      <option value="" disabled selected>
+                        Select Accountable
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-inputs">
+                    <label for="item-desc">Item Name</label><br />
+                    <select name="" id="item-desc" style="width: 41.7dvw">
+                      <option value="" disabled selected>Select Item</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row" style="width: 100%">
+                  <div class="form-inputs" style="margin-top: 4dvh">
+                    <input type="checkbox" name="withbag" id="wBagCheckbox" />
+                  </div>
+
+                  <div class="form-inputs">
+                    <label for="bag-type">Type of Bag</label>
+                    <br />
+                    <select name="type of bag" id="bag-type" disabled>
+                      <option value="" disabled selected>Select Bag</option>
+                    </select>
+                  </div>
+                  <div class="form-inputs">
+                    <label for="date">Received Date</label><br />
+                    <input type="date" name="" id="date" />
+                  </div>
+                </div>
+              </div>
+              <div class="main-form-right">
+                <div class="photo-capture">
+                  <h3>Capture Photo</h3>
+                  <div class="camera-container">
+                    <video id="camera-preview" autoplay playsinline></video>
+                    <canvas id="photo-canvas" style="display: none"></canvas>
+                    <img
+                      id="captured-photo"
+                      style="display: none; max-width: 100%; margin-top: 10px"
+                    />
+                  </div>
+                  <div class="camera-controls">
+                    <select id="camera-select" style="margin-bottom: 10px">
+                      <option value="">Select Camera</option>
+                    </select>
+                    <button id="capture-btn" type="button">
+                      Capture Photo
+                    </button>
+                    <button id="retake-btn" type="button" style="display: none">
+                      Retake Photo
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="overlayContainer" class="overlay">
+              <div class="popup">
+                <button class="close-btn" id="closePopupBtn">&times;</button>
+                <h2>Scan</h2>
+                <div id="reader"></div>
+              </div>
+            </div>
+
+            <br />
+            <br />
+
+            <div class="action-buttons">
+              <button class="generate-btn" id="generate-receipt">
+                Generate Receipt
+              </button>
+              <button class="submit-btn" id="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="../scripts/sidebar.js"></script>
+  <script src="../scripts/add_borrower.js"></script>
+</html>

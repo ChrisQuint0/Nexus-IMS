@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus IMS</title>
+    <link rel="stylesheet" href="../styles/claimed_dashboard_style.css " />
+    <link rel="stylesheet" href="../styles/sidenav_styles.css" />
+
+    <script src="../node_modules/html5-qrcode/html5-qrcode.min.js"></script>
+    <!-- <link rel="stylesheet" href="/styles/add_borrower_styles.css"> -->
+  </head>
+  <body>
+    <div id="sidebar-container"></div>
+    <div class="main-content">
+      <div class="main-wrapper">
+        <h1 id="top-text">Available</h1>
+        <!-- Nav Area for table -->
+
+        <div class="searchbar-div">
+          <label for="searchbar">Search</label>
+          <input
+            id="searchbar"
+            type="text"
+            placeholder="⌕ Search by Name or Serial Number"
+          />
+          <button id="scan-btn">Scan QR/Barcode</button>
+          <div
+            class="div-for-buttons"
+            style="display: flex; margin-left: 10.5%"
+          >
+            <div id="csv_btn" class="downlaod-icons">
+              <img src="../assets/images/generate_csv.png" alt="" />
+            </div>
+            <div id="pdf_btn" class="downlaod-icons">
+              <img src="../assets/images/generate_pdf.png" alt="" />
+            </div>
+            <button id="repairBtn" class="request-wrapper-btn">
+              Request Repair
+            </button>
+            <button
+              id="returnBtn"
+              class="request-wrapper-btn"
+              style="display: none"
+            >
+              Return
+            </button>
+          </div>
+        </div>
+
+        <div id="overlayContainer" class="overlay">
+          <div class="popup">
+            <button class="close-btn" id="closePopupBtn">&times;</button>
+            <h2>Scan</h2>
+            <div id="reader"></div>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <!-- <h1 id="table-wrapper-header">Items</h1> -->
+          <table class="table-table">
+            <thead>
+              <th>Action</th>
+              <th>Box No.</th>
+              <th>Accountable</th>
+              <th>Department</th>
+              <th>Name</th>
+              <th>Section</th>
+              <th>Item Name</th>
+              <th>Serial No.</th>
+              <th>Received Date</th>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="request-wrapper"></div>
+
+        <!-- Return Overlay -->
+        <div id="returnOverlay" class="overlay">
+          <div class="popup" id="return-popup-container">
+            <button class="close-btn" onclick="closePopup('returnOverlay')">
+              &times;
+            </button>
+            <h1>Return</h1>
+            <div class="return-left-right-container">
+              <div class="returnpop-up-left">
+                <p id="return-idNo">ID:</p>
+                <p id="return-name">Name:</p>
+                <p id="return-gender">Gender:</p>
+                <p id="return-section">Section:</p>
+                <p id="return-department">Department:</p>
+                <p id="return-contact">Contact:</p>
+                <p id="return-address">Address:</p>
+                <p id="return-itemName">Item Name:</p>
+                <p id="return-serialNumber">Serial Number:</p>
+              </div>
+              <div class="returnpop-up-right">
+                <div class="returnpop-up-condition">
+                  <p id="conditionLabel">Condition:</p>
+                  <select name="return-condition" id="return-condition">
+                    <option value="Good Condition">Good Condition</option>
+                    <option value="Defective">Defective</option>
+                  </select>
+                </div>
+                <div class="returnpop-up-remarks">
+                  <p>Remarks:</p>
+                  <textarea name="" id="remarks" rows="5"></textarea>
+                </div>
+                <div class="return-popup-btns">
+                  <button id="return-confirm">Confirm</button>
+                </div>
+              </div>
+              <div id="confirm-overlay" class="confirm-overlay">
+                <div id="confirm-overlay-inner">
+                  <h2>Are you sure?</h2>
+                  <button id="cancel-return">Cancel</button>
+                  <button id="confirm-return">Confirm Return</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Repair Overlay -->
+        <div id="repairOverlay" class="overlay">
+          <div class="popup" id="repair-popup-container">
+            <button class="close-btn" onclick="closePopup('repairOverlay')">
+              &times;
+            </button>
+            <h1>Request for Repair</h1>
+            <div class="repair-left-right-container">
+              <div class="repairpop-up-left">
+                <p id="repair-idNo">ID No:</p>
+                <p id="repair-name">Name:</p>
+                <p id="repair-gender">Gender:</p>
+                <p id="repair-section">Section:</p>
+                <p id="repair-department">Department:</p>
+                <p id="repair-contact">Contact:</p>
+                <p id="repair-address">Address:</p>
+                <p id="repair-itemName">Item Name:</p>
+                <p id="repair-serialNumber">Serial Number:</p>
+              </div>
+              <div class="repairpop-up-right">
+                <div class="repairpop-up-remarks">
+                  <p>Reason for Repair:</p>
+                  <textarea name="" id="repair-reason" rows="5"></textarea>
+                </div>
+                <div class="repair-popup-btns">
+                  <button id="repair-confirm">Confirm</button>
+                </div>
+              </div>
+              <div id="repair-confirm-overlay" class="confirm-overlay">
+                <div id="repair-confirm-overlay-inner">
+                  <h2>Are you sure?</h2>
+                  <button id="cancel-repair">Cancel</button>
+                  <button id="confirm-repair">Confirm Repair</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- View More Overlay -->
+    <div id="viewMoreOverlay" class="overlay">
+      <div class="popup" id="viewMore-popup-container">
+        <button class="close-btn" onclick="closePopup('viewMoreOverlay')">
+          &times;
+        </button>
+        <h1>Profile</h1>
+        <div class="viewMore-left-right-container">
+          <div class="viewMore-up-left">
+            <p id="viewMore-id">ID:</p>
+            <p id="viewMore-name">Name:</p>
+            <p id="viewMore-gender">Gender:</p>
+            <p id="viewMore-section">Section:</p>
+            <p id="viewMore-department">Department:</p>
+            <p id="viewMore-contact">Contact:</p>
+            <p id="viewMore-email">Email:</p>
+            <p id="viewMore-address">Address:</p>
+          </div>
+          <div class="viewMore-up-right">
+            <!--Image of the borrower-->
+            <img
+              class="borrower-photo"
+              src="../assets/borrowers-photo/default-photo.png"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="downloadOverlay-csv" class="downloadOverlay">
+      <div class="datePicker">
+        <span
+          style="
+            margin-left: auto;
+            margin-right: 30px;
+            margin-top: 20px;
+            cursor: pointer;
+          "
+          class="close"
+          >&times;</span
+        >
+        <div class="column-selector">
+          <p>Select columns to include in your CSV export:</p>
+
+          <div class="multiselect-container">
+            <div class="multiselect-header">
+              <span>Selected Columns</span>
+              <div class="selected-count">
+                <span class="selected-count-value">0</span> selected
+              </div>
+              <span class="dropdown-icon">▼</span>
+            </div>
+
+            <div class="multiselect-dropdown">
+              <!-- Column options will be inserted here by JavaScript -->
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            <button class="select-all">Select All</button>
+            <button class="deselect-all">Deselect All</button>
+          </div>
+        </div>
+        <div class="adminDeptChoice">
+          <label for="">Department</label><br />
+          <select class="department-select"></select>
+        </div>
+
+        <button onclick="downloadInventoryCSV('available')">
+          Download CSV
+        </button>
+      </div>
+    </div>
+
+    <!-- PDF Download Overlay -->
+    <div id="downloadOverlay-pdf" class="downloadOverlay">
+      <div class="datePicker">
+        <span
+          style="
+            margin-left: auto;
+            margin-right: 30px;
+            margin-top: 20px;
+            cursor: pointer;
+          "
+          class="close"
+          >&times;</span
+        >
+        <div class="column-selector">
+          <p>Select columns to include in your PDF export:</p>
+
+          <div class="multiselect-container">
+            <div class="multiselect-header">
+              <span>Selected Columns</span>
+              <div class="selected-count">
+                <span class="selected-count-value">0</span> selected
+              </div>
+              <span class="dropdown-icon">▼</span>
+            </div>
+
+            <div class="multiselect-dropdown">
+              <!-- Column options will be inserted here by JavaScript -->
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            <button class="select-all">Select All</button>
+            <button class="deselect-all">Deselect All</button>
+          </div>
+        </div>
+        <div class="adminDeptChoice">
+          <label for="">Department</label><br />
+          <select class="department-select"></select>
+        </div>
+
+        <button onclick="downloadInventoryPDF('available')">
+          Download PDF
+        </button>
+      </div>
+    </div>
+
+    <script src="../scripts/download_inventory_handler.js"></script>
+    <script src="../scripts/sidebar.js"></script>
+    <script src="../scripts/available.js"></script>
+  </body>
+</html>

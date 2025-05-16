@@ -1,0 +1,231 @@
+@font-face {
+  font-family: "Nunito-Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../assets/fonts/Nunito-Regular.ttf") format("truetype");
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Nunito-Regular";
+}
+
+.sidenav {
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  position: fixed;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background-color: #1c2143;
+  color: white;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease;
+  overflow-y: auto;
+}
+
+.sidenav-hidden {
+  left: -250px;
+}
+
+/* Logo Section */
+.logo-div {
+  display: flex;
+  align-items: center;
+  padding: 25px 20px;
+  border-bottom: 1px solid #eaeaea;
+  margin-bottom: 10px;
+}
+.logo-div img {
+  width: 40px;
+  height: 40px;
+  margin-right: 12px;
+}
+.logo-div p {
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+  font-family: "Nunito-Regular", sans-serif;
+}
+
+/* Menu Items */
+.dashboard-div,
+.repairables-div,
+.sign-out-div,
+.inventory-div,
+.logs-div,
+.settings-div {
+  padding: 12px 20px !important;
+  margin-bottom: 0 !important;
+  line-height: 1.2 !important;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 17px;
+  color: white;
+}
+
+.dashboard-div:hover,
+.repairables-div:hover,
+.sign-out-div:hover,
+.inventory-div:hover,
+.logs-div:hover,
+.settings-div:hover {
+  background-color: #3f4465;
+  color: white;
+}
+.dashboard-div img,
+.repairables-div img,
+.inventory-div img,
+.logs-div img,
+.settings-div img,
+.sign-out-div img {
+  width: 20px !important;
+  height: 20px !important;
+  margin-right: 15px !important;
+  vertical-align: middle !important;
+  opacity: 0.8;
+}
+.settings-dropdown img {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  opacity: 0.8;
+}
+.settings-dropdown div:hover img {
+  opacity: 1;
+}
+
+/* Dropdown Arrows */
+.dropdown-arrow {
+  margin-left: auto;
+  transition: transform 0.2s;
+  font-size: 12px;
+  color: white;
+}
+.dropdown-arrow.rotate {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Menus */
+.inventory-dropdown,
+.logs-dropdown,
+.settings-dropdown {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  background-color: #2f324d;
+}
+.inventory-dropdown.show,
+.logs-dropdown.show,
+.settings-dropdown.show {
+  max-height: 500px;
+  overflow-y: auto;
+}
+.inventory-dropdown div,
+.logs-dropdown div,
+.settings-dropdown div {
+  padding: 10px 20px 10px 55px !important;
+  height: auto !important;
+  line-height: 1.2 !important;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 14px;
+  color: white;
+}
+.inventory-dropdown div:hover,
+.logs-dropdown div:hover,
+.settings-dropdown div:hover {
+  background-color: #3f4465;
+}
+
+/* Active Menu Item */
+.active-menu-item {
+  background-color: #3f4465 !important;
+  color: white;
+  height: auto !important;
+}
+
+/* Show/Hide Buttons */
+.show-sidebar-btn {
+  position: fixed;
+  top: 20px;
+  left: 0;
+  z-index: 1001;
+  background: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  font-size: 18px;
+  color: #1c2143;
+}
+.hide-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: white;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .sidenav {
+    width: 280px;
+  }
+  .show-sidebar-btn {
+    padding: 1rem;
+  }
+}
+
+/* FOR ADJUSTING MAIN CONTENT WHEN SIDEBAR IS VISIBLE*/
+.main-content {
+  transition: margin-left 0.3s ease;
+  margin-left: 0;
+}
+
+.sidebar-visible .main-content {
+  margin-left: 250px;
+}
+
+@media (max-width: 768px) {
+  .sidebar-visible .main-content {
+    margin-left: 280px;
+  }
+}
+
+/* SCROLLBAR */
+.sidenav::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidenav::-webkit-scrollbar-track {
+  background: #2f324d;
+}
+
+.sidenav::-webkit-scrollbar-thumb {
+  background-color: #3f4465;
+  border-radius: 4px;
+}
+
+.sidenav::-webkit-scrollbar-thumb:hover {
+  background-color: #5a5f7d;
+}
+
+/* For Firefox */
+.sidenav {
+  scrollbar-width: thin;
+  scrollbar-color: #3f4465 #2f324d;
+}

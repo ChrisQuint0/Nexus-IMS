@@ -1,0 +1,293 @@
+@font-face {
+  font-family: "Nunito-Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../assets/fonts/Nunito-Regular.ttf") format("truetype");
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Nunito-Regular";
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.heading {
+  margin-top: 1%;
+  font-size: 50px;
+  color: #1c2143;
+  white-space: nowrap;
+}
+
+.activity-logs-icon {
+  height: 6%;
+  width: 6%;
+}
+
+.table-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  height: 600px;
+  margin: 0 auto;
+  margin-top: 2%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.activity-logs-table {
+  width: 100%; /* Make the table take full width of its container */
+  border-collapse: collapse;
+  border-spacing: 0;
+  /* font-family: sans-serif; */
+  border-radius: 8px;
+  /* You might want to add a max-width to prevent it from stretching too wide */
+  max-width: 1200px; /* Adjust as needed */
+  margin-bottom: 20px; /* Optional: Add some space below the table */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  table-layout: fixed;
+}
+
+.activity-logs-table thead {
+  background-color: #192a56; /* Dark background for the header */
+  color: white; /* White text for the header */
+  font-size: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Remove borders from the first and last cells to avoid double borders at corners */
+.activity-logs-table th:first-child,
+.activity-logs-table td:first-child {
+  border-left: none;
+}
+
+.activity-logs-table th:last-child,
+.activity-logs-table td:last-child {
+  border-right: none;
+}
+
+/* Apply rounded corners to the top row's first and last cells */
+.activity-logs-table thead tr:first-child th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.activity-logs-table thead tr:first-child th:last-child {
+  border-top-right-radius: 8px;
+}
+
+/* Apply rounded corners to the bottom row's first and last cells */
+.activity-logs-table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 8px;
+}
+
+.activity-logs-table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 8px;
+}
+
+.activity-logs-table th,
+.activity-logs-table td {
+  padding: 12px 15px; /* Add some padding to cells */
+  text-align: left; /* Align text to the left */
+  border-bottom: 1px solid #ddd; /* Light gray separator lines */
+}
+
+/* Remove bottom border from the last row */
+.activity-logs-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.activity-logs-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9; /* Optional: Light gray background for even rows for better readability */
+}
+
+.download-wrapper {
+  display: flex;
+  align-items: center;
+  padding-left: 50px;
+}
+.downlaod-icons img {
+  margin: 0px 20px;
+}
+.downlaod-icons img:hover {
+  cursor: pointer;
+}
+
+.downloadOverlay {
+  display: none;
+  z-index: 9000;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #33333381;
+  justify-content: center;
+  align-items: center;
+}
+
+.datePicker {
+  width: 26dvw;
+  min-width: 400px;
+  background-color: #f4f4f4;
+  min-height: max-content;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.datePicker h3 {
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+.datePicker label {
+  margin-left: 50px;
+  margin-top: 20px;
+}
+
+.datePicker select {
+  margin-top: 10px;
+  margin-left: 50px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  font-family: "Nunito-Regular";
+  padding: 10px 5px;
+  min-width: 50%;
+  max-width: 150px;
+  margin: 0px 40px;
+}
+
+.adminDeptChoice {
+  display: none;
+  flex-direction: column;
+}
+
+.adminDeptChoice select {
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 60px;
+}
+
+.datePicker button {
+  margin: 18px 70px;
+  padding: 10px;
+  border: none;
+  background-color: #1c2143;
+  color: white;
+  font-family: "Nunito-Regular";
+  border-radius: 12px;
+}
+
+.datePicker button:hover {
+  cursor: pointer;
+}
+
+/* Styles For the multiselect CSV*/
+.column-selector {
+  font-family: "Nunito-Regular";
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.column-selector p {
+  text-align: center;
+}
+
+.multiselect-container {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  position: relative;
+  width: 75%;
+  margin-left: 2.5dvw;
+}
+
+.multiselect-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.selected-count {
+  color: #666;
+  font-size: 14px;
+}
+
+.dropdown-icon {
+  transition: transform 0.2s;
+}
+
+.multiselect-dropdown {
+  display: none;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 10px;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+
+.multiselect-dropdown.show {
+  display: block;
+}
+
+.dropdown-icon.open {
+  transform: rotate(180deg);
+}
+
+.option-item {
+  padding: 6px 0;
+}
+
+.option-item label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.option-item input {
+  margin-right: 10px;
+}
+
+.action-buttons {
+  width: 80%;
+  display: flex;
+  padding-left: 33px;
+}
+
+.action-buttons button {
+  padding: 8px 12px;
+  background: #ccc;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  border-radius: 7px;
+  color: black;
+  min-width: 100px;
+  margin: 10px 15px;
+}
+
+#select-all {
+  margin-left: 2.5dvw;
+}
+
+#deselect-all {
+  margin-left: 1dvw;
+}
+
+.action-buttons button:hover {
+  background: #e0e0e0;
+}
