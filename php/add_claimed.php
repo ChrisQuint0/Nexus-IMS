@@ -29,29 +29,14 @@ foreach ($data as $record) {
     $borrowerType = $record['borrowerType'];
     $studentId = $record['studentId'];
     $receiverId = $record['receiverId'];
+    $itemName = $record['itemName'];
     $serialNumber = $record['serialNumber'];
     $receivedDate = $record['receivedDate'];
-    $studRecId = NULL; // Initialize studRecId
+    $categoryId = $record['categoryId'];
+    $studRecId = NULL;
 
-    $sql = "SELECT item_id FROM items WHERE serial_no = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $serialNumber);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows == 0) {
-        http_response_code(400);
-        echo json_encode(array("message" => "Serial Number '$serialNumber' not found in the database."));
-        exit;
-    }
-
-    $row = $result->fetch_assoc();
-    $itemId = $row['item_id'];
-    $stmt->close();
-
-    // Handle borrowerType and set appropriate IDs
+    // Handle borrower type and set appropriate IDs
     if ($borrowerType == 'student' && $studentId != NULL) {
-        // Lookup stud_rec_id from students table
         $sql = "SELECT stud_rec_id FROM students WHERE student_id = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $studentId);
@@ -69,47 +54,90 @@ foreach ($data as $record) {
             exit;
         }
         $stmt->close();
-        $receiverId = NULL; // Ensure receiverId is NULL for students
+        $receiverId = NULL;
     } elseif ($borrowerType == 'employee') {
-        $studentId = NULL; // Ensure studentId is NULL for employees
+        $studentId = NULL;
         $studRecId = NULL;
     } else {
         $studentId = NULL;
         $studRecId = NULL;
     }
 
+    if ($categoryId == 3) { // It's a bag
+        // Lookup bag_item_id from bag_items table
+        $sql = "SELECT bag_item_id FROM bag_items WHERE serial_no = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $serialNumber);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-    $sql = "UPDATE gadget_distribution
-            SET borrower_type = ?,
-                stud_rec_id = ?,
-                receiver_id = ?,
-                received_date = ?,
-                status_id = 3
-            WHERE item_id = ?";
+        if ($result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            $bagItemId = $row['bag_item_id'];
+            $stmt->close();
 
-    $stmt = $conn->prepare($sql);
-    if (!$stmt) {
-        http_response_code(500);
-        echo json_encode(array("message" => "Error preparing statement: " . $conn->error));
-        $conn->close();
-        exit;
+            // Update bag_distribution
+            $sqlUpdateBagDist = "UPDATE bag_distribution SET borrower_type = ?, stud_rec_id = ?, receiver_id = ?, received_date = ?, status_id = 3 WHERE bag_item_id = ?";
+            $stmtUpdateBagDist = $conn->prepare($sqlUpdateBagDist);
+            $stmtUpdateBagDist->bind_param("ssisi", $borrowerType, $studRecId, $receiverId, $receivedDate, $bagItemId);
+
+            if ($stmtUpdateBagDist->execute()) {
+                // Success for bag distribution update
+            } else {
+                http_response_code(500);
+                echo json_encode(array("message" => "Error updating bag_distribution: " . $stmtUpdateBagDist->error));
+                $stmtUpdateBagDist->close();
+                $conn->close();
+                exit;
+            }
+            $stmtUpdateBagDist->close();
+        } else {
+            http_response_code(400);
+            echo json_encode(array("message" => "Serial Number '$serialNumber' not found in bag_items table."));
+            $stmt->close();
+            $conn->close();
+            exit;
+        }
+    } else { // It's not a bag, update gadget_distribution
+        // Lookup item_id from items table
+        $sql = "SELECT item_id FROM items WHERE serial_no = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $serialNumber);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            $itemId = $row['item_id'];
+            $stmt->close();
+
+            // Update gadget_distribution
+            $sqlUpdateGadgetDist = "UPDATE gadget_distribution SET borrower_type = ?, stud_rec_id = ?, receiver_id = ?, received_date = ?, status_id = 3 WHERE item_id = ?";
+            $stmtUpdateGadgetDist = $conn->prepare($sqlUpdateGadgetDist);
+            $stmtUpdateGadgetDist->bind_param("ssisi", $borrowerType, $studRecId, $receiverId, $receivedDate, $itemId);
+
+            if ($stmtUpdateGadgetDist->execute()) {
+                // Success for gadget distribution update
+            } else {
+                http_response_code(500);
+                echo json_encode(array("message" => "Error updating gadget_distribution: " . $stmtUpdateGadgetDist->error));
+                $stmtUpdateGadgetDist->close();
+                $conn->close();
+                exit;
+            }
+            $stmtUpdateGadgetDist->close();
+        } else {
+            http_response_code(400);
+            echo json_encode(array("message" => "Serial Number '$serialNumber' not found in items table."));
+            $stmt->close();
+            $conn->close();
+            exit;
+        }
     }
-    $stmt->bind_param("ssisi", $borrowerType, $studRecId, $receiverId, $receivedDate, $itemId);
-
-    if ($stmt->execute()) {
-        // success
-    } else {
-        http_response_code(500);
-        echo json_encode(array("message" => "Error updating gadget_distribution: " . $stmt->error . " SQL: " . $sql));
-        $stmt->close();
-        $conn->close();
-        exit;
-    }
-    $stmt->close();
 }
 
 http_response_code(200);
-echo json_encode(array("message" => "All records updated successfully."));
+echo json_encode(array("message" => "All records processed successfully."));
 
 $conn->close();
 ?>

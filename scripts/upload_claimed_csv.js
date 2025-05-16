@@ -53,22 +53,39 @@ claimedCSVInput.addEventListener("change", function (event) {
   });
 });
 
-function processClaimedData(data) {
+async function fetchCategoryByItemName(itemName) {
+  try {
+    const response = await fetch("../php/get_category_by_item_name.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: `itemName=${encodeURIComponent(itemName)}`,
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data.category_id; // Assuming the PHP returns { category_id: 3 }
+  } catch (error) {
+    console.error("Error fetching category:", error);
+    alert("Error fetching item category.");
+    return null;
+  }
+}
+
+async function processClaimedData(data) {
   const recordsToUpdate = [];
 
-  // Data validation and structuring
   for (let i = 0; i < data.length; i++) {
     const row = data[i];
-    //Trim the values
-    let borrowerType = row["Borrower Type"]
-      ? row["Borrower Type"].trim().toLowerCase()
-      : "";
-    let studentId = row["Student ID"] ? row["Student ID"].trim() : "";
-    let receiverId = row["Receiver ID"] ? row["Receiver ID"].trim() : "";
-    let serialNumber = row["Serial Number"] ? row["Serial Number"].trim() : "";
-    let receivedDate = row["Received Date"] ? row["Received Date"].trim() : "";
+    let borrowerType = row["Borrower Type"]?.trim().toLowerCase();
+    let studentId = row["Student ID"]?.trim();
+    let receiverId = row["Receiver ID"]?.trim();
+    let itemName = row["Item Name"]?.trim();
+    let serialNumber = row["Serial Number"]?.trim();
+    let receivedDate = row["Received Date"]?.trim();
 
-    // Basic data validation
     let isValid = true;
     let errorMessage = "";
 
@@ -100,6 +117,9 @@ function processClaimedData(data) {
       errorMessage = `Row ${
         i + 2
       }: Student ID must be null for employee borrowers.`;
+    } else if (!itemName) {
+      isValid = false;
+      errorMessage = `Row ${i + 2}: Item Name is required.`;
     } else if (!serialNumber) {
       isValid = false;
       errorMessage = `Row ${i + 2}: Serial Number is required.`;
@@ -113,19 +133,25 @@ function processClaimedData(data) {
 
     if (!isValid) {
       alert(errorMessage);
-      return; // Stop processing if any row is invalid
+      return;
+    }
+
+    const categoryId = await fetchCategoryByItemName(itemName);
+    if (categoryId === null) {
+      return; // Stop if category fetch fails
     }
 
     const record = {
       borrowerType: borrowerType,
       studentId: studentId,
       receiverId: receiverId,
+      itemName: itemName,
       serialNumber: serialNumber,
       receivedDate: receivedDate,
+      categoryId: categoryId, // Include the category ID
     };
     recordsToUpdate.push(record);
   }
-  // Send data to the server
   sendDataToServer(recordsToUpdate);
 }
 

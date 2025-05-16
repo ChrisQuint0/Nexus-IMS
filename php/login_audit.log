@@ -227,3 +227,9 @@
 [2025-05-16 14:23:51] User found with email: super_admin@gmail.com, User ID: 17
 [2025-05-16 14:23:51] Account is activated for user: Super Admin
 [2025-05-16 14:23:52] Login successful for user: Super Admin. Session variables set.
+[2025-05-16 19:23:13] Received login request from origin: http://localhost, IP: ::1
+[2025-05-16 19:23:13] Session started with ID: j3tp88johfk04feakhup60adl9
+[2025-05-16 19:23:13] Received JSON data: {"email":"super_admin@gmail.com","password":"Pass@SUPERADMIN1538"}
+[2025-05-16 19:23:13] User found with email: super_admin@gmail.com, User ID: 17
+[2025-05-16 19:23:13] Account is activated for user: Super Admin
+[2025-05-16 19:23:13] Login successful for user: Super Admin. Session variables set.
