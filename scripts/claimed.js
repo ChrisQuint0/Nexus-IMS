@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
         selectedRowData.section || "N/A"
       }`;
       repairDepartment.textContent = `Department: ${
-        selectedRowData.borrower_department || "N/A"
+        selectedRowData.receiver_department || "N/A"
       }`;
       repairContact.textContent = `Contact: ${
         selectedRowData.borrower_type === "student"
@@ -228,11 +228,20 @@ document.addEventListener("DOMContentLoaded", function () {
   function handleReturnConfirmation() {
     if (selectedRowData && selectedRowData.dist_id) {
       const distId = selectedRowData.dist_id;
-      const returnDate = new Date().toISOString().slice(0, 10); // Get today's date in YYYY-MM-DD format
+      const returnDate = new Date().toISOString().slice(0, 10);
       const itemCondition = returnConditionDropdown
         ? returnConditionDropdown.value
         : null;
       const remarks = remarksTextarea ? remarksTextarea.value : null;
+      const itemType = selectedRowData.item_type; // Get item_type
+
+      console.log("Data being sent for return:", {
+        dist_id: distId,
+        return_date: returnDate,
+        item_condition: itemCondition,
+        remarks: remarks,
+        item_type: itemType, // Include item_type
+      });
 
       fetch("../php/process_return.php", {
         method: "POST",
@@ -244,10 +253,12 @@ document.addEventListener("DOMContentLoaded", function () {
           return_date: returnDate,
           item_condition: itemCondition,
           remarks: remarks,
+          item_type: itemType, // Send item_type
         }),
       })
         .then((response) => response.json())
         .then((data) => {
+          console.log("Response from PHP:", data);
           if (data.success) {
             alert("Item returned successfully!");
             hideAllReturnOverlays(); // Close all return-related overlays
@@ -300,7 +311,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Populate the cells with data from the record
       boxNoCell.textContent = record.box_no || "N/A";
       accountableCell.textContent = record.accountable_name || "N/A";
-      departmentCell.textContent = record.borrower_department || "N/A";
+      departmentCell.textContent = record.department || "N/A";
       nameCell.textContent = record.borrower_name || "N/A";
       sectionCell.textContent = record.section || "N/A";
       itemNameCell.textContent = record.item_name || "N/A";
@@ -347,8 +358,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }`;
     viewMoreSection.textContent = `Section: ${record.section || "N/A"}`;
     viewMoreDepartment.textContent = `Department: ${
-      record.borrower_department || "N/A"
-    }`;
+      record.receiver_department || "N/A"
+    }`; // Changed to receiver_department
     viewMoreContact.textContent = `Contact: ${
       record.borrower_type === "student"
         ? record.contact_number || "N/A"
@@ -372,11 +383,9 @@ document.addEventListener("DOMContentLoaded", function () {
       borrowerPhoto.src = "../assets/borrowers-photo/default-photo.png";
     }
 
-    // viewMoreOverlay.style.display = "flex";
-    viewMoreOverlay.style.opacity = 1; // Directly set opacity
-    viewMoreOverlay.style.visibility = "visible"; // Directly set visibility
-    viewMoreOverlay.style.display = "flex"; // Ensure it's displayed
-    // viewMoreOverlay.classList.add("active"); // Comment out this line
+    viewMoreOverlay.style.opacity = 1;
+    viewMoreOverlay.style.visibility = "visible";
+    viewMoreOverlay.style.display = "flex";
   }
 
   function filterTable(query) {
@@ -393,9 +402,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const accountableName = record.accountable_name
         ? record.accountable_name.toLowerCase()
         : "";
-      const borrowerDepartment = record.borrower_department
-        ? record.borrower_department.toLowerCase()
-        : ""; // Added for department search
+      const department = record.department
+        ? record.department.toLowerCase()
+        : ""; // Search by the 'Department' column in the table
 
       return (
         borrowerName.includes(lowerCaseQuery) ||
@@ -403,7 +412,7 @@ document.addEventListener("DOMContentLoaded", function () {
         serialNo.includes(lowerCaseQuery) ||
         itemName.includes(lowerCaseQuery) ||
         accountableName.includes(lowerCaseQuery) ||
-        borrowerDepartment.includes(lowerCaseQuery) // Added for department search
+        department.includes(lowerCaseQuery)
       );
     });
     populateTable(filteredRecords);
@@ -415,18 +424,17 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((response) => response.json())
       .then((data) => {
         allBorrowerRecords = data;
-        populateTable(data);
+        populateTable(allBorrowerRecords);
       })
       .catch((error) => {
         console.error("Error fetching borrower records:", error);
-        tableBody.innerHTML =
-          '<tr><td colspan="10">Failed to load records.</td></tr>';
+        alert("Failed to load borrower records.");
       });
   }
 
   function populateReturnOverlay() {
     if (selectedRowData) {
-      returnIdNo.textContent = `ID: ${
+      returnIdNo.textContent = `ID No: ${
         selectedRowData.borrower_type === "student"
           ? selectedRowData.student_id || "N/A"
           : "N/A"
@@ -443,7 +451,7 @@ document.addEventListener("DOMContentLoaded", function () {
         selectedRowData.section || "N/A"
       }`;
       returnDepartment.textContent = `Department: ${
-        selectedRowData.borrower_department || "N/A"
+        selectedRowData.receiver_department || "N/A"
       }`;
       returnContact.textContent = `Contact: ${
         selectedRowData.borrower_type === "student"
@@ -462,222 +470,110 @@ document.addEventListener("DOMContentLoaded", function () {
         selectedRowData.serial_no || "N/A"
       }`;
 
-      const conditionLabel = document.getElementById("conditionLabel");
-      const conditionDropdown = document.getElementById("return-condition");
-
-      if (selectedRowData.category_id === "1") {
-        // Laptop
-        conditionLabel.style.display = "block";
-        conditionDropdown.style.display = "block";
-      } else if (selectedRowData.category_id === "3") {
-        // Bag
-        conditionLabel.style.display = "none";
-        conditionDropdown.style.display = "none";
+      // Conditionally show/hide the condition dropdown based on item_type
+      if (selectedRowData.item_type === "bag") {
+        document.getElementById("return-condition-label").style.display =
+          "block";
+        returnConditionDropdown.style.display = "block";
       } else {
-        // For other categories, you can choose to show or hide.
-        // Let's default to showing for now.
-        conditionLabel.style.display = "block";
-        conditionDropdown.style.display = "block";
+        document.getElementById("return-condition-label").style.display =
+          "none";
+        returnConditionDropdown.style.display = "none";
+        returnConditionDropdown.value = ""; // Reset value if hidden
       }
-    } else {
-      alert("Please select a row in the table first.");
+
+      // Clear any previous remarks
+      remarksTextarea.value = "";
     }
   }
 
-  // --- Event Listeners (Move them after element declarations and function definitions) ---
-  repairBtn.addEventListener("click", openRepairOverlay);
-
-  showPopupBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-    showPopup();
-  });
-
-  closePopupBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-    hidePopup();
-  });
-
-  overlayContainer.addEventListener("click", (event) => {
-    if (event.target === overlayContainer) {
-      hidePopup();
+  function stopScanner() {
+    if (html5QrcodeScanner) {
+      html5QrcodeScanner.clear();
+      html5QrcodeScanner = null;
     }
-  });
+  }
 
-  returnPopupBtn.addEventListener("click", showReturnPopup);
-
-  returnCloseBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-    hideReturnPopup();
-  });
-
-  returnOverlayContainer.addEventListener("click", (event) => {
-    if (event.target === returnOverlayContainer) {
-      hideReturnPopup();
-    }
-  });
-
-  viewMoreCloseBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-    hideViewMorePopup(); // Corrected this to hide the view more popup
-  });
-
-  viewMoreOverlayContainer.addEventListener("click", (event) => {
-    if (event.target === viewMoreOverlayContainer) {
-      hideViewMorePopup(); // Corrected this to hide the view more popup
-    }
-  });
-
-  closeRepairBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-    hideRepairPopup();
-  });
-
-  repairOverlayContainer.addEventListener("click", (event) => {
-    if (event.target === repairOverlayContainer) {
-      hideRepairPopup();
-    }
-  });
-
-  // Event Listeners for Return Confirmation
+  // Event listeners
+  if (repairBtn) {
+    repairBtn.addEventListener("click", openRepairOverlay);
+  }
+  if (closeRepairBtn) {
+    closeRepairBtn.addEventListener("click", () => closePopup("repairOverlay"));
+  }
+  if (showPopupBtn) {
+    showPopupBtn.addEventListener("click", showPopup);
+  }
+  if (closePopupBtn) {
+    closePopupBtn.addEventListener("click", hidePopup);
+  }
+  if (returnPopupBtn) {
+    returnPopupBtn.addEventListener("click", showReturnPopup);
+  }
+  if (returnCloseBtn) {
+    returnCloseBtn.addEventListener("click", hideReturnPopup);
+  }
   if (returnConfirmTriggerBtn) {
     returnConfirmTriggerBtn.addEventListener("click", showReturnConfirmation);
-  }
-  if (returnConfirmActionBtn) {
-    returnConfirmActionBtn.addEventListener("click", handleReturnConfirmation);
   }
   if (returnCancelBtn) {
     returnCancelBtn.addEventListener("click", hideReturnConfirmation);
   }
-
-  if (returnCnfirmOverlay) {
-    returnCnfirmOverlay.addEventListener("click", (event) => {
-      if (event.target === returnCnfirmOverlay) {
-        hideReturnConfirmation();
-        hideReturnPopup();
-      }
-    });
-  }
-
-  if (returnConfirmTriggerBtn && returnConfirmTriggerBtn.form) {
-    returnConfirmTriggerBtn.form.addEventListener("submit", (event) => {
-      event.preventDefault();
-    });
-  }
-
   if (returnConfirmFinal) {
     returnConfirmFinal.addEventListener("click", handleReturnConfirmation);
   }
-
-  // Event Listeners for Repair Confirmation
-  if (repairConfirmButton) {
-    repairConfirmButton.addEventListener("click", showRepairConfirmation);
+  if (viewMoreCloseBtn) {
+    viewMoreCloseBtn.addEventListener("click", () =>
+      closePopup("viewMoreOverlay")
+    );
   }
-  if (confirmRepairFinalButton) {
-    confirmRepairFinalButton.addEventListener("click", function () {
-      // Your fetch request for submitting repair
+  if (searchInput) {
+    searchInput.addEventListener("input", function () {
+      const query = this.value.trim();
+      filterTable(query);
+    });
+  }
+  if (repairConfirmButton) {
+    repairConfirmButton.addEventListener("click", function () {
       if (selectedRowData && selectedRowData.dist_id) {
-        const distId = selectedRowData.dist_id;
         const repairReason = repairReasonTextarea.value.trim();
-        fetch("../php/process_repair_request.php", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            dist_id: distId,
-            repair_reason: repairReason,
-          }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.success) {
-              alert("Repair request submitted successfully!");
-              closePopup("repairOverlay");
-              closePopup("repair-confirm-overlay");
-              fetchBorrowerRecords();
-            } else {
-              alert(
-                "Error submitting repair request: " +
-                  (data.error || "Unknown error")
-              );
-            }
+        if (repairReason) {
+          fetch("../php/process_repair.php", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              dist_id: selectedRowData.dist_id,
+              repair_reason: repairReason,
+            }),
           })
-          .catch((error) => {
-            console.error("Error sending repair request:", error);
-            alert("An error occurred while submitting the repair request.");
-          });
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                alert("Repair request submitted successfully!");
+                closePopup("repairOverlay");
+                fetchBorrowerRecords(); // Refresh the table
+              } else {
+                alert(
+                  "Error submitting repair request: " +
+                    (data.error || "Unknown error")
+                );
+              }
+            })
+            .catch((error) => {
+              console.error("Error sending repair request:", error);
+              alert("An error occurred while submitting the repair request.");
+            });
+        } else {
+          alert("Please provide a reason for the repair.");
+        }
       } else {
         alert("No item selected for repair.");
       }
     });
   }
-  if (cancelRepairButton) {
-    // Using the correct cancel button for the repair overlay
-    cancelRepairButton.addEventListener("click", function () {
-      closePopup("repairOverlay");
-    });
-  }
-  if (cancelRepairFinalButton) {
-    // Using the correct cancel button for the repair confirmation
-    cancelRepairFinalButton.addEventListener("click", function () {
-      closePopup("repair-confirm-overlay");
-    });
-  }
-
-  if (repairConfirmOverlay) {
-    repairConfirmOverlay.addEventListener("click", (event) => {
-      if (event.target === repairConfirmOverlay) {
-        hideRepairConfirmation();
-      }
-    });
-  }
-
-  searchInput.addEventListener("input", function () {
-    const query = this.value.trim();
-    filterTable(query);
-  });
 
   // Initial fetch of borrower records
   fetchBorrowerRecords();
 });
-
-function hideViewMorePopup() {
-  const viewMorePopup = document.getElementById("viewMorePopup");
-  if (viewMorePopup) {
-    viewMorePopup.style.display = "none";
-    // You might also want to clear content or remove event listeners here
-  }
-}
-function showRepairConfirmation(event) {
-  if (event) {
-    event.preventDefault(); // Prevent any default form submission behavior
-  }
-  console.log("Showing repair confirmation overlay");
-
-  // Get the repair confirmation overlay element by its ID
-  const repairConfirmOverlay = document.getElementById(
-    "repair-confirm-overlay"
-  );
-
-  // If the overlay element exists, add the 'active' class to make it visible
-  if (repairConfirmOverlay) {
-    repairConfirmOverlay.classList.add("active");
-  }
-}
-
-function hideRepairConfirmation() {
-  console.log("Hiding repair confirmation overlay");
-
-  // Get the repair confirmation overlay element by its ID
-  constrepairConfirmOverlay = document.getElementById("repair-confirm-overlay");
-
-  // If the overlay element exists, remove the 'active' class to hide it
-  if (repairConfirmOverlay) {
-    repairConfirmOverlay.classList.remove("active");
-  }
-}

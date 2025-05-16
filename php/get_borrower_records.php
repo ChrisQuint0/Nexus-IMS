@@ -25,9 +25,12 @@ $sql = "(SELECT
         WHEN gd.borrower_type = 'employee' THEN TRIM(CONCAT(e.emp_fname, ' ', COALESCE(e.emp_minit, ''), ' ', e.emp_lname, IF(e.emp_suffix IS NOT NULL AND e.emp_suffix != '', CONCAT(' ', e.emp_suffix), '')))
         WHEN gd.borrower_type = 'student' THEN TRIM(CONCAT(s.first_name, ' ', COALESCE(s.middle_name, ''), ' ', s.last_name, IF(s.suffix IS NOT NULL AND s.suffix != '', CONCAT(' ', s.suffix), '')))
     END AS borrower_name,
-    d_mrep.department_name AS borrower_department,
+    d_mrep.department_name AS department, /* This is for the table's Department column */
+    CASE
+        WHEN gd.borrower_type = 'student' THEN d_stud.department_name
+        WHEN gd.borrower_type = 'employee' THEN d_emp.department_name
+    END AS receiver_department,
     TRIM(CONCAT(m.emp_fname, ' ', COALESCE(m.emp_minit, ''), ' ', m.emp_lname, IF(m.emp_suffix IS NOT NULL AND m.emp_suffix != '', CONCAT(' ', m.emp_suffix), ''))) AS accountable_name,
-    d_mrep.department_name AS accountable_department,
     s.student_id,
     s.section,
     id.item_name,
@@ -62,9 +65,12 @@ UNION ALL
         WHEN bd.borrower_type = 'employee' THEN TRIM(CONCAT(e.emp_fname, ' ', COALESCE(e.emp_minit, ''), ' ', e.emp_lname, IF(e.emp_suffix IS NOT NULL AND e.emp_suffix != '', CONCAT(' ', e.emp_suffix), '')))
         WHEN bd.borrower_type = 'student' THEN TRIM(CONCAT(s.first_name, ' ', COALESCE(s.middle_name, ''), ' ', s.last_name, IF(s.suffix IS NOT NULL AND s.suffix != '', CONCAT(' ', s.suffix), '')))
     END AS borrower_name,
-    d_mrep.department_name AS borrower_department,
+    d_mrep.department_name AS department, /* This is for the table's Department column */
+    CASE
+        WHEN bd.borrower_type = 'student' THEN d_stud.department_name
+        WHEN bd.borrower_type = 'employee' THEN d_emp.department_name
+    END AS receiver_department,
     TRIM(CONCAT(m.emp_fname, ' ', COALESCE(m.emp_minit, ''), ' ', m.emp_lname, IF(m.emp_suffix IS NOT NULL AND m.emp_suffix != '', CONCAT(' ', m.emp_suffix), ''))) AS accountable_name,
-    d_mrep.department_name AS accountable_department,
     s.student_id,
     s.section,
     id.item_name,

@@ -189,11 +189,11 @@ document.addEventListener("DOMContentLoaded", function () {
       const returnDateCell = row.insertCell();
       returnDateCell.textContent = log.return_date || "N/A";
 
-      const conditionCell = row.insertCell(); // ADD THIS
-      conditionCell.textContent = log.item_condition || "N/A"; // ADD THIS
+      const conditionCell = row.insertCell();
+      conditionCell.textContent = log.item_condition || "N/A";
 
-      const remarksCell = row.insertCell(); // ADD THIS
-      remarksCell.textContent = log.remarks || "N/A"; // ADD THIS
+      const remarksCell = row.insertCell();
+      remarksCell.textContent = log.remarks || "N/A";
     });
   }
 
@@ -269,7 +269,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch((error) => {
       console.error("Error fetching return logs:", error);
       tableBody.innerHTML =
-        '<tr><td colspan="11">Failed to load return logs.</td></tr>';
+        '<tr><td colspan="12">Failed to load return logs.</td></tr>';
     });
 
   // Close the view more overlay when the close button is clicked
