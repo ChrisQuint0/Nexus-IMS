@@ -406,14 +406,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function fetchBorrowerRecords() {
     // Fetch data from the PHP script
-    fetch("../php/get_available_items.php")
+    fetch("../php/get_available_items.php") // No need to send user info now
       .then((response) => response.json())
       .then((data) => {
-        allBorrowerRecords = data;
+        allAvailableRecords = data;
         populateTable(data);
       })
       .catch((error) => {
-        console.error("Error fetching borrower records:", error);
+        console.error("Error fetching available records:", error);
         tableBody.innerHTML =
           '<tr><td colspan="10">Failed to load records.</td></tr>';
       });

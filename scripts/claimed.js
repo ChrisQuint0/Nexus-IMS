@@ -498,8 +498,8 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         document.getElementById("return-condition-label").style.display =
           "none";
-        returnConditionDropdown.style.display = "none";
-        returnConditionDropdown.value = ""; // Reset value if hidden
+        returnConditionDropdown.style.display = "block";
+        // returnConditionDropdown.value = ""; // Reset value if hidden
       }
 
       // Clear any previous remarks
