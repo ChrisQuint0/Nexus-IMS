@@ -152,6 +152,8 @@ document.addEventListener("DOMContentLoaded", () => {
         continue;
       }
 
+      console.log("Found Item:", foundItem);
+
       const accountable = accountableRaw ? accountableRaw.trim() : "";
       const matchingEmployees = employees.filter(
         (emp) => emp.fullNameFirstLastOnly.trim() === accountable
@@ -177,6 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
         serial_no: serialNo ? serialNo.trim() : null,
         accountable_id: matchingEmployees[0].emp_rec_id,
         purchase_date: purchaseDate,
+        category_id: foundItem.category_id,
       });
     }
 
@@ -218,7 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Item CSV Upload Error:", result);
       }
     } catch (error) {
-      alert("Upload Unsuccessful. Check for Duplicates or Missing Data");
+      console.log(error);
     }
   }
 });

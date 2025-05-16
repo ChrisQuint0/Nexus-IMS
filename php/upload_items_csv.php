@@ -18,13 +18,16 @@ if ($data && is_array($data)) {
     $userId = $_SESSION['user_id'];
 
     foreach ($data as $item) {
+        var_dump($item);
+
         $boxNo = isset($item['box_no']) ? $conn->real_escape_string($item['box_no']) : null;
         $itemDescId = isset($item['item_desc_id']) ? intval($item['item_desc_id']) : null;
         $serialNo = isset($item['serial_no']) ? $conn->real_escape_string($item['serial_no']) : null;
         $accountableId = isset($item['accountable_id']) ? intval($item['accountable_id']) : null;
         $purchaseDate = isset($item['purchase_date']) ? $conn->real_escape_string($item['purchase_date']) : null;
+        $categoryId = isset($item['category_id']) ? intval($item['category_id']) : null;
 
-        if ($boxNo === null || $itemDescId === null || $serialNo === null || $accountableId === null) {
+        if ($boxNo === null || $itemDescId === null || $accountableId === null) {
             $uploadSuccess = false;
             $errorMessages[] = "Missing required fields for an item.";
             continue;
@@ -47,38 +50,73 @@ if ($data && is_array($data)) {
         $accountableName = $rowAccountableName['emp_fname'] . ' ' . $rowAccountableName['emp_lname'];
         $stmtGetAccountableName->close();
 
-        // Insert into items table, including purchase_date
-        $sqlItems = "INSERT INTO items (box_no, item_desc_id, serial_no, purchase_date) VALUES (?, ?, ?, ?)";
-        $stmtItems = $conn->prepare($sqlItems);
-        $stmtItems->bind_param("siss", $boxNo, $itemDescId, $serialNo, $purchaseDate);
+        if ($categoryId === 3) {
+            // Insert into bag_items table
+            $sqlBagItems = "INSERT INTO bag_items (box_no, item_desc_id, serial_no, purchase_date) VALUES (?, ?, ?, ?)";
+            $stmtBagItems = $conn->prepare($sqlBagItems);
+            $stmtBagItems->bind_param("siss", $boxNo, $itemDescId, $serialNo, $purchaseDate);
 
-        if ($stmtItems->execute()) {
-            $itemId = $conn->insert_id;
+            if ($stmtBagItems->execute()) {
+                $bagItemId = $conn->insert_id;
 
-            // Insert into gadget_distribution table
-            $sqlDistribution = "INSERT INTO gadget_distribution (item_id, mrep_id, status_id, to_be_returned) VALUES (?, ?, 2, 0)";
-            $stmtDistribution = $conn->prepare($sqlDistribution);
-            $stmtDistribution->bind_param("ii", $itemId, $accountableId);
+                // Insert into bag_distribution table
+                $sqlBagDistribution = "INSERT INTO bag_distribution (bag_item_id, mrep_id, status_id) VALUES (?, ?, 2)";
+                $stmtBagDistribution = $conn->prepare($sqlBagDistribution);
+                $stmtBagDistribution->bind_param("ii", $bagItemId, $accountableId);
 
-            if ($stmtDistribution->execute()) {
-                // Log the insertion in the audit_log table with the accountable name and purchase date
-                $action = "Added item via CSV - box_no: $boxNo, serial_no: $serialNo, purchase_date: $purchaseDate, assigned to: " . $accountableName;
-                $sqlAudit = "INSERT INTO audit_log (user_id, action) VALUES (?, ?)";
-                $stmtAudit = $conn->prepare($sqlAudit);
-                $stmtAudit->bind_param("is", $userId, $action);
-                $stmtAudit->execute();
-                $stmtAudit->close();
-                $uploadedCount++;
+                if ($stmtBagDistribution->execute()) {
+                    // Log the insertion in the audit_log table
+                    $action = "Added bag via CSV - box_no: $boxNo, serial_no: $serialNo, purchase_date: $purchaseDate, assigned to: " . $accountableName;
+                    $sqlAudit = "INSERT INTO audit_log (user_id, action) VALUES (?, ?)";
+                    $stmtAudit = $conn->prepare($sqlAudit);
+                    $stmtAudit->bind_param("is", $userId, $action);
+                    $stmtAudit->execute();
+                    $stmtAudit->close();
+                    $uploadedCount++;
+                } else {
+                    $uploadSuccess = false;
+                    $errorMessages[] = "Error adding to bag_distribution for bag with serial: " . $serialNo . " - " . $stmtBagDistribution->error;
+                }
+                $stmtBagDistribution->close();
             } else {
                 $uploadSuccess = false;
-                $errorMessages[] = "Error adding to gadget_distribution for item with serial: " . $serialNo . " - " . $stmtDistribution->error;
+                $errorMessages[] = "Error adding to bag_items for bag with serial: " . $serialNo . " - " . $stmtBagItems->error;
             }
-            $stmtDistribution->close();
+            $stmtBagItems->close();
         } else {
-            $uploadSuccess = false;
-            $errorMessages[] = "Error adding to items for item with serial: " . $serialNo . " - " . $stmtItems->error;
+            // Insert into items table
+            $sqlItems = "INSERT INTO items (box_no, item_desc_id, serial_no, purchase_date) VALUES (?, ?, ?, ?)";
+            $stmtItems = $conn->prepare($sqlItems);
+            $stmtItems->bind_param("siss", $boxNo, $itemDescId, $serialNo, $purchaseDate);
+
+            if ($stmtItems->execute()) {
+                $itemId = $conn->insert_id;
+
+                // Insert into gadget_distribution table
+                $sqlDistribution = "INSERT INTO gadget_distribution (item_id, mrep_id, status_id, to_be_returned) VALUES (?, ?, 2, 0)";
+                $stmtDistribution = $conn->prepare($sqlDistribution);
+                $stmtDistribution->bind_param("ii", $itemId, $accountableId);
+
+                if ($stmtDistribution->execute()) {
+                    // Log the insertion in the audit_log table
+                    $action = "Added item via CSV - box_no: $boxNo, serial_no: $serialNo, purchase_date: $purchaseDate, assigned to: " . $accountableName;
+                    $sqlAudit = "INSERT INTO audit_log (user_id, action) VALUES (?, ?)";
+                    $stmtAudit = $conn->prepare($sqlAudit);
+                    $stmtAudit->bind_param("is", $userId, $action);
+                    $stmtAudit->execute();
+                    $stmtAudit->close();
+                    $uploadedCount++;
+                } else {
+                    $uploadSuccess = false;
+                    $errorMessages[] = "Error adding to gadget_distribution for item with serial: " . $serialNo . " - " . $stmtDistribution->error;
+                }
+                $stmtDistribution->close();
+            } else {
+                $uploadSuccess = false;
+                $errorMessages[] = "Error adding to items for item with serial: " . $serialNo . " - " . $stmtItems->error;
+            }
+            $stmtItems->close();
         }
-        $stmtItems->close();
     }
 
     if ($uploadSuccess) {

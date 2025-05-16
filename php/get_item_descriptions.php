@@ -13,7 +13,7 @@ if ($conn->connect_error) {
   die(json_encode(["error" => "Connection failed: " . $conn->connect_error]));
 }
 
-$sql = "SELECT item_desc_id, item_name FROM item_desc";
+$sql = "SELECT item_desc_id, item_name, category_id FROM item_desc";
 $result = $conn->query($sql);
 
 $itemDescriptions = [];
