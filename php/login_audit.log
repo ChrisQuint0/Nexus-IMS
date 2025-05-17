@@ -293,3 +293,15 @@
 [2025-05-17 04:17:22] User found with email: super_admin@gmail.com, User ID: 17
 [2025-05-17 04:17:22] Account is activated for user: Super Admin
 [2025-05-17 04:17:22] Login successful for user: Super Admin. Session variables set.
+[2025-05-17 04:26:01] Received login request from origin: http://localhost, IP: ::1
+[2025-05-17 04:26:01] Session started with ID: 8ubf3k6hnfnvp2lr9urtblrq2e
+[2025-05-17 04:26:01] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1539"}
+[2025-05-17 04:26:01] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 25
+[2025-05-17 04:26:01] Account is activated for user: Christopher Quinto
+[2025-05-17 04:26:01] Login successful for user: Christopher Quinto. Session variables set.
+[2025-05-17 05:19:16] Received login request from origin: http://localhost, IP: ::1
+[2025-05-17 05:19:16] Session started with ID: 8ubf3k6hnfnvp2lr9urtblrq2e
+[2025-05-17 05:19:16] Received JSON data: {"email":"super_admin@gmail.com","password":"Pass@SUPERADMIN1538"}
+[2025-05-17 05:19:16] User found with email: super_admin@gmail.com, User ID: 17
+[2025-05-17 05:19:16] Account is activated for user: Super Admin
+[2025-05-17 05:19:16] Login successful for user: Super Admin. Session variables set.

@@ -558,7 +558,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (selectedRowData && selectedRowData.dist_id) {
         const repairReason = repairReasonTextarea.value.trim();
         if (repairReason) {
-          fetch("../php/process_repair.php", {
+          fetch("../php/process_repair_request.php", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
