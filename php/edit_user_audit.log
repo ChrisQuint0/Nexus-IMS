@@ -284,3 +284,28 @@
 [2025-05-16 14:59:42] Before bind_param - bindValues count: 6
 [2025-05-16 14:59:42] Attempting to update user ID: 17, Username: Super Admin, Email: super_admin@gmail.com, Role: admin, Department ID: 17, Account Status: activated by admin ID: 17
 [2025-05-16 14:59:42] User ID: 17 updated successfully by admin ID: 17.
+[2025-05-17 20:24:06] Received edit user request from IP: ::1
+[2025-05-17 20:24:06] Received JSON data: {"user_id":17,"username":"Super Admin","email":"super_admin@gmail.com","password":"","role":"admin","department_id":"17","account_status":"activated"}
+[2025-05-17 20:24:06] Before bind_param - bindTypes: sssisi
+[2025-05-17 20:24:06] Before bind_param - bindValues count: 6
+[2025-05-17 20:24:06] Attempting to update user ID: 17, Username: Super Admin, Email: super_admin@gmail.com, Role: admin, Department ID: 17, Account Status: activated by admin ID: 17
+[2025-05-17 20:24:06] User ID: 17 updated successfully by admin ID: 17.
+[2025-05-17 20:26:30] Received edit user request from IP: ::1
+[2025-05-17 20:26:30] Received JSON data: {"user_id":17,"username":"Super Admin","email":"super_admin@gmail.com","password":"","role":"admin","department_id":"17","account_status":"activated"}
+[2025-05-17 20:26:30] Before bind_param - bindTypes: sssisi
+[2025-05-17 20:26:30] Before bind_param - bindValues count: 6
+[2025-05-17 20:26:30] Attempting to update user ID: 17, Username: Super Admin, Email: super_admin@gmail.com, Role: admin, Department ID: 17, Account Status: activated by admin ID: 17
+[2025-05-17 20:26:30] User ID: 17 updated successfully by admin ID: 17.
+[2025-05-17 20:31:19] Received edit user request from IP: ::1
+[2025-05-17 20:31:19] Received JSON data: {"user_id":26,"username":"Jose Rizal","email":"rizal_jose@gmail.com","password":"Pass@1234","role":"dept_head","department_id":"5","account_status":"activated"}
+[2025-05-17 20:31:19] Before bind_param - bindTypes: sssissi
+[2025-05-17 20:31:19] Before bind_param - bindValues count: 7
+[2025-05-17 20:31:19] Before bind_param - passwordBindValue: $2y$10$ULBOFuUhTCzYn4oUivz1kuJNZX6vZYtv1GHItu/rzY.cmP/alJT0m
+[2025-05-17 20:31:19] Attempting to update user ID: 26, Username: Jose Rizal, Email: rizal_jose@gmail.com, Role: dept_head, Department ID: 5, Account Status: activated, Password (hashed): $2y$10$ULBOFuUhTCzYn4oUivz1kuJNZX6vZYtv1GHItu/rzY.cmP/alJT0m by admin ID: 17
+[2025-05-17 20:31:19] User ID: 26 updated successfully by admin ID: 17 with password change.
+[2025-05-17 20:32:36] Received edit user request from IP: ::1
+[2025-05-17 20:32:36] Received JSON data: {"user_id":26,"username":"Jose Rizal","email":"rizal_jose@gmail.com","password":"","role":"dept_head","department_id":"5","account_status":"deactivated"}
+[2025-05-17 20:32:36] Before bind_param - bindTypes: sssisi
+[2025-05-17 20:32:36] Before bind_param - bindValues count: 6
+[2025-05-17 20:32:36] Attempting to update user ID: 26, Username: Jose Rizal, Email: rizal_jose@gmail.com, Role: dept_head, Department ID: 5, Account Status: deactivated by admin ID: 26
+[2025-05-17 20:32:36] User ID: 26 updated successfully by admin ID: 26.

@@ -305,3 +305,48 @@
 [2025-05-17 05:19:16] User found with email: super_admin@gmail.com, User ID: 17
 [2025-05-17 05:19:16] Account is activated for user: Super Admin
 [2025-05-17 05:19:16] Login successful for user: Super Admin. Session variables set.
+[2025-05-17 20:27:22] Received login request from origin: http://localhost, IP: ::1
+[2025-05-17 20:27:22] Session started with ID: n2v8fnv0rd3cs4jfhvt39aaeot
+[2025-05-17 20:27:22] Received JSON data: {"email":"super_admin@gmail.com","password":"Pass@SUPERADMIN"}
+[2025-05-17 20:27:22] User found with email: super_admin@gmail.com, User ID: 17
+[2025-05-17 20:27:22] Account is activated for user: Super Admin
+[2025-05-17 20:27:22] Login failed: Incorrect password for email: super_admin@gmail.com
+[2025-05-17 20:27:26] Received login request from origin: http://localhost, IP: ::1
+[2025-05-17 20:27:26] Session started with ID: n2v8fnv0rd3cs4jfhvt39aaeot
+[2025-05-17 20:27:26] Received JSON data: {"email":"super_admin@gmail.com","password":"Pass@SUPERADMIN1538"}
+[2025-05-17 20:27:26] User found with email: super_admin@gmail.com, User ID: 17
+[2025-05-17 20:27:26] Account is activated for user: Super Admin
+[2025-05-17 20:27:26] Login successful for user: Super Admin. Session variables set.
+[2025-05-17 20:31:51] Received login request from origin: http://localhost, IP: ::1
+[2025-05-17 20:31:51] Session started with ID: n2v8fnv0rd3cs4jfhvt39aaeot
+[2025-05-17 20:31:51] Received JSON data: {"email":"jose_rizal@gmail.com","password":"Pass@1538"}
+[2025-05-17 20:31:51] Login failed: Invalid email: jose_rizal@gmail.com
+[2025-05-17 20:32:05] Received login request from origin: http://localhost, IP: ::1
+[2025-05-17 20:32:05] Session started with ID: n2v8fnv0rd3cs4jfhvt39aaeot
+[2025-05-17 20:32:05] Received JSON data: {"email":"rizal_jose@gmail.com","password":"Pass@1538"}
+[2025-05-17 20:32:05] User found with email: rizal_jose@gmail.com, User ID: 26
+[2025-05-17 20:32:05] Account is activated for user: Jose Rizal
+[2025-05-17 20:32:05] Login failed: Incorrect password for email: rizal_jose@gmail.com
+[2025-05-17 20:32:13] Received login request from origin: http://localhost, IP: ::1
+[2025-05-17 20:32:13] Session started with ID: n2v8fnv0rd3cs4jfhvt39aaeot
+[2025-05-17 20:32:13] Received JSON data: {"email":"rizal_jose@gmail.com","password":"Pass@1234"}
+[2025-05-17 20:32:13] User found with email: rizal_jose@gmail.com, User ID: 26
+[2025-05-17 20:32:13] Account is activated for user: Jose Rizal
+[2025-05-17 20:32:13] Login successful for user: Jose Rizal. Session variables set.
+[2025-05-17 20:33:02] Received login request from origin: http://localhost, IP: ::1
+[2025-05-17 20:33:02] Session started with ID: n2v8fnv0rd3cs4jfhvt39aaeot
+[2025-05-17 20:33:02] Received JSON data: {"email":"rizal_jose@gmail.com","password":"Pass@1234"}
+[2025-05-17 20:33:02] User found with email: rizal_jose@gmail.com, User ID: 26
+[2025-05-17 20:33:02] Login failed: Account deactivated for email: rizal_jose@gmail.com, Username: Jose Rizal
+[2025-05-17 20:35:07] Received login request from origin: http://localhost, IP: ::1
+[2025-05-17 20:35:07] Session started with ID: n2v8fnv0rd3cs4jfhvt39aaeot
+[2025-05-17 20:35:07] Received JSON data: {"email":"super_admin@gmail.com","password":"pass@1234"}
+[2025-05-17 20:35:07] User found with email: super_admin@gmail.com, User ID: 17
+[2025-05-17 20:35:07] Account is activated for user: Super Admin
+[2025-05-17 20:35:07] Login failed: Incorrect password for email: super_admin@gmail.com
+[2025-05-17 20:35:20] Received login request from origin: http://localhost, IP: ::1
+[2025-05-17 20:35:20] Session started with ID: n2v8fnv0rd3cs4jfhvt39aaeot
+[2025-05-17 20:35:20] Received JSON data: {"email":"super_admin@gmail.com","password":"Pass@SUPERADMIN1538"}
+[2025-05-17 20:35:20] User found with email: super_admin@gmail.com, User ID: 17
+[2025-05-17 20:35:20] Account is activated for user: Super Admin
+[2025-05-17 20:35:20] Login successful for user: Super Admin. Session variables set.

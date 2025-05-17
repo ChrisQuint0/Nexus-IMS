@@ -317,14 +317,13 @@ async function populateUserTableWithActions() {
         const row = tableBody.insertRow();
         row.dataset.userId = user.user_id;
 
-        const actionCell = row.insertCell();
-        const editButton = createStyledButton(
-          "Edit",
-          "inline-block",
-          "white",
-          "#0e2f56"
-        );
+        // Action Buttons Cell
+        const actionsCell = row.insertCell();
+        const editButton = createStyledButton("Edit");
         editButton.classList.add("edit-button");
+        editButton.addEventListener("click", () => toggleEditRow(row));
+        actionsCell.appendChild(editButton);
+
         const saveButton = createStyledButton(
           "Save",
           "none",
@@ -333,6 +332,9 @@ async function populateUserTableWithActions() {
           "5px"
         );
         saveButton.classList.add("save-button");
+        saveButton.addEventListener("click", () => saveUser(row));
+        actionsCell.appendChild(saveButton);
+
         const deleteButton = createStyledButton(
           "Delete",
           "inline-block",
@@ -341,17 +343,9 @@ async function populateUserTableWithActions() {
           "5px"
         );
         deleteButton.style.borderColor = "#dc3545";
-
-        actionCell.appendChild(editButton);
-        actionCell.appendChild(saveButton);
-        actionCell.appendChild(deleteButton);
-
-        editButton.addEventListener("click", () => toggleEditRow(row));
-        saveButton.addEventListener("click", () => saveUser(row));
-        deleteButton.addEventListener("click", function () {
-          const rowToDelete = this.closest("tr");
-          deleteUser(rowToDelete);
-        });
+        deleteButton.classList.add("delete-button");
+        deleteButton.addEventListener("click", () => deleteUser(row));
+        actionsCell.appendChild(deleteButton);
 
         const usernameCell = row.insertCell();
         usernameCell.textContent = user.username;
@@ -363,13 +357,13 @@ async function populateUserTableWithActions() {
         passwordCell.textContent = user.password;
 
         const roleCell = row.insertCell();
-        roleCell.textContent = user.role; // Just set the text initially
+        roleCell.textContent = user.role;
 
         const departmentCell = row.insertCell();
-        departmentCell.textContent = user.department; // Just set the text initially
+        departmentCell.textContent = user.department;
 
         const accountStatusCell = row.insertCell();
-        accountStatusCell.textContent = user.account_status; // Just set the text initially
+        accountStatusCell.textContent = user.account_status;
       }
     } else {
       console.error("Failed to load user data:", result);

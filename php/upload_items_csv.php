@@ -18,7 +18,7 @@ if ($data && is_array($data)) {
     $userId = $_SESSION['user_id'];
 
     foreach ($data as $item) {
-        var_dump($item);
+  
 
         $boxNo = isset($item['box_no']) ? $conn->real_escape_string($item['box_no']) : null;
         $itemDescId = isset($item['item_desc_id']) ? intval($item['item_desc_id']) : null;

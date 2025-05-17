@@ -21,7 +21,7 @@ body {
   transition: margin-left 0.3s ease;
   margin-left: 0;
   width: 100%;
-  min-height: 100dvh;
+  height: 100dvh;
 }
 
 .sidebar-visible .main-content {
@@ -40,7 +40,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100dvw;
-  /* height: fit-content; */
+  height: fit-content;
 }
 .header {
   display: flex;
