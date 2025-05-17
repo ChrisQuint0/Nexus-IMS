@@ -263,3 +263,33 @@
 [2025-05-17 00:09:33] User found with email: super_admin@gmail.com, User ID: 17
 [2025-05-17 00:09:33] Account is activated for user: Super Admin
 [2025-05-17 00:09:33] Login successful for user: Super Admin. Session variables set.
+[2025-05-17 04:06:27] Received login request from origin: http://localhost, IP: ::1
+[2025-05-17 04:06:27] Session started with ID: 8ubf3k6hnfnvp2lr9urtblrq2e
+[2025-05-17 04:06:27] Received JSON data: {"email":"super_admin@gmail.com","password":"Pass@SUPERADMIN1538"}
+[2025-05-17 04:06:27] User found with email: super_admin@gmail.com, User ID: 17
+[2025-05-17 04:06:27] Account is activated for user: Super Admin
+[2025-05-17 04:06:27] Login successful for user: Super Admin. Session variables set.
+[2025-05-17 04:07:17] Received login request from origin: http://localhost, IP: ::1
+[2025-05-17 04:07:17] Session started with ID: 8ubf3k6hnfnvp2lr9urtblrq2e
+[2025-05-17 04:07:17] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-17 04:07:17] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 25
+[2025-05-17 04:07:17] Account is activated for user: Christopher Quinto
+[2025-05-17 04:07:17] Login successful for user: Christopher Quinto. Session variables set.
+[2025-05-17 04:07:49] Received login request from origin: http://localhost, IP: ::1
+[2025-05-17 04:07:49] Session started with ID: 8ubf3k6hnfnvp2lr9urtblrq2e
+[2025-05-17 04:07:49] Received JSON data: {"email":"super_admin@gmail.com","password":"Pass@1538"}
+[2025-05-17 04:07:49] User found with email: super_admin@gmail.com, User ID: 17
+[2025-05-17 04:07:49] Account is activated for user: Super Admin
+[2025-05-17 04:07:49] Login failed: Incorrect password for email: super_admin@gmail.com
+[2025-05-17 04:08:05] Received login request from origin: http://localhost, IP: ::1
+[2025-05-17 04:08:05] Session started with ID: 8ubf3k6hnfnvp2lr9urtblrq2e
+[2025-05-17 04:08:05] Received JSON data: {"email":"super_admin@gmail.com","password":"Pass@SUPERADMIN1538"}
+[2025-05-17 04:08:05] User found with email: super_admin@gmail.com, User ID: 17
+[2025-05-17 04:08:05] Account is activated for user: Super Admin
+[2025-05-17 04:08:05] Login successful for user: Super Admin. Session variables set.
+[2025-05-17 04:17:22] Received login request from origin: http://localhost, IP: ::1
+[2025-05-17 04:17:22] Session started with ID: 8ubf3k6hnfnvp2lr9urtblrq2e
+[2025-05-17 04:17:22] Received JSON data: {"email":"super_admin@gmail.com","password":"Pass@SUPERADMIN1538"}
+[2025-05-17 04:17:22] User found with email: super_admin@gmail.com, User ID: 17
+[2025-05-17 04:17:22] Account is activated for user: Super Admin
+[2025-05-17 04:17:22] Login successful for user: Super Admin. Session variables set.
