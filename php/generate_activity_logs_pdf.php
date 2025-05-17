@@ -126,7 +126,7 @@ try {
     // Load TCPDF library
     require_once('../TCPDF-main/tcpdf.php');
 
-    // Create new PDF document
+    // Create new PDF document - Use landscape orientation
     $pdf = new TCPDF('L', 'mm', 'A4', true, 'UTF-8', false);
 
     // Set document information
@@ -140,8 +140,8 @@ try {
     $pdf->setPrintHeader(false);
     $pdf->setPrintFooter(false);
 
-    // Set margins
-    $pdf->SetMargins(15, 15, 15);
+    // Set margins - REDUCED for more space
+    $pdf->SetMargins(10, 10, 10);
     $pdf->SetAutoPageBreak(true, 15);
 
     // Add a page
@@ -170,68 +170,89 @@ try {
 
     // Calculate column widths based on selected columns
     $numColumns = count($selectedColumns);
-    $pageWidth = $pdf->GetPageWidth() - 30; // 30mm margins total (15mm each side)
+    $pageWidth = $pdf->GetPageWidth() - 20; // 20mm margins total (10mm each side)
     $colWidths = array();
 
-    // Assign different widths based on column type
+    // IMPROVED - Better column width allocation based on content expectations
+    // First pass: Set minimum widths based on column types
     foreach ($selectedColumns as $columnId) {
         switch ($columnId) {
             case 'log_id':
+                $colWidths[$columnId] = 15; // fixed width
+                break;
             case 'user_id':
-                $colWidths[$columnId] = $pageWidth * 0.07;
+                $colWidths[$columnId] = 15; // fixed width
                 break;
             case 'username':
-                $colWidths[$columnId] = $pageWidth * 0.15;
+                $colWidths[$columnId] = 30; // medium width 
                 break;
             case 'email':
-                $colWidths[$columnId] = $pageWidth * 0.18;
+                $colWidths[$columnId] = 50; // large width for emails
                 break;
             case 'department':
-                $colWidths[$columnId] = $pageWidth * 0.16;
+                $colWidths[$columnId] = 40; // medium-large width
                 break;
             case 'user_type':
-                $colWidths[$columnId] = $pageWidth * 0.10;
+                $colWidths[$columnId] = 25; // medium width
                 break;
             case 'action':
-                $colWidths[$columnId] = $pageWidth * 0.25;
+                $colWidths[$columnId] = 75; // largest width for action text
                 break;
             case 'timestamp':
-                $colWidths[$columnId] = $pageWidth * 0.15;
+                $colWidths[$columnId] = 35; // medium-fixed width
                 break;
             default:
-                $colWidths[$columnId] = $pageWidth * 0.10;
+                $colWidths[$columnId] = 25; // default width
                 break;
         }
     }
 
-    // Adjust widths to make sure they sum to page width
-    $totalWidth = array_sum($colWidths);
-    $scaleFactor = $pageWidth / $totalWidth;
+    // Calculate total assigned width
+    $totalAssignedWidth = array_sum($colWidths);
 
-    foreach ($colWidths as $key => $width) {
-        $colWidths[$key] = $width * $scaleFactor;
+    // Second pass: Adjust widths proportionally if needed
+    if ($totalAssignedWidth > $pageWidth) {
+        $scaleFactor = $pageWidth / $totalAssignedWidth;
+        foreach ($colWidths as $key => $width) {
+            $colWidths[$key] = floor($width * $scaleFactor);
+        }
+    }
+    // Ensure minimum widths for essential columns
+    if (isset($colWidths['log_id']) && $colWidths['log_id'] < 15) $colWidths['log_id'] = 15;
+    if (isset($colWidths['user_id']) && $colWidths['user_id'] < 15) $colWidths['user_id'] = 15;
+
+    // Recalculate and distribute any remaining space
+    $totalAdjustedWidth = array_sum($colWidths);
+    $remainingWidth = $pageWidth - $totalAdjustedWidth;
+
+    // If there's remaining space, give it to the action column (which often needs more space)
+    if ($remainingWidth > 0 && isset($colWidths['action'])) {
+        $colWidths['action'] += $remainingWidth;
     }
 
     // Table header
-    $pdf->SetFont('helvetica', 'B', 10);
+    $pdf->SetFont('helvetica', 'B', 9); // SMALLER font
     $pdf->SetFillColor(220, 220, 220);
 
     foreach ($selectedColumns as $columnId) {
         if (isset($columnMapping[$columnId])) {
-            $pdf->Cell($colWidths[$columnId], 10, $columnMapping[$columnId], 1, 0, 'C', true);
+            $pdf->Cell($colWidths[$columnId], 8, $columnMapping[$columnId], 1, 0, 'C', true);
         }
     }
     $pdf->Ln();
 
-    // Table data
-    $pdf->SetFont('helvetica', '', 9);
+    // Table data - SMALLER font for content
+    $pdf->SetFont('helvetica', '', 8);
     $pdf->SetFillColor(245, 245, 245);
     $rowColor = false;
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
+            // Calculate the maximum row height needed for this row
+            $maxRowHeight = 7; // Minimum row height
+
+            // First pass: check each cell to determine maximum needed height
             foreach ($selectedColumns as $columnId) {
-                // Get cell value
                 $value = $row[$columnId] ?? '';
 
                 // Format timestamp if needed
@@ -240,54 +261,64 @@ try {
                     $value = $date->format('Y-m-d H:i:s');
                 }
 
-                // Calculate cell settings based on column type
-                $align = 'L'; // Default left alignment
-                $height = 8;  // Default height
-
-                // Set specific alignment per column type
-                if (in_array($columnId, ['log_id', 'user_id'])) {
-                    $align = 'C'; // Center align IDs
-                } else if ($columnId == 'timestamp') {
-                    $align = 'C'; // Center align timestamps
-                }
-
-                // Handle multiline cells for text that might overflow
+                // For columns that might contain longer text
                 if (in_array($columnId, ['action', 'email', 'department'])) {
-                    // Use MultiCell for these columns that might contain long text
-                    $x = $pdf->GetX();
-                    $y = $pdf->GetY();
-
-                    // Store current position
-                    $startX = $pdf->GetX();
-                    $startY = $pdf->GetY();
-
-                    // Calculate cell height needed for this text
+                    // Get height needed for this content
                     $cellHeight = $pdf->getStringHeight($colWidths[$columnId], $value);
-                    $height = max(8, $cellHeight); // At least 8mm high
-
-                    // If tall cell would cause page break, do it manually
-                    if ($startY + $height > $pdf->getPageHeight() - 15) {
-                        $pdf->AddPage();
-                        $startY = $pdf->GetY();
-                    }
-
-                    // Draw the background if needed
-                    if ($rowColor) {
-                        $pdf->SetFillColor(245, 245, 245);
-                        $pdf->Rect($startX, $startY, $colWidths[$columnId], $height, 'F');
-                    }
-
-                    // Output the text
-                    $pdf->MultiCell($colWidths[$columnId], $height, $value, 1, $align, false);
-
-                    // Move to the right side of the cell
-                    $pdf->SetXY($startX + $colWidths[$columnId], $startY);
-                } else {
-                    // Use regular Cell for other columns
-                    $pdf->Cell($colWidths[$columnId], $height, $value, 1, 0, $align, $rowColor);
+                    $maxRowHeight = max($maxRowHeight, $cellHeight + 2); // Add padding
                 }
             }
-            $pdf->Ln();
+
+            // Check if we need a page break
+            if ($pdf->GetY() + $maxRowHeight > $pdf->getPageHeight() - 15) {
+                $pdf->AddPage();
+
+                // Repeat the header on the new page
+                $pdf->SetFont('helvetica', 'B', 9);
+                $pdf->SetFillColor(220, 220, 220);
+                foreach ($selectedColumns as $columnId) {
+                    if (isset($columnMapping[$columnId])) {
+                        $pdf->Cell($colWidths[$columnId], 8, $columnMapping[$columnId], 1, 0, 'C', true);
+                    }
+                }
+                $pdf->Ln();
+                $pdf->SetFont('helvetica', '', 8);
+                $pdf->SetFillColor(245, 245, 245);
+            }
+
+            // Store current Y position
+            $startY = $pdf->GetY();
+
+            // Second pass: Draw all cells with the same height
+            foreach ($selectedColumns as $columnId) {
+                $value = $row[$columnId] ?? '';
+
+                // Format timestamp if needed
+                if ($columnId == 'timestamp' && !empty($value)) {
+                    $date = new DateTime($value);
+                    $value = $date->format('Y-m-d H:i:s');
+                }
+
+                // Set alignment based on column type
+                $align = 'L'; // Default left alignment
+                if (in_array($columnId, ['log_id', 'user_id', 'timestamp'])) {
+                    $align = 'C'; // Center align IDs and timestamps
+                }
+
+                // For columns that might need multiline
+                if (in_array($columnId, ['action', 'email', 'department'])) {
+                    $x = $pdf->GetX();
+                    $pdf->MultiCell($colWidths[$columnId], $maxRowHeight, $value, 1, $align, $rowColor);
+                    // Move position for the next cell
+                    $pdf->SetXY($x + $colWidths[$columnId], $startY);
+                } else {
+                    // Regular cells
+                    $pdf->Cell($colWidths[$columnId], $maxRowHeight, $value, 1, 0, $align, $rowColor);
+                }
+            }
+
+            // Move to next line
+            $pdf->SetY($startY + $maxRowHeight);
             $rowColor = !$rowColor; // Alternate row colors
         }
     } else {
