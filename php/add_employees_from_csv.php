@@ -14,7 +14,7 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    echo json_encode(['success' => false, 'message' => "Database connection failed: " . $e->getMessage()]);
+    echo json_encode(['success' => false, 'message' => "⚠️ Database Connection Error: Unable to connect to the database. Technical details: " . $e->getMessage()]);
     exit();
 }
 
@@ -23,7 +23,7 @@ $json_data = file_get_contents("php://input");
 $data = json_decode($json_data, true);
 
 if ($data === null || !is_array($data)) {
-    echo json_encode(['success' => false, 'message' => 'Invalid data received. Expected an array of employee data.']);
+    echo json_encode(['success' => false, 'message' => '⚠️ Invalid Data Format: The uploaded data is not in the expected format. Please ensure you are using the correct CSV template.']);
     exit();
 }
 
@@ -56,25 +56,25 @@ foreach ($data as $row) {
     // Basic validation
     $errors = []; // Use a local array for each row's errors
     if (empty($employee_id)) {
-        $errors[] = "Employee ID is required.";
+        $errors[] = "Employee ID field is missing or empty";
     }
     if (empty($emp_fname)) {
-        $errors[] = "First Name is required.";
+        $errors[] = "First Name field is missing or empty";
     }
     if (empty($emp_lname)) {
-        $errors[] = "Last Name is required.";
+        $errors[] = "Last Name field is missing or empty";
     }
     if (empty($emp_email)) {
-        $errors[] = "Email is required.";
+        $errors[] = "Email field is missing or empty";
     }
     if ($department_id === 0) { // Changed from null to 0
-        $errors[] = "Department ID is required.";
+        $errors[] = "Department ID field is missing or empty";
     }
 
     if (!empty($errors)) {
         $messages[] = [
             'employee_id' => $employee_id,
-            'message' => "Validation errors: " . implode(" ", $errors)
+            'message' => "⚠️ Validation Failed: " . implode(", ", $errors)
         ];
         $success = false;
         continue; // Skip to the next row
@@ -96,38 +96,40 @@ foreach ($data as $row) {
     $stmt->bindParam(':emp_address', $emp_address); // Pass the variable
     $stmt->bindParam(':emp_category', $emp_category); // Pass the variable
 
+    // Execute the query
     if (!$stmt->execute()) {
         $errorInfo = $stmt->errorInfo();
-        $errorMessage = "Error inserting employee ID: $employee_id. ";
-        switch ($errorInfo[1]) { // Use the error code
-            case 1062:
-                $errorMessage .= "Duplicate entry. Employee ID already exists.";
-                break;
-            // Add more specific error code handling as needed
-            case 1452:
-                $errorMessage .= "Cannot add or update a child row: a foreign key constraint fails.  This usually means the Department ID is invalid.";
-                break;
-            default:
-                $errorMessage .= "Database error: " . $errorInfo[2];
-        }
         $messages[] = [
             'employee_id' => $employee_id,
-            'message' => $errorMessage,
-            'error_code' => $errorInfo[1] // Include the error code for more detailed handling if needed
+            'message' => "⚠️ Database Error: " . $errorInfo[2] . ". Please check the data and try again."
         ];
         $success = false;
     } else {
         $messages[] = [
             'employee_id' => $employee_id,
-            'message' => "Employee ID: $employee_id inserted successfully"
+            'message' => "✅ Employee successfully added to the system"
         ];
+
+        // Log the employee addition
+        $logAction = "Added employee via CSV import - Employee ID: $employee_id, " .
+                    "Name: $emp_fname " . ($emp_minit ? "$emp_minit " : "") . "$emp_lname" .
+                    ($emp_suffix ? " $emp_suffix" : "") . ", " .
+                    "Email: " . ($emp_email ?? 'N/A') . ", " .
+                    "Category: " . ($emp_category ?? 'N/A') . ", " .
+                    "Department ID: " . ($department_id ?? 'N/A');
+
+        $logSql = "INSERT INTO audit_log (user_id, action) VALUES (:user_id, :action)";
+        $logStmt = $conn->prepare($logSql);
+        $logStmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+        $logStmt->bindParam(':action', $logAction);
+        $logStmt->execute();
     }
 }
 
 if ($success) {
-    echo json_encode(['success' => true, 'message' => 'All employees added successfully.', 'individual_messages' => $messages]);
+    echo json_encode(['success' => true, 'message' => '✅ Upload Complete: All employees have been successfully added to the system.', 'individual_messages' => $messages]);
 } else {
-    echo json_encode(['success' => false, 'message' => 'Some employees were not added.', 'individual_messages' => $messages]);
+    echo json_encode(['success' => false, 'message' => '⚠️ Upload Partially Complete: Some employees could not be added. Please review the details below.', 'individual_messages' => $messages]);
 }
 
 $conn = null;

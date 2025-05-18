@@ -253,14 +253,22 @@ async function saveUser(row) {
         accountStatusSelect.disabled = true;
       }
 
-      alert("User updated successfully!");
+      alert(
+        "✅ User Update Complete: The user's information has been successfully updated."
+      );
       populateUserTableWithActions();
     } else {
-      alert(`Error updating user: ${result?.error || "Unknown error"}`);
+      alert(
+        `Error: Unable to update user information. ${
+          result?.error || "Please try again or contact support."
+        }`
+      );
     }
   } catch (error) {
     console.error("Error updating user:", error);
-    alert("Failed to update user.");
+    alert(
+      "System Error: Failed to update user information. Please try again later."
+    );
   }
 }
 
@@ -285,13 +293,21 @@ async function deleteUser(row) {
 
       if (result && result.success) {
         row.remove();
-        alert("User deleted successfully!");
+        alert(
+          "✅ User Deleted: The user account has been successfully removed from the system."
+        );
       } else {
-        alert(`Error deleting user: ${result?.error || "Unknown error"}`);
+        alert(
+          `Error: Unable to delete user. ${
+            result?.error || "Please try again or contact support."
+          }`
+        );
       }
     } catch (error) {
       console.error("Error deleting user:", error);
-      alert("Failed to delete user.");
+      alert(
+        "System Error: Failed to delete user account. Please try again later."
+      );
     }
   }
 }

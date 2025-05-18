@@ -319,7 +319,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function saveStatus(distId, newStatusId) {
     if (editingRowId !== distId) {
-      alert("Please edit a row before saving.");
+      alert(
+        "No Changes Made: Please select a row and make changes before saving."
+      );
       return;
     }
 
@@ -336,16 +338,24 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          alert("Status updated successfully!");
+          alert(
+            "✅ Status Update Complete: The item's repair status has been successfully updated."
+          );
           editingRowId = null;
           fetchRepairRecords(); // Refresh the table
         } else {
-          alert("Error updating status: " + (data.error || "Unknown error"));
+          alert(
+            "Error Updating Status: " +
+              (data.error ||
+                "An unexpected error occurred. Please try again or contact support.")
+          );
         }
       })
       .catch((error) => {
         console.error("Error updating status:", error);
-        alert("An error occurred while updating the status.");
+        alert(
+          "System Error: Unable to update the repair status. Please try again later or contact support."
+        );
       });
   }
 

@@ -6,7 +6,7 @@ session_start();
 $data = json_decode(file_get_contents("php://input"), true);
 
 if (!isset($_SESSION['user_id'])) {
-    echo json_encode(["success" => false, "error" => "User session not found."]);
+    echo json_encode(["success" => false, "error" => "⚠️ Authentication Required: Please log in to continue."]);
     $conn->close();
     exit();
 }
@@ -29,7 +29,7 @@ if ($data && is_array($data)) {
 
         if ($boxNo === null || $itemDescId === null || $accountableId === null) {
             $uploadSuccess = false;
-            $errorMessages[] = "Missing required fields for an item.";
+            $errorMessages[] = "⚠️ Missing Required Fields: One or more items are missing required information. Please check all mandatory fields.";
             continue;
         }
 
@@ -42,7 +42,7 @@ if ($data && is_array($data)) {
 
         if ($resultAccountableName->num_rows !== 1) {
             $uploadSuccess = false;
-            $errorMessages[] = "Invalid accountable ID provided for an item.";
+            $errorMessages[] = "⚠️ Invalid Accountable ID: The specified accountable person does not exist in the system for box number: $boxNo";
             $stmtGetAccountableName->close();
             continue;
         }
@@ -65,22 +65,29 @@ if ($data && is_array($data)) {
                 $stmtBagDistribution->bind_param("ii", $bagItemId, $accountableId);
 
                 if ($stmtBagDistribution->execute()) {
-                    // Log the insertion in the audit_log table
-                    $action = "Added bag via CSV - box_no: $boxNo, serial_no: $serialNo, purchase_date: $purchaseDate, assigned to: " . $accountableName;
-                    $sqlAudit = "INSERT INTO audit_log (user_id, action) VALUES (?, ?)";
-                    $stmtAudit = $conn->prepare($sqlAudit);
-                    $stmtAudit->bind_param("is", $userId, $action);
-                    $stmtAudit->execute();
-                    $stmtAudit->close();
                     $uploadedCount++;
+
+                    // Log the bag item addition
+                    $logAction = "Added bag item via CSV import - " .
+                                "Box No: " . ($boxNo ?? 'N/A') . ", " .
+                                "Item Description ID: " . ($itemDescId ?? 'N/A') . ", " .
+                                "Serial No: " . ($serialNo ?? 'N/A') . ", " .
+                                "Purchase Date: " . ($purchaseDate ?? 'N/A') . ", " .
+                                "Accountable Person: $accountableName";
+
+                    $logSql = "INSERT INTO audit_log (user_id, action) VALUES (?, ?)";
+                    $logStmt = $conn->prepare($logSql);
+                    $logStmt->bind_param("is", $userId, $logAction);
+                    $logStmt->execute();
+                    $logStmt->close();
                 } else {
                     $uploadSuccess = false;
-                    $errorMessages[] = "Error adding to bag_distribution for bag with serial: " . $serialNo . " - " . $stmtBagDistribution->error;
+                    $errorMessages[] = "⚠️ Database Error: Failed to insert bag distribution record for box number: $boxNo. Please try again.";
                 }
                 $stmtBagDistribution->close();
             } else {
                 $uploadSuccess = false;
-                $errorMessages[] = "Error adding to bag_items for bag with serial: " . $serialNo . " - " . $stmtBagItems->error;
+                $errorMessages[] = "⚠️ Database Error: Failed to insert bag item record for box number: $boxNo. Please try again.";
             }
             $stmtBagItems->close();
         } else {
@@ -93,39 +100,46 @@ if ($data && is_array($data)) {
                 $itemId = $conn->insert_id;
 
                 // Insert into gadget_distribution table
-                $sqlDistribution = "INSERT INTO gadget_distribution (item_id, mrep_id, status_id, to_be_returned) VALUES (?, ?, 2, 0)";
+                $sqlDistribution = "INSERT INTO gadget_distribution (item_id, mrep_id, status_id) VALUES (?, ?, 2)";
                 $stmtDistribution = $conn->prepare($sqlDistribution);
                 $stmtDistribution->bind_param("ii", $itemId, $accountableId);
 
                 if ($stmtDistribution->execute()) {
-                    // Log the insertion in the audit_log table
-                    $action = "Added item via CSV - box_no: $boxNo, serial_no: $serialNo, purchase_date: $purchaseDate, assigned to: " . $accountableName;
-                    $sqlAudit = "INSERT INTO audit_log (user_id, action) VALUES (?, ?)";
-                    $stmtAudit = $conn->prepare($sqlAudit);
-                    $stmtAudit->bind_param("is", $userId, $action);
-                    $stmtAudit->execute();
-                    $stmtAudit->close();
                     $uploadedCount++;
+
+                    // Log the item addition
+                    $logAction = "Added item via CSV import - " .
+                                "Box No: " . ($boxNo ?? 'N/A') . ", " .
+                                "Item Description ID: " . ($itemDescId ?? 'N/A') . ", " .
+                                "Serial No: " . ($serialNo ?? 'N/A') . ", " .
+                                "Purchase Date: " . ($purchaseDate ?? 'N/A') . ", " .
+                                "Accountable Person: $accountableName";
+
+                    $logSql = "INSERT INTO audit_log (user_id, action) VALUES (?, ?)";
+                    $logStmt = $conn->prepare($logSql);
+                    $logStmt->bind_param("is", $userId, $logAction);
+                    $logStmt->execute();
+                    $logStmt->close();
                 } else {
                     $uploadSuccess = false;
-                    $errorMessages[] = "Error adding to gadget_distribution for item with serial: " . $serialNo . " - " . $stmtDistribution->error;
+                    $errorMessages[] = "⚠️ Database Error: Failed to insert distribution record for box number: $boxNo. Please try again.";
                 }
                 $stmtDistribution->close();
             } else {
                 $uploadSuccess = false;
-                $errorMessages[] = "Error adding to items for item with serial: " . $serialNo . " - " . $stmtItems->error;
+                $errorMessages[] = "⚠️ Database Error: Failed to insert item record for box number: $boxNo. Please try again.";
             }
             $stmtItems->close();
         }
     }
 
     if ($uploadSuccess) {
-        echo json_encode(["success" => true, "message" => "$uploadedCount items uploaded successfully."]);
+        echo json_encode(["success" => true, "message" => "✅ Upload Complete: Successfully added $uploadedCount items to the inventory."]);
     } else {
-        echo json_encode(["success" => false, "error" => "Some items failed to upload. Details: " . implode(", ", $errorMessages)]);
+        echo json_encode(["success" => false, "error" => "⚠️ Upload Failed: Some items could not be added to the inventory. Details:\n" . implode("\n", $errorMessages)]);
     }
 } else {
-    echo json_encode(["success" => false, "error" => "Invalid data received."]);
+    echo json_encode(["success" => false, "error" => "⚠️ Invalid Data Format: The uploaded data is not in the expected format. Please ensure you are using the correct CSV template."]);
 }
 
 $conn->close();

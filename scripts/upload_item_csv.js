@@ -42,7 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
     itemsCSVFile.addEventListener("change", (event) => {
       const file = event.target.files[0];
       if (!file) {
-        alert("Please select a CSV file to upload items.");
+        alert(
+          "No file selected: Please choose a CSV file containing item information to upload."
+        );
         return;
       }
       processCsvFile(file);
@@ -59,7 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
       return data;
     } catch (error) {
       console.error("Error fetching item names:", error);
-      alert("Error fetching item names from the server.");
+      alert(
+        "Error: Unable to fetch item names from the server. Please try again or contact support."
+      );
       return [];
     }
   }
@@ -74,7 +78,9 @@ document.addEventListener("DOMContentLoaded", () => {
       return data;
     } catch (error) {
       console.error("Error fetching employee names:", error);
-      alert("Error fetching employee names from the server.");
+      alert(
+        "Error: Unable to fetch employee names from the server. Please try again or contact support."
+      );
       return [];
     }
   }
@@ -92,7 +98,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (parsedResult.errors.length > 0) {
         console.error("CSV Parsing Errors:", parsedResult.errors);
-        alert("Error parsing CSV file. Please check the file format.");
+        alert(
+          "Invalid CSV Format: The file format is incorrect. Please ensure you're using the correct CSV template."
+        );
         return;
       }
 
@@ -107,12 +115,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         validateAndUploadCsvData(data);
       } else {
-        alert("The CSV file is empty or contains no valid data.");
+        alert(
+          "Empty File: The uploaded CSV file contains no valid data. Please check the file contents."
+        );
       }
     };
 
     reader.onerror = () => {
-      alert("Error reading the CSV file.");
+      alert(
+        "File Error: Unable to read the CSV file. Please ensure the file is not corrupted."
+      );
     };
 
     reader.readAsText(file);
@@ -185,14 +197,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (validationErrors.length > 0) {
       alert(
-        "Data validation failed. Please correct the following errors:\n" +
+        "Data validation failed. Please correct the following issues:\n\n" +
           validationErrors.join("\n")
       );
       console.error("Item CSV Validation Errors:", validationErrors);
     } else if (validItemsForUpload.length > 0) {
       uploadItemsToServer(validItemsForUpload);
     } else {
-      alert("No valid item data found in the CSV file.");
+      alert(
+        "No Valid Data: The CSV file contains no valid item entries. Please check the file contents and format."
+      );
     }
   }
 
@@ -209,9 +223,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await response.json();
 
       if (result.success) {
-        alert(`Successfully uploaded ${items.length} items.`);
+        alert(result.message);
+        // Clear the file input
+        itemsCSVFile.value = "";
       } else {
-        let errorMessage = "Failed to upload items. ";
+        let errorMessage = "⚠️ Upload Failed\n\n";
         if (result.message) {
           errorMessage += result.message;
         } else if (result.error) {

@@ -15,7 +15,7 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    echo json_encode(['success' => false, 'message' => "Database connection failed: " . $e->getMessage()]);
+    echo json_encode(['success' => false, 'message' => "⚠️ Database Connection Error: Unable to connect to the database. Technical details: " . $e->getMessage()]);
     exit();
 }
 
@@ -24,7 +24,7 @@ $json_data = file_get_contents("php://input");
 $data = json_decode($json_data, true);
 
 if ($data === null || !is_array($data)) {
-    echo json_encode(['success' => false, 'message' => 'Invalid data received. Expected an array of student data.']);
+    echo json_encode(['success' => false, 'message' => '⚠️ Invalid Data Format: The uploaded data is not in the expected format. Please ensure you are using the correct CSV template.']);
     exit();
 }
 
@@ -58,12 +58,12 @@ foreach ($data as $row) {
 
     // Basic validation (customize as needed)
     if (empty($student_id) || empty($first_name) || empty($last_name) || $department_id === null) {
-        $messages[] = "Missing required fields for student ID: $student_id";
+        $messages[] = "⚠️ Missing Required Fields: Student ID $student_id is missing required information. Please check all mandatory fields.";
         $success = false; // Set overall success to false
         continue;       // Skip to the next row
     }
     if ($gender !== null && $gender !== 'Male' && $gender !== 'Female'){
-        $messages[] = "Invalid gender for student ID: $student_id";
+        $messages[] = "⚠️ Invalid Gender Value: Student ID $student_id has an invalid gender value. Please use only 'Male' or 'Female'.";
         $success = false;
         continue;
     }
@@ -90,17 +90,31 @@ foreach ($data as $row) {
     // Execute the query
     if (!$stmt->execute()) {
         $errorInfo = $stmt->errorInfo(); // Get specific error info
-        $messages[] = "Error inserting student ID: $student_id.  Error: " . $errorInfo[2];
+        $messages[] = "⚠️ Database Error for Student ID $student_id: " . $errorInfo[2] . ". Please check the data and try again.";
         $success = false;
     } else {
-         $messages[] = "Student ID: $student_id inserted successfully";
+        $messages[] = "✅ Student ID $student_id: Successfully added to the system";
+        
+        // Log the student addition
+        $logAction = "Added student via CSV import - Student ID: $student_id, " .
+                    "Name: $first_name " . ($middle_name ? "$middle_name " : "") . "$last_name" .
+                    ($suffix ? " $suffix" : "") . ", " .
+                    "Gender: " . ($gender ?? 'N/A') . ", " .
+                    "Section: " . ($section ?? 'N/A') . ", " .
+                    "Department ID: " . ($department_id ?? 'N/A');
+
+        $logSql = "INSERT INTO audit_log (user_id, action) VALUES (:user_id, :action)";
+        $logStmt = $conn->prepare($logSql);
+        $logStmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+        $logStmt->bindParam(':action', $logAction);
+        $logStmt->execute();
     }
 }
 
 if ($success) {
-    echo json_encode(['success' => true, 'message' => 'All students added successfully.', 'individual_messages' => $messages]);
+    echo json_encode(['success' => true, 'message' => '✅ Upload Complete: All students have been successfully added to the system.', 'individual_messages' => $messages]);
 } else {
-    echo json_encode(['success' => false, 'message' => 'Some students were not added.', 'individual_messages' => $messages]);
+    echo json_encode(['success' => false, 'message' => '⚠️ Upload Partially Complete: Some students could not be added. Please review the details below.', 'individual_messages' => $messages]);
 }
 
 $conn = null;

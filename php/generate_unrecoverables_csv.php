@@ -6,7 +6,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// SQL query to fetch lost and unrecoverable items for CSV
+// SQL query to fetch lost, unrecoverable, and defective items for CSV
 $sql = "SELECT
             s.status_name AS Status,
             i.box_no AS 'Box Number',
@@ -20,14 +20,14 @@ $sql = "SELECT
         LEFT JOIN employees e ON gd.mrep_id = e.emp_rec_id
         LEFT JOIN departments d ON e.department_id = d.department_id
         JOIN item_desc id ON i.item_desc_id = id.item_desc_id
-        WHERE s.status_name IN ('Lost', 'Unrecoverable')";
+        WHERE s.status_name IN ('Lost', 'Unrecoverable', 'Defective')";
 
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // Set headers for CSV download
     header('Content-Type: text/csv');
-    header('Content-Disposition: attachment; filename="unrecoverable_items.csv"');
+    header('Content-Disposition: attachment; filename="unrecoverable_and_defective_items.csv"');
 
     // Output CSV header
     $heading = $result->fetch_fields();
@@ -43,7 +43,7 @@ if ($result->num_rows > 0) {
     }
 } else {
     // If no data found, you might want to output a message
-    echo "No lost or unrecoverable items found.";
+    echo "No lost, unrecoverable, or defective items found.";
 }
 
 $conn->close();

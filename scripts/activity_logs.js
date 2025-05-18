@@ -31,21 +31,29 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
+        if (!data.success) {
+          if (data.message === "Session invalid") {
+            window.location.href = "../pages/login.html";
+            return;
+          }
+          throw new Error(data.message);
+        }
+
         const tableBody = document.querySelector("#activity-logs-table tbody");
         tableBody.innerHTML = ""; // Clear existing rows
 
-        if (data.success && data.logs.length > 0) {
+        if (data.logs && data.logs.length > 0) {
           data.logs.forEach((log) => {
             const row = tableBody.insertRow();
             const userCell = row.insertCell();
             const actionCell = row.insertCell();
             const timestampCell = row.insertCell();
 
-            userCell.textContent = log.username; // Assuming your PHP returns 'username'
-            actionCell.textContent = log.action;
+            userCell.textContent = log.username || "N/A";
+            actionCell.textContent = log.action || "N/A";
             timestampCell.textContent = new Date(
               log.timestamp
-            ).toLocaleString(); // Format timestamp
+            ).toLocaleString();
           });
         } else {
           const row = tableBody.insertRow();
@@ -77,6 +85,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initial load of activity logs (without any filter)
   fetchActivityLogs();
 
+  // Set up download buttons
+  if (document.getElementById("csv_btn")) {
+    setupAuditDownloadButton("csv_btn", "downloadOverlay-csv");
+  }
+  if (document.getElementById("pdf_btn")) {
+    setupAuditDownloadButton("pdf_btn", "downloadOverlay-pdf");
+  }
+
   // Get user info and check permissions
   fetch("../php/get_user_info.php", {
     credentials: "include",
@@ -101,14 +117,6 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Error checking session:", error);
       window.location.href = "../pages/login.html";
     });
-
-  // Set up download buttons
-  if (document.getElementById("csv_btn")) {
-    setupAuditDownloadButton("csv_btn", "downloadOverlay-csv");
-  }
-  if (document.getElementById("pdf_btn")) {
-    setupAuditDownloadButton("pdf_btn", "downloadOverlay-pdf");
-  }
 });
 
 function hideAuditLogControls() {

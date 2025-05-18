@@ -50,12 +50,14 @@ async function populateDepartmentDropdown() {
         result
       );
       alert(
-        "⚠️ Failed to load departments (invalid data structure). Please check the console."
+        "⚠️ Unable to load departments. Please refresh the page or contact system administrator for assistance."
       );
     }
   } catch (error) {
     console.error("Failed to populate department dropdown:", error);
-    alert("⚠️ Failed to load departments. Please check the console.");
+    alert(
+      "⚠️ Unable to load departments. Please refresh the page or contact system administrator for assistance."
+    );
   }
 }
 
@@ -70,7 +72,9 @@ async function handleRegistration(event) {
   const departmentId = document.getElementById(departmentDropdownId).value;
 
   if (password !== confirmPassword) {
-    alert("Passwords do not match!");
+    alert(
+      "⚠️ Password Mismatch: The passwords you entered do not match. Please try again."
+    );
     return;
   }
 
@@ -90,7 +94,9 @@ async function handleRegistration(event) {
     });
 
     if (data.success) {
-      alert("✅ User registered successfully!");
+      alert(
+        "✅ User Registration Successful: The new user account has been created and can now be used to log in."
+      );
       document.getElementById(registerFormId).reset();
       // Call the function to refresh the user table
       populateUserTableWithActions();

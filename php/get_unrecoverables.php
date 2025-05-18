@@ -26,7 +26,7 @@ function getDepartmentName($conn, $departmentId) {
     return null;
 }
 
-// Base SQL query to fetch unrecoverable items
+// Base SQL query to fetch unrecoverable, lost, and defective items
 $sql = "SELECT
             gd.dist_id,
             s.status_name,
@@ -42,7 +42,7 @@ $sql = "SELECT
         LEFT JOIN employees e ON gd.mrep_id = e.emp_rec_id
         LEFT JOIN departments d ON e.department_id = d.department_id
         JOIN item_desc id ON i.item_desc_id = id.item_desc_id
-        WHERE s.status_name IN ('Lost', 'Unrecoverable')";
+        WHERE s.status_name IN ('Lost', 'Unrecoverable', 'Defective')";
 
 $whereClause = "";
 $params = [];
