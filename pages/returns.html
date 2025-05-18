@@ -6,17 +6,14 @@
     <title>Nexus IMS</title>
     <link rel="stylesheet" href="../styles/sidenav_styles.css" />
     <link rel="stylesheet" href="../styles/return_logs_styles.css" />
-
-    <!--- Import for HMTL5QR Module!-->
+    <link rel="stylesheet" href="../styles/download_overlay_styles.css" />
     <script src="../node_modules/html5-qrcode/html5-qrcode.min.js"></script>
   </head>
   <body>
-    <!-- This is the Nav Bar-->
     <div id="sidebar-container"></div>
     <div class="main-content">
       <div class="main-wrapper">
-        <h1 id="top-text">Returned</h1>
-        <!-- Nav Area for table -->
+        <h1 id="top-text" style="color: #0e2f56">Returned</h1>
         <div class="searchbar-div">
           <div class="search-bar-section">
             <input
@@ -77,158 +74,69 @@
       </div>
     </div>
 
-    <!-- View More Overlay -->
-    <div id="viewMoreOverlay" class="overlay">
-      <div class="popup" id="viewMore-popup-container">
-        <button class="close-btn" onclick="closePopup('viewMoreOverlay')">
-          &times;
-        </button>
-        <h1>Profile</h1>
-        <div class="viewMore-left-right-container">
-          <div class="viewMore-up-left">
-            <p id="viewMore-id">ID:</p>
-            <p id="viewMore-name">Name:</p>
-            <p id="viewMore-gender">Gender:</p>
-            <p id="viewMore-section">Section:</p>
-            <p id="viewMore-department">Department:</p>
-            <p id="viewMore-contact">Contact:</p>
-            <p id="viewMore-email">Email:</p>
-            <p id="viewMore-address">Address:</p>
-          </div>
-          <div class="viewMore-up-right">
-            <!--Image of the borrower-->
-            <img
-              class="borrower-photo"
-              src="../assets/images/photo_test_2.jpg"
-              alt=""
-            />
-          </div>
-        </div>
-      </div>
-    </div>
     <div id="downloadOverlay-csv" class="downloadOverlay">
-      <div class="datePicker">
-        <span
-          style="
-            margin-left: auto;
-            margin-right: 30px;
-            margin-top: 20px;
-            cursor: pointer;
-          "
-          class="close"
-          >&times;</span
-        >
+      <div class="download-popup">
+        <span class="close-btn" id="closeDownloadBtn">&times;</span>
+        <h2>Download CSV</h2>
         <div class="column-selector">
-          <p>Select columns to include in your CSV export:</p>
-
+          <p class="selector-title">Select columns to include:</p>
           <div class="multiselect-container">
             <div class="multiselect-header">
-              <span>Selected Columns</span>
+              <span class="header-text">Selected Columns</span>
               <div class="selected-count">
                 <span class="selected-count-value">0</span> selected
               </div>
               <span class="dropdown-icon">▼</span>
             </div>
-
-            <div class="multiselect-dropdown">
-              <!-- Column options will be inserted here by JavaScript -->
-            </div>
+            <div class="multiselect-dropdown"></div>
           </div>
-
           <div class="action-buttons">
             <button class="select-all">Select All</button>
             <button class="deselect-all">Deselect All</button>
           </div>
         </div>
         <div class="adminDeptChoice">
-          <label for="">Department</label><br />
-          <select class="department-select"></select>
+          <label for="department-select" class="label-style">Department</label>
+          <select class="department-select" id="department-select">
+            <option value="all">All Departments</option>
+          </select>
         </div>
-
-        <div id="datepickers">
-          <h3
-            style="
-              margin-bottom: 1dvh;
-              font-weight: 500;
-              font-size: 1rem;
-              margin-left: 2.5dvw;
-            "
-          >
-            Select a range
-          </h3>
-          <label for="">Start</label><br />
-          <input type="date" name="" id="start_date" /><br />
-          <label for="">End</label><br />
-          <input type="date" name="" id="end_date" />
-        </div>
-
-        <button onclick="downloadLogsCSV('returns')">Download CSV</button>
+        <button class="download-button" onclick="downloadLogsCSV('returns')">
+          Download CSV
+        </button>
       </div>
     </div>
 
-    <!-- PDF Download Overlay -->
     <div id="downloadOverlay-pdf" class="downloadOverlay">
-      <div class="datePicker">
-        <span
-          style="
-            margin-left: auto;
-            margin-right: 30px;
-            margin-top: 20px;
-            cursor: pointer;
-          "
-          class="close"
-          >&times;</span
-        >
-        <div class="column-selector">
-          <p>Select columns to include in your PDF export:</p>
-
-          <div class="multiselect-container">
-            <div class="multiselect-header">
-              <span>Selected Columns</span>
-              <div class="selected-count">
-                <span class="selected-count-value">0</span> selected
-              </div>
-              <span class="dropdown-icon">▼</span>
-            </div>
-
-            <div class="multiselect-dropdown">
-              <!-- Column options will be inserted here by JavaScript -->
-            </div>
-          </div>
-
-          <div class="action-buttons">
-            <button class="select-all">Select All</button>
-            <button class="deselect-all">Deselect All</button>
-          </div>
-        </div>
-        <div class="adminDeptChoice">
-          <label for="">Department</label><br />
-          <select class="department-select"></select>
-        </div>
-
-        <div id="datepickers">
-          <h3
-            style="
-              margin-bottom: 1dvh;
-              font-weight: 500;
-              font-size: 1rem;
-              margin-left: 2.5dvw;
-            "
-          >
-            Select a range
-          </h3>
-          <label for="">Start</label><br />
-          <input type="date" name="" id="start_date" /><br />
-          <label for="">End</label><br />
-          <input type="date" name="" id="end_date" />
-        </div>
-
-        <button onclick="downloadLogsPDF('returns')">Download PDF</button>
+      <div class="download-popup">
+        <span class="close-btn" id="closePdfDownloadBtn">&times;</span>
+        <h2>Download PDF (Coming Soon)</h2>
+        <p>This feature is currently under development.</p>
       </div>
     </div>
   </body>
 
-  <script src="../scripts/download_logs_handler.js"></script>
   <script src="../scripts/sidebar.js"></script>
   <script src="../scripts/return_logs.js"></script>
+  <script src="../scripts/return_logs_csv.js"></script>
+  <script>
+    // Basic JavaScript to handle closing the download overlays
+    document.addEventListener("DOMContentLoaded", function () {
+      const closeDownloadBtn = document.getElementById("closeDownloadBtn");
+      const downloadOverlayCsv = document.getElementById("downloadOverlay-csv");
+
+      if (closeDownloadBtn && downloadOverlayCsv) {
+        closeDownloadBtn.addEventListener("click", function () {
+          downloadOverlayCsv.style.display = "none";
+        });
+      }
+
+      const csvBtn = document.getElementById("csv_btn");
+      if (csvBtn && downloadOverlayCsv) {
+        csvBtn.addEventListener("click", function () {
+          downloadOverlayCsv.style.display = "flex";
+        });
+      }
+    });
+  </script>
 </html>

@@ -2,6 +2,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
+header("Access-Control-Allow-Credentials: true"); // Crucial for session handling
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -14,7 +15,14 @@ if ($conn->connect_error) {
     exit();
 }
 
-// Query for gadget return logs
+// Start the session to access user information
+session_start();
+
+// Retrieve user information from the session
+$userType = $_SESSION['user_type'] ?? '';
+$departmentId = $_SESSION['department_id'] ?? '';
+
+// Base query for gadget return logs
 $sql_gadget_logs = "SELECT
     rgl.log_id AS log_id,
     rgl.dist_id AS dist_id,
@@ -46,7 +54,7 @@ $sql_gadget_logs = "SELECT
     s.contact_number AS contact_number,
     s.email AS email,
     s.stud_address AS stud_address,
-    'gadget' AS item_category -- Add item category for differentiation
+    'gadget' AS item_category
 FROM return_logs rgl
 JOIN archive_distribution ad ON ad.record_id = rgl.dist_id
 LEFT JOIN items i ON ad.item_id = i.item_id
@@ -58,7 +66,7 @@ LEFT JOIN departments d_stud ON s.department_id = d_stud.department_id AND ad.bo
 LEFT JOIN departments d_emp ON e.department_id = d_emp.department_id AND ad.borrower_type = 'employee'
 LEFT JOIN departments d_mrep ON m.department_id = d_mrep.department_id";
 
-// Query for bag return logs
+// Base query for bag return logs
 $sql_bag_logs = "SELECT
     rbl.log_id AS log_id,
     abd.archive_bag_dist_id AS dist_id,
@@ -102,15 +110,36 @@ LEFT JOIN departments d_stud ON s.department_id = d_stud.department_id AND abd.b
 LEFT JOIN departments d_emp ON e.department_id = d_emp.department_id AND abd.borrower_type = 'employee'
 LEFT JOIN departments d_mrep ON m.department_id = d_mrep.department_id";
 
-$sql_combined = "$sql_gadget_logs UNION ALL $sql_bag_logs ORDER BY returned_at DESC";
+$where_clause_gadget = "";
+$where_clause_bag = "";
 
-$result = $conn->query($sql_combined);
+if ($userType !== 'admin' && !empty($departmentId)) {
+    $where_clause_gadget = " WHERE d_mrep.department_id = ?";
+    $where_clause_bag = " WHERE d_mrep.department_id = ?";
+}
+
+$sql_combined = "$sql_gadget_logs $where_clause_gadget UNION ALL $sql_bag_logs $where_clause_bag ORDER BY returned_at DESC";
+
+$stmt = $conn->prepare($sql_combined);
+
+if ($userType !== 'admin' && !empty($departmentId)) {
+    $stmt->bind_param("ii", $departmentId, $departmentId);
+}
+
 $logs = [];
 
-if ($result && $result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $logs[] = $row;
+if ($stmt) {
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $logs[] = $row;
+        }
     }
+    $stmt->close();
+} else {
+    echo json_encode(['error' => 'Error preparing SQL statement']);
+    exit();
 }
 
 $conn->close();

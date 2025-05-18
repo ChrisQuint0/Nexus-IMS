@@ -1,0 +1,197 @@
+/* download_overlay_styles.css */
+
+.downloadOverlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's on top of other content */
+}
+
+.download-popup {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px;
+  text-align: left;
+  position: relative; /* For close button positioning */
+}
+
+.download-popup h2 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #777;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+.column-selector {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.selector-title {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.multiselect-container {
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.multiselect-header {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-text {
+  color: #333;
+}
+
+.selected-count {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.dropdown-icon {
+  font-size: 1rem;
+  color: #555;
+}
+
+.multiselect-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: none; /* Hidden by default */
+  overflow-y: auto;
+  max-height: 200px;
+  z-index: 10;
+}
+
+.multiselect-dropdown label {
+  display: block;
+  padding: 8px 15px;
+  color: #333;
+  cursor: pointer;
+}
+
+.multiselect-dropdown label:hover {
+  background-color: #f7f7f7;
+}
+
+.multiselect-dropdown input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: center;
+}
+
+.action-buttons button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.action-buttons .select-all {
+  background-color: #5cb85c;
+  color: white;
+}
+
+.action-buttons .deselect-all {
+  background-color: #f44336;
+  color: white;
+}
+
+.adminDeptChoice {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.adminDeptChoice .label-style {
+  display: block;
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.adminDeptChoice select.department-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #333;
+  appearance: none; /* Remove default arrow */
+  background-image: url('data:image/svg+xml;charset=UTF-8,<svg fill="%23555" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+}
+
+.download-button {
+  background-color: #0e2f56;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.download-button:hover {
+  background-color: #0a2445;
+}

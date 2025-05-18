@@ -501,7 +501,6 @@ table.table-table td:nth-child(12) {
 .adminDeptChoice select {
   text-align: center;
   margin-top: 10px;
-  margin-left: 60px;
 }
 
 .datePicker button {

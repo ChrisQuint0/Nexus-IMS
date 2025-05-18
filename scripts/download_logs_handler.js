@@ -1,331 +1,215 @@
-// Unified download handler for both CSV and PDF for logs
-let userType = "";
-let departmentId = "";
-
-// Column definitions - customize these based on your database schema
-const columns = [
-  { id: "log_id", display: "Log ID" },
-  { id: "staff", display: "Staff" },
-  { id: "dist_id", display: "Distribution ID" },
-  { id: "borrower_type", display: "Borrower Type" },
-  { id: "borrower_name", display: "Borrower Name" },
-  { id: "serial_no", display: "Serial Number" },
-  { id: "item_name", display: "Item Name" },
-  { id: "received_date", display: "Received Date" },
-  { id: "return_date", display: "Return Date" },
-  { id: "department", display: "Department" },
-];
+// ../scripts/download_logs_handler.js
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Fetch user info
-  fetch("../php/get_user_info.php", {
-    credentials: "include",
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (!data.success) {
-        alert(data.message || "Session invalid");
-        return;
-      }
-      userType = data.userType;
-      departmentId = data.department_id;
-    })
-    .catch((error) => {
-      console.error("Error checking session:", error);
-    });
+  const closeDownloadBtn = document.getElementById("closeDownloadBtn");
+  const downloadOverlayCsv = document.getElementById("downloadOverlay-csv");
+  const csvBtn = document.getElementById("csv_btn");
+  const multiselectDropdown = document.querySelector(
+    "#downloadOverlay-csv .multiselect-dropdown"
+  );
+  const multiselectHeader = document.querySelector(
+    "#downloadOverlay-csv .multiselect-header"
+  );
+  const selectedCount = document.querySelector(
+    "#downloadOverlay-csv .selected-count-value"
+  );
+  const selectAllBtn = document.querySelector(
+    "#downloadOverlay-csv .select-all"
+  );
+  const deselectAllBtn = document.querySelector(
+    "#downloadOverlay-csv .deselect-all"
+  );
+  const departmentSelect = document.getElementById("department-select");
 
-  // Set up download buttons - Add null check before setting up
-  if (document.getElementById("csv_btn")) {
-    setupDownloadButton("csv_btn", "downloadOverlay-csv");
-  }
-  if (document.getElementById("pdf_btn")) {
-    setupDownloadButton("pdf_btn", "downloadOverlay-pdf");
-  }
-});
+  let allColumnHeaders = [];
+  let selectedColumns = [];
+  let isAdmin = false; // Will be set based on user role
+  let userDepartmentId = null; // Will be set based on user's department
 
-function setupDownloadButton(buttonId, overlayId) {
-  const button = document.getElementById(buttonId);
-  if (!button) {
-    console.error(`Button with ID '${buttonId}' not found in the document`);
-    return;
-  }
-
-  const overlay = document.getElementById(overlayId);
-  if (!overlay) {
-    console.error(`Overlay with ID '${overlayId}' not found in the document`);
-    return;
-  }
-
-  const closeButton = overlay.querySelector(".close");
-  const adminDeptChoice = overlay.querySelector(".adminDeptChoice");
-  const departmentSelect = overlay.querySelector(".department-select");
-  const multiselectHeader = overlay.querySelector(".multiselect-header");
-  const multiselectDropdown = overlay.querySelector(".multiselect-dropdown");
-  const dropdownIcon = overlay.querySelector(".dropdown-icon");
-  const selectedCountElem = overlay.querySelector(".selected-count-value");
-  const selectAllBtn = overlay.querySelector(".select-all");
-  const deselectAllBtn = overlay.querySelector(".deselect-all");
-  const startDateInput = overlay.querySelector("#start_date"); // Fixed selector
-  const endDateInput = overlay.querySelector("#end_date"); // Fixed selector
-
-  // Populate dropdown options
-  if (
-    multiselectDropdown &&
-    !multiselectDropdown.querySelector(".option-item")
-  ) {
-    columns.forEach((column) => {
-      const option = document.createElement("div");
-      option.className = "option-item";
-      option.innerHTML = `
-        <label>
-            <input type="checkbox" value="${column.id}" class="column-checkbox"> 
-            ${column.display}
-        </label>
-      `;
-      multiselectDropdown.appendChild(option);
-    });
-  }
-
-  // Set up event listeners
-  button.addEventListener("click", function () {
-    if (adminDeptChoice) {
-      adminDeptChoice.style.display = "flex";
-
-      // Clear previous options
-      if (departmentSelect) {
-        while (departmentSelect.firstChild) {
-          departmentSelect.removeChild(departmentSelect.firstChild);
+  // Function to fetch user role and department (you'll need a PHP endpoint for this)
+  function fetchUserRoleAndDepartment() {
+    fetch("../php/get_user_info.php") // Replace with your actual endpoint
+      .then((response) => response.json())
+      .then((data) => {
+        isAdmin = data.is_admin;
+        userDepartmentId = data.department_id;
+        populateDepartmentDropdown(data.departments); // Assuming the endpoint returns departments for admin
+        if (!isAdmin && departmentSelect) {
+          // If not admin, hide the department dropdown
+          departmentSelect.parentNode.style.display = "none";
         }
+      })
+      .catch((error) => {
+        console.error("Error fetching user info:", error);
+      });
+  }
 
-        // Populate departments
-        fetch("../php/get_departments.php")
-          .then((response) => response.json())
-          .then((data) => {
-            let alldeptoption = document.createElement("option");
-            alldeptoption.value = "0";
-            alldeptoption.textContent = "All Departments";
-            departmentSelect.appendChild(alldeptoption);
-            if (data.success) {
-              data.departments.forEach((dept) => {
-                const option = document.createElement("option");
-                option.value = dept.department_id;
-                option.textContent = dept.department_name;
-                departmentSelect.appendChild(option);
-              });
+  // Function to populate the column selection dropdown
+  function populateColumnDropdown() {
+    const returnTable = document.getElementById("tblReturnLogs");
+    if (returnTable && returnTable.rows.length > 0) {
+      const headerRow = returnTable.rows[0];
+      for (let i = 0; i < headerRow.cells.length; i++) {
+        const columnHeader = headerRow.cells[i].textContent.trim();
+        // Exclude the 'Action' column from the download options
+        if (columnHeader !== "Action") {
+          allColumnHeaders.push(columnHeader);
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.value = columnHeader;
+          checkbox.id = `col-${columnHeader.replace(/\s+/g, "-")}`; // Create unique ID
+          const label = document.createElement("label");
+          label.textContent = columnHeader;
+          label.setAttribute("for", checkbox.id);
+          const listItem = document.createElement("div");
+          listItem.appendChild(checkbox);
+          listItem.appendChild(label);
+          multiselectDropdown.appendChild(listItem);
+
+          checkbox.addEventListener("change", function () {
+            if (this.checked) {
+              selectedColumns.push(this.value);
             } else {
-              console.error("Error fetching departments:", data.message);
+              selectedColumns = selectedColumns.filter(
+                (col) => col !== this.value
+              );
             }
-          })
-          .catch((error) => {
-            console.error("Error fetching departments:", error);
+            updateSelectedCount();
           });
+        }
       }
     }
-
-    overlay.style.display = "flex";
-  });
-
-  // Toggle dropdown
-  if (multiselectHeader) {
-    multiselectHeader.addEventListener("click", function () {
-      if (multiselectDropdown) multiselectDropdown.classList.toggle("show");
-      if (dropdownIcon) dropdownIcon.classList.toggle("open");
-    });
+    updateSelectedCount();
   }
 
-  // Update selected count
-  function updateSelectedCount() {
-    if (!selectedCountElem) return;
-    const selectedBoxes = overlay.querySelectorAll(".column-checkbox:checked");
-    selectedCountElem.textContent = selectedBoxes.length;
-  }
-
-  // Add event listeners to checkboxes
-  overlay.querySelectorAll(".column-checkbox").forEach((checkbox) => {
-    checkbox.addEventListener("change", updateSelectedCount);
-  });
-
-  // Select all functionality
-  if (selectAllBtn) {
-    selectAllBtn.addEventListener("click", function () {
-      overlay.querySelectorAll(".column-checkbox").forEach((checkbox) => {
-        checkbox.checked = true;
+  // Function to populate the department dropdown (for admins)
+  function populateDepartmentDropdown(departments) {
+    if (isAdmin && departmentSelect && departments && departments.length > 0) {
+      // Clear existing options (except 'All Departments')
+      while (departmentSelect.options.length > 1) {
+        departmentSelect.remove(1);
+      }
+      departments.forEach((dept) => {
+        const option = document.createElement("option");
+        option.value = dept.department_id;
+        option.textContent = dept.department_name;
+        departmentSelect.appendChild(option);
       });
-      updateSelectedCount();
-    });
+    }
   }
 
-  // Deselect all functionality
-  if (deselectAllBtn) {
-    deselectAllBtn.addEventListener("click", function () {
-      overlay.querySelectorAll(".column-checkbox").forEach((checkbox) => {
+  // Function to update the selected column count in the header
+  function updateSelectedCount() {
+    selectedCount.textContent = selectedColumns.length;
+  }
+
+  // Event listener for closing the CSV download overlay
+  if (closeDownloadBtn && downloadOverlayCsv) {
+    closeDownloadBtn.addEventListener("click", function () {
+      downloadOverlayCsv.style.display = "none";
+      // Reset selected columns when closing
+      selectedColumns = [];
+      updateSelectedCount();
+      // Uncheck all checkboxes
+      const checkboxes = multiselectDropdown.querySelectorAll(
+        'input[type="checkbox"]'
+      );
+      checkboxes.forEach((checkbox) => {
         checkbox.checked = false;
       });
+      if (departmentSelect) {
+        departmentSelect.value = "all"; // Reset department selection
+      }
+    });
+  }
+
+  // Event listener for clicking the CSV download button (icon)
+  if (csvBtn && downloadOverlayCsv) {
+    csvBtn.addEventListener("click", function () {
+      downloadOverlayCsv.style.display = "flex";
+    });
+  }
+
+  // Event listener for the multiselect header to toggle the dropdown
+  if (multiselectHeader && multiselectDropdown) {
+    multiselectHeader.addEventListener("click", function () {
+      multiselectDropdown.style.display =
+        multiselectDropdown.style.display === "block" ? "none" : "block";
+    });
+  }
+
+  // Event listener for "Select All" button
+  if (selectAllBtn && multiselectDropdown) {
+    selectAllBtn.addEventListener("click", function () {
+      const checkboxes = multiselectDropdown.querySelectorAll(
+        'input[type="checkbox"]'
+      );
+      checkboxes.forEach((checkbox) => {
+        checkbox.checked = true;
+        if (!selectedColumns.includes(checkbox.value)) {
+          selectedColumns.push(checkbox.value);
+        }
+      });
       updateSelectedCount();
     });
   }
 
-  // Close overlay
-  if (closeButton) {
-    closeButton.addEventListener("click", function () {
-      overlay.style.display = "none";
-    });
-  }
-
-  // Close on outside click
-  overlay.addEventListener("click", function (e) {
-    if (e.target === overlay) {
-      overlay.style.display = "none";
-    }
-  });
-}
-
-function downloadLogsFile(type, fileFormat) {
-  const overlayId =
-    fileFormat === "csv" ? "downloadOverlay-csv" : "downloadOverlay-pdf";
-  const overlay = document.getElementById(overlayId);
-  if (!overlay) {
-    console.error(`Overlay with ID '${overlayId}' not found in the document`);
-    alert(
-      "Error: Could not find the download overlay. Please refresh the page."
-    );
-    return;
-  }
-
-  const departmentSelect = overlay.querySelector(".department-select");
-  const startDateInput = overlay.querySelector("#start_date"); // Fixed selector
-  const endDateInput = overlay.querySelector("#end_date"); // Fixed selector
-
-  const onlyDepartment = departmentSelect ? departmentSelect.value : "";
-  const startDate = startDateInput ? startDateInput.value : "";
-  const endDate = endDateInput ? endDateInput.value : "";
-
-  // Debug log to check values
-  console.log("Department:", onlyDepartment);
-  console.log("Start Date:", startDate);
-  console.log("End Date:", endDate);
-
-  // Get selected columns
-  const selectedColumns = [];
-  overlay.querySelectorAll(".column-checkbox:checked").forEach((checkbox) => {
-    selectedColumns.push(checkbox.value);
-  });
-
-  console.log("Selected Columns:", selectedColumns);
-
-  const formData = new FormData();
-  formData.append("userType", userType);
-  formData.append("department", departmentId);
-  formData.append("onlyDepartment", onlyDepartment);
-  formData.append("start_date", startDate);
-  formData.append("end_date", endDate);
-  formData.append("fileFormat", fileFormat);
-  formData.append("columns", JSON.stringify(selectedColumns));
-
-  let endpoint = "";
-  let filename = "";
-  const dateString = new Date().toISOString().split("T")[0];
-
-  switch (type) {
-    case "claims":
-      if (fileFormat === "csv") {
-        endpoint = "../php/generate_claimed_logs_csv.php";
-      } else {
-        endpoint = "../php/generate_claimed_logs_pdf.php";
-      }
-      filename = `claimed_logs_${dateString}.${fileFormat}`;
-      break;
-    case "returns":
-      if (fileFormat === "csv") {
-        endpoint = "../php/generate_returns_logs_csv.php";
-      } else {
-        endpoint = "../php/generate_returns_logs_pdf.php";
-      }
-      filename = `returns_logs_${dateString}.${fileFormat}`;
-      break;
-    case "repairs":
-      if (fileFormat === "csv") {
-        endpoint = "../php/generate_repair_logs_csv.php";
-      } else {
-        endpoint = "../php/generate_repair_logs_pdf.php";
-      }
-      filename = `repair_logs_${dateString}.${fileFormat}`;
-      break;
-    default:
-      console.error(`Download logs ${fileFormat} FAILED: Invalid type`);
-      alert(`Invalid logs type: ${type}`);
-      return;
-  }
-
-  // Add a debug log
-  console.log(
-    `Attempting to download from: ${endpoint} with format: ${fileFormat}`
-  );
-
-  // Fetch the file
-  fetch(endpoint, {
-    method: "POST",
-    body: formData,
-  })
-    .then((response) => {
-      if (!response.ok) {
-        // Try to get more detailed error from response
-        return response.text().then((text) => {
-          let errorMessage = `Failed to download ${fileFormat.toUpperCase()}`;
-          try {
-            // Try to parse as JSON
-            const jsonData = JSON.parse(text);
-            if (jsonData.error) {
-              errorMessage = jsonData.error;
-            }
-          } catch (e) {
-            // Not JSON, use text if it exists
-            if (text) {
-              errorMessage = text;
-            }
-          }
-          throw new Error(errorMessage);
-        });
-      }
-      return response.blob();
-    })
-    .then((blob) => {
-      // Check if we got an empty blob
-      if (blob.size === 0) {
-        throw new Error(
-          `Server returned an empty ${fileFormat.toUpperCase()} file`
-        );
-      }
-
-      // Create a temporary link to download the file
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-
-      // Cleanup
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
-
-      // Close the overlay
-      overlay.style.display = "none";
-    })
-    .catch((error) => {
-      console.error(
-        `Error downloading ${type} ${fileFormat.toUpperCase()}:`,
-        error
+  // Event listener for "Deselect All" button
+  if (deselectAllBtn && multiselectDropdown) {
+    deselectAllBtn.addEventListener("click", function () {
+      const checkboxes = multiselectDropdown.querySelectorAll(
+        'input[type="checkbox"]'
       );
-      alert(`Error downloading ${fileFormat.toUpperCase()}: ${error.message}`);
+      checkboxes.forEach((checkbox) => {
+        checkbox.checked = false;
+      });
+      selectedColumns = [];
+      updateSelectedCount();
     });
-}
+  }
 
-// Export wrapper functions for HTML onclick calls
-function downloadLogsCSV(type) {
-  downloadLogsFile(type, "csv");
-}
+  // Function to handle the CSV download
+  window.downloadLogsCSV = function (logType) {
+    if (selectedColumns.length === 0) {
+      alert("Please select at least one column to download.");
+      return;
+    }
 
-function downloadLogsPDF(type) {
-  downloadLogsFile(type, "pdf");
-}
+    let department = "all";
+    if (isAdmin && departmentSelect) {
+      department = departmentSelect.value;
+    } else if (!isAdmin && userDepartmentId) {
+      department = userDepartmentId;
+    }
+
+    fetch("../php/generate_returns_logs_csv.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: `columns=${JSON.stringify(
+        selectedColumns
+      )}&department=${department}`,
+    })
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `return_logs_${new Date().toISOString().slice(0, 10)}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+        downloadOverlayCsv.style.display = "none"; // Close the overlay after download
+      })
+      .catch((error) => {
+        console.error("Error downloading CSV:", error);
+        alert("An error occurred while generating the CSV file.");
+      });
+  };
+
+  // Initialize: Fetch user info and populate column dropdown
+  fetchUserRoleAndDepartment();
+  populateColumnDropdown();
+});

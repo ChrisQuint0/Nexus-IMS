@@ -1,26 +1,48 @@
 <?php
-// Get parameters from POST request
-$onlyDepartment = isset($_POST['onlyDepartment']) ? $_POST['onlyDepartment'] : '0';
-$today = date('Y-m-d'); // Format: YYYY-MM-DD
-$startDate = isset($_POST['start_date']) && !empty($_POST['start_date']) ? $_POST['start_date'] : $today;
-$endDate = isset($_POST['end_date']) && !empty($_POST['end_date']) ? $_POST['end_date'] : $today;
+session_start();
 
-// Debug: Log the received parameters
-error_log("onlyDepartment: " . $onlyDepartment);
-error_log("startDate: " . $startDate);
-error_log("endDate: " . $endDate);
+// Include database connection (create db.php if you haven't already)
+include 'db.php';
 
-// Get selected columns, defaulting to all columns if none selected
-$selectedColumns = isset($_POST['columns']) ? json_decode($_POST['columns'], true) : [];
-error_log("Selected columns: " . print_r($selectedColumns, true));
-
-// Default to these columns if none selected
-if (empty($selectedColumns)) {
-    $selectedColumns = ['borrower_name', 'serial_no'];
+// Function to sanitize input data
+function sanitize($data) {
+    global $conn;
+    return mysqli_real_escape_string($conn, trim($data));
 }
 
-// Include database connection
-include 'db.php';
+// Get user type from session
+$userType = $_SESSION['user_type'] ?? '';
+$sessionDepartmentId = $_SESSION['department_id'] ?? null;
+
+// Get selected columns from POST request
+$selectedColumns = $_POST['columns'] ?? [];
+
+// Get selected department from POST request
+$selectedDepartment = isset($_POST['department']) ? sanitize($_POST['department']) : 'all';
+
+// Define column mapping between ID (table header text) and database field
+$columnMapping = [
+    'Action' => null, // No direct database field
+    'Box No.' => 'ad.box_no',
+    'Accountable' => "CASE
+                        WHEN ad.borrower_type = 'student' THEN CONCAT(s.first_name, ' ', COALESCE(s.middle_name, ''), ' ', s.last_name, IF(s.suffix IS NOT NULL AND s.suffix != '', CONCAT(' ', s.suffix), ''))
+                        WHEN ad.borrower_type = 'employee' THEN CONCAT(e.emp_fname, ' ', COALESCE(e.emp_minit, ''), ' ', e.emp_lname, IF(e.emp_suffix IS NOT NULL AND e.emp_suffix != '', CONCAT(' ', e.emp_suffix), ''))
+                        ELSE 'Unknown'
+                    END",
+    'Department' => 'd_borrower.department_name', // Department of the borrower
+    'Name' => "CASE
+                WHEN ad.borrower_type = 'student' THEN CONCAT(s.first_name, ' ', COALESCE(s.middle_name, ''), ' ', s.last_name, IF(s.suffix IS NOT NULL AND s.suffix != '', CONCAT(' ', s.suffix), ''))
+                WHEN ad.borrower_type = 'employee' THEN CONCAT(e.emp_fname, ' ', COALESCE(e.emp_minit, ''), ' ', e.emp_lname, IF(e.emp_suffix IS NOT NULL AND e.emp_suffix != '', CONCAT(' ', e.emp_suffix), ''))
+                ELSE 'Unknown'
+            END",
+    'Section' => 'ad.section',
+    'Item Name' => 'idesc.item_name',
+    'Serial No.' => 'i.serial_no',
+    'Received Date' => 'DATE(ad.received_date)',
+    'Return Date' => 'DATE(rl.returned_at)',
+    'Condition' => 'rl.item_condition',
+    'Remarks' => 'rl.remarks'
+];
 
 // Set headers for CSV download
 header('Content-Type: text/csv');
@@ -31,146 +53,57 @@ header('Expires: 0');
 // Create output stream
 $output = fopen('php://output', 'w');
 
-// Define column mapping between ID and display name
-$columnMapping = [
-    'log_id' => 'Log ID',
-    'returned_at' => 'Returned At',
-    'staff' => 'Staff',
-    'item_condition' => 'Item Condition',
-    'remarks' => 'Remarks',
-    'dist_id' => 'Distribution ID',
-    'borrower_type' => 'Borrower Type',
-    'borrower_name' => 'Borrower Name',
-    'serial_no' => 'Serial No',
-    'item_name' => 'Item Name',
-    'received_date' => 'Received Date',
-    'return_date' => 'Return Date',
-    'department' => 'Department'
-];
-
-// Define SQL column mapping (database field names)
-$sqlColumns = [
-    'log_id' => 'rl.log_id',
-    'returned_at' => 'rl.returned_at',
-    'staff' => 'rl.staff',
-    'item_condition' => 'rl.item_condition',
-    'remarks' => 'rl.remarks',
-    'dist_id' => 'gd.dist_id',
-    'borrower_type' => 'gd.borrower_type',
-    'borrower_name' => "CASE 
-                WHEN gd.borrower_type = 'student' THEN CONCAT(s.first_name, ' ', s.last_name)
-                WHEN gd.borrower_type IS NOT NULL THEN CONCAT(e.emp_fname, ' ', e.emp_lname)
-                ELSE 'Unknown'
-            END",
-    'serial_no' => 'i.serial_no',
-    'item_name' => 'idesc.item_name',
-    'received_date' => 'gd.received_date',
-    'return_date' => 'gd.return_date',
-    'department' => 'd.department_name'
-];
-
-// Make sure returned_at is always included in the output
-if (!in_array('returned_at', $selectedColumns)) {
-    // Add returned_at to the beginning of the array
-    array_unshift($selectedColumns, 'returned_at');
-}
-
-// Build CSV header row with only selected columns
+// Write CSV header row
 $csvHeader = [];
-foreach ($selectedColumns as $columnId) {
-    if (isset($columnMapping[$columnId])) {
-        $csvHeader[] = $columnMapping[$columnId];
+$selectedSqlColumns = [];
+foreach ($selectedColumns as $columnHeader) {
+    if (isset($columnMapping[$columnHeader])) {
+        $csvHeader[] = $columnHeader;
+        if ($columnMapping[$columnHeader]) {
+            $selectedSqlColumns[] = $columnMapping[$columnHeader] . ' AS `' . $columnHeader . '`';
+        }
     }
 }
 fputcsv($output, $csvHeader);
 
-// Build the SQL SELECT part with selected columns
-$selectColumns = [];
-foreach ($selectedColumns as $columnId) {
-    if (isset($sqlColumns[$columnId])) {
-        $selectColumns[] = $sqlColumns[$columnId] . " AS " . $columnId;
-    }
-}
-$selectClause = implode(", ", $selectColumns);
+// Build the SQL query
+$sql = "SELECT " . implode(', ', $selectedSqlColumns) . "
+        FROM return_logs rl
+        JOIN archive_distribution ad ON rl.dist_id = ad.record_id
+        LEFT JOIN students s ON ad.stud_rec_id = s.stud_rec_id AND ad.borrower_type = 'student'
+        LEFT JOIN employees e ON ad.receiver_id = e.emp_rec_id AND ad.borrower_type = 'employee'
+        LEFT JOIN items i ON ad.item_id = i.item_id
+        LEFT JOIN item_desc idesc ON i.item_desc_id = idesc.item_desc_id
+        LEFT JOIN employees emp_mrep ON ad.mrep_id = emp_mrep.emp_rec_id
+        LEFT JOIN departments d_mrep ON emp_mrep.department_id = d_mrep.department_id
+        LEFT JOIN departments d_borrower ON
+            (ad.borrower_type = 'student' AND s.dept_id = d_borrower.department_id) OR
+            (ad.borrower_type = 'employee' AND e.department_id = d_borrower.department_id)
+        WHERE rl.returned_at IS NOT NULL";
 
-// Base query with joins - handle datetime comparison properly
-// Make sure the dates are in proper format for datetime comparison
-$startDateFormatted = $startDate . ' 00:00:00';
-$endDateFormatted = $endDate . ' 23:59:59';
-
-error_log("Formatted dates for query - Start: $startDateFormatted, End: $endDateFormatted");
-
-// Modify the SQL to handle "All departments" (value = 0)
-if ($onlyDepartment == '0') {
-    $sql = "SELECT 
-                $selectClause
-            FROM 
-                return_logs rl
-            JOIN 
-                gadget_distribution gd ON rl.dist_id = gd.dist_id
-            LEFT JOIN 
-                students s ON gd.stud_rec_id = s.stud_rec_id
-            LEFT JOIN 
-                employees e ON gd.receiver_id = e.emp_rec_id
-            LEFT JOIN 
-                items i ON gd.item_id = i.item_id
-            LEFT JOIN 
-                item_desc idesc ON i.item_desc_id = idesc.item_desc_id
-            LEFT JOIN 
-                employees emp ON gd.mrep_id = emp.emp_rec_id
-            LEFT JOIN 
-                departments d ON emp.department_id = d.department_id
-            WHERE 
-                rl.returned_at BETWEEN ? AND ?
-            ORDER BY 
-                rl.returned_at DESC";
-
-    // Prepare statement with only date parameters
+// Apply department filter
+if ($userType === 'department_head' && $sessionDepartmentId !== null) {
+    $sql .= " AND (
+        ad.borrower_type = 'student' AND EXISTS (SELECT 1 FROM students WHERE stud_rec_id = ad.stud_rec_id AND dept_id = ?) OR
+        ad.borrower_type = 'employee' AND EXISTS (SELECT 1 FROM employees WHERE emp_rec_id = ad.receiver_id AND department_id = ?)
+    )";
     $stmt = $conn->prepare($sql);
-    if ($stmt === false) {
-        error_log('Prepare failed: ' . $conn->error);
-        die('Prepare failed: ' . $conn->error);
-    }
-
-    // Bind only date parameters for "All departments"
-    $stmt->bind_param("ss", $startDateFormatted, $endDateFormatted);
+    $stmt->bind_param("ii", $sessionDepartmentId, $sessionDepartmentId);
+} elseif ($selectedDepartment !== 'all' && $userType === 'admin') {
+    $sql .= " AND (
+        ad.borrower_type = 'student' AND EXISTS (SELECT 1 FROM students WHERE stud_rec_id = ad.stud_rec_id AND dept_id = ?) OR
+        ad.borrower_type = 'employee' AND EXISTS (SELECT 1 FROM employees WHERE emp_rec_id = ad.receiver_id AND department_id = ?)
+    )";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $selectedDepartment, $selectedDepartment);
 } else {
-    $sql = "SELECT 
-                $selectClause
-            FROM 
-                return_logs rl
-            JOIN 
-                gadget_distribution gd ON rl.dist_id = gd.dist_id
-            LEFT JOIN 
-                students s ON gd.stud_rec_id = s.stud_rec_id
-            LEFT JOIN 
-                employees e ON gd.receiver_id = e.emp_rec_id
-            LEFT JOIN 
-                items i ON gd.item_id = i.item_id
-            LEFT JOIN 
-                item_desc idesc ON i.item_desc_id = idesc.item_desc_id
-            LEFT JOIN 
-                employees emp ON gd.mrep_id = emp.emp_rec_id
-            LEFT JOIN 
-                departments d ON emp.department_id = d.department_id
-            WHERE 
-                d.department_id = ?
-                AND rl.returned_at BETWEEN ? AND ?
-            ORDER BY 
-                rl.returned_at DESC";
-
-    // Prepare statement with department and date parameters
     $stmt = $conn->prepare($sql);
-    if ($stmt === false) {
-        error_log('Prepare failed: ' . $conn->error);
-        die('Prepare failed: ' . $conn->error);
-    }
-
-    // Bind parameters: department_id (int), startDate (string), endDate (string)
-    $stmt->bind_param("iss", $onlyDepartment, $startDateFormatted, $endDateFormatted);
 }
 
-error_log("SQL Query: " . $sql);
+if ($stmt === false) {
+    error_log('Prepare failed: ' . $conn->error);
+    die('Prepare failed: ' . $conn->error);
+}
 
 if (!$stmt->execute()) {
     error_log('Execute failed: ' . $stmt->error);
@@ -178,29 +111,14 @@ if (!$stmt->execute()) {
 }
 
 $result = $stmt->get_result();
-error_log("Number of rows returned: " . $result->num_rows);
 
 // Write data rows to CSV
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $csvRow = [];
-        foreach ($selectedColumns as $columnId) {
-            // Handle special cases for formatting or default values
-            if ($columnId == 'return_date' && empty($row[$columnId])) {
-                $csvRow[] = 'Not Returned';
-            } else if ($columnId == 'department' && empty($row[$columnId])) {
-                $csvRow[] = 'Unknown';
-            } else {
-                $csvRow[] = $row[$columnId] ?? '';
-            }
-        }
-        fputcsv($output, $csvRow);
+while ($row = $result->fetch_assoc()) {
+    $csvRow = [];
+    foreach ($csvHeader as $header) {
+        $csvRow[] = $row[$header] ?? '';
     }
-} else {
-    // Add a row indicating no data
-    $emptyRow = array_fill(0, count($csvHeader), '');
-    $emptyRow[0] = 'No returned items found';
-    fputcsv($output, $emptyRow);
+    fputcsv($output, $csvRow);
 }
 
 // Close database connection
@@ -210,3 +128,4 @@ $conn->close();
 // Close the output stream
 fclose($output);
 exit;
+?>
