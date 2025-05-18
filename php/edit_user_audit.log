@@ -309,3 +309,27 @@
 [2025-05-17 20:32:36] Before bind_param - bindValues count: 6
 [2025-05-17 20:32:36] Attempting to update user ID: 26, Username: Jose Rizal, Email: rizal_jose@gmail.com, Role: dept_head, Department ID: 5, Account Status: deactivated by admin ID: 26
 [2025-05-17 20:32:36] User ID: 26 updated successfully by admin ID: 26.
+[2025-05-17 20:40:43] Received edit user request from IP: ::1
+[2025-05-17 20:40:43] Received JSON data: {"user_id":25,"username":"Christopher Quinto","email":"quinto_christopher@plpasig.edu.ph","password":"","role":"dept_head","department_id":"1","account_status":"activated"}
+[2025-05-17 20:40:43] Before bind_param - bindTypes: sssisi
+[2025-05-17 20:40:43] Before bind_param - bindValues count: 6
+[2025-05-17 20:40:43] Attempting to update user ID: 25, Username: Christopher Quinto, Email: quinto_christopher@plpasig.edu.ph, Role: dept_head, Department ID: 1, Account Status: activated by admin ID: 17
+[2025-05-17 20:40:43] User ID: 25 updated successfully by admin ID: 17.
+[2025-05-17 20:42:27] Received edit user request from IP: ::1
+[2025-05-17 20:42:27] Received JSON data: {"user_id":27,"username":"Juana Delacruz","email":"delacruz_juan@plpasig.edu.ph","password":"","role":"dept_head","department_id":"3","account_status":"activated"}
+[2025-05-17 20:42:27] Before bind_param - bindTypes: sssisi
+[2025-05-17 20:42:27] Before bind_param - bindValues count: 6
+[2025-05-17 20:42:27] Attempting to update user ID: 27, Username: Juana Delacruz, Email: delacruz_juan@plpasig.edu.ph, Role: dept_head, Department ID: 3, Account Status: activated by admin ID: 17
+[2025-05-17 20:42:27] User ID: 27 updated successfully by admin ID: 17.
+[2025-05-18 02:41:07] Received edit user request from IP: ::1
+[2025-05-18 02:41:07] Received JSON data: {"user_id":27,"username":"Juana Delacruz","email":"delacruz_juan@plpasig.edu.ph","password":"","role":"dept_head","department_id":"5","account_status":"activated"}
+[2025-05-18 02:41:07] Before bind_param - bindTypes: sssisi
+[2025-05-18 02:41:07] Before bind_param - bindValues count: 6
+[2025-05-18 02:41:07] Attempting to update user ID: 27, Username: Juana Delacruz, Email: delacruz_juan@plpasig.edu.ph, Role: dept_head, Department ID: 5, Account Status: activated by admin ID: 17
+[2025-05-18 02:41:07] User ID: 27 updated successfully by admin ID: 17.
+[2025-05-18 02:42:05] Received edit user request from IP: ::1
+[2025-05-18 02:42:05] Received JSON data: {"user_id":25,"username":"Christopher Quinto","email":"quinto_christopher@plpasig.edu.ph","password":"","role":"dept_head","department_id":"6","account_status":"activated"}
+[2025-05-18 02:42:05] Before bind_param - bindTypes: sssisi
+[2025-05-18 02:42:05] Before bind_param - bindValues count: 6
+[2025-05-18 02:42:05] Attempting to update user ID: 25, Username: Christopher Quinto, Email: quinto_christopher@plpasig.edu.ph, Role: dept_head, Department ID: 6, Account Status: activated by admin ID: 17
+[2025-05-18 02:42:05] User ID: 25 updated successfully by admin ID: 17.

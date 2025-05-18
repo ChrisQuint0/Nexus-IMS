@@ -1,7 +1,8 @@
 <?php
+// Set response headers
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
-header("Content-Type: application/json");
+header("Content-Type: application/json; charset=utf-8"); // ✅ Enforce UTF-8
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -13,6 +14,10 @@ try {
     if ($conn->connect_error) {
         throw new Exception("Connection failed: " . $conn->connect_error);
     }
+
+    // ✅ Ensure UTF-8 character set is used
+    $conn->set_charset("utf8mb4");
+
 } catch (Exception $e) {
     echo json_encode(['error' => 'Database connection error']);
     exit;
@@ -24,7 +29,7 @@ $userDepartment = null;
 
 if ($userType === 'dept_head' && isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
-    // Fetch department_id directly from the users table
+
     $stmt_user = $conn->prepare("SELECT department_id FROM users WHERE user_id = ?");
     if ($stmt_user) {
         $stmt_user->bind_param("i", $userId);
@@ -33,7 +38,7 @@ if ($userType === 'dept_head' && isset($_SESSION['user_id'])) {
         if ($result_user->num_rows > 0) {
             $row_user = $result_user->fetch_assoc();
             $departmentId = $row_user['department_id'];
-            // Now fetch the department name from the departments table
+
             $stmt_dept_name = $conn->prepare("SELECT department_name FROM departments WHERE department_id = ?");
             if ($stmt_dept_name) {
                 $stmt_dept_name->bind_param("i", $departmentId);
@@ -42,7 +47,7 @@ if ($userType === 'dept_head' && isset($_SESSION['user_id'])) {
                 if ($result_dept_name->num_rows > 0) {
                     $row_dept_name = $result_dept_name->fetch_assoc();
                     $userDepartment = $row_dept_name['department_name'];
-                    error_log("Logged in dept_head's department: " . $userDepartment); // Debugging
+                    error_log("Logged in dept_head's department: " . $userDepartment);
                 }
                 $stmt_dept_name->close();
             }
@@ -50,7 +55,7 @@ if ($userType === 'dept_head' && isset($_SESSION['user_id'])) {
         $stmt_user->close();
     }
 } else {
-    error_log("User is not a department head or user ID is not set (based on user_type)."); // Debugging
+    error_log("User is not a department head or user ID is not set.");
 }
 
 $whereClauseGadget = "WHERE gd.status_id = 3";
@@ -61,9 +66,9 @@ if ($userType === 'dept_head' && $userDepartment) {
     $whereClauseGadget .= " AND d_mrep.department_name = ?";
     $whereClauseBag .= " AND d_mrep.department_name = ?";
     $filterApplied = true;
-    error_log("Department filter will be applied: " . $userDepartment); // Debugging
+    error_log("Department filter will be applied: " . $userDepartment);
 } else {
-    error_log("Department filter will NOT be applied (based on user_type)."); // Debugging
+    error_log("Department filter will NOT be applied.");
 }
 
 $sql = "(SELECT
@@ -73,7 +78,7 @@ $sql = "(SELECT
         WHEN gd.borrower_type = 'employee' THEN TRIM(CONCAT(e.emp_fname, ' ', COALESCE(e.emp_minit, ''), ' ', e.emp_lname, IF(e.emp_suffix IS NOT NULL AND e.emp_suffix != '', CONCAT(' ', e.emp_suffix), '')))
         WHEN gd.borrower_type = 'student' THEN TRIM(CONCAT(s.first_name, ' ', COALESCE(s.middle_name, ''), ' ', s.last_name, IF(s.suffix IS NOT NULL AND s.suffix != '', CONCAT(' ', s.suffix), '')))
     END AS borrower_name,
-    d_mrep.department_name AS department, /* This is for the table's Department column */
+    d_mrep.department_name AS department,
     CASE
         WHEN gd.borrower_type = 'student' THEN d_stud.department_name
         WHEN gd.borrower_type = 'employee' THEN d_emp.department_name
@@ -113,7 +118,7 @@ UNION ALL
         WHEN bd.borrower_type = 'employee' THEN TRIM(CONCAT(e.emp_fname, ' ', COALESCE(e.emp_minit, ''), ' ', e.emp_lname, IF(e.emp_suffix IS NOT NULL AND e.emp_suffix != '', CONCAT(' ', e.emp_suffix), '')))
         WHEN bd.borrower_type = 'student' THEN TRIM(CONCAT(s.first_name, ' ', COALESCE(s.middle_name, ''), ' ', s.last_name, IF(s.suffix IS NOT NULL AND s.suffix != '', CONCAT(' ', s.suffix), '')))
     END AS borrower_name,
-    d_mrep.department_name AS department, /* This is for the table's Department column */
+    d_mrep.department_name AS department,
     CASE
         WHEN bd.borrower_type = 'student' THEN d_stud.department_name
         WHEN bd.borrower_type = 'employee' THEN d_emp.department_name
@@ -152,7 +157,7 @@ $records = [];
 if ($stmt) {
     if ($filterApplied) {
         $stmt->bind_param("ss", $userDepartment, $userDepartment);
-        error_log("Bound department parameters: " . $userDepartment); // Debugging
+        error_log("Bound department parameters: " . $userDepartment);
     }
 
     $result = $stmt->execute();
@@ -165,24 +170,25 @@ if ($stmt) {
             }
             $res->free();
         } else if ($stmt->errno) {
-            error_log("Error getting result: " . $stmt->error); // Debugging
+            error_log("Error getting result: " . $stmt->error);
             echo json_encode(['error' => 'Error getting result: ' . $stmt->error]);
             exit;
         }
     } else if ($stmt->errno) {
-        error_log("Error executing query: " . $stmt->error); // Debugging
+        error_log("Error executing query: " . $stmt->error);
         echo json_encode(['error' => 'Error executing query: ' . $stmt->error]);
         exit;
     }
 
     $stmt->close();
 } else if ($conn->errno) {
-    error_log("Error preparing statement: " . $conn->error); // Debugging
+    error_log("Error preparing statement: " . $conn->error);
     echo json_encode(['error' => 'Error preparing statement: ' . $conn->error]);
     exit;
 }
 
 $conn->close();
 
-echo json_encode($records);
+// ✅ Output JSON safely
+echo json_encode($records, JSON_UNESCAPED_UNICODE);
 ?>

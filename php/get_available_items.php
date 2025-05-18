@@ -30,7 +30,7 @@ $baseSqlGadget = "SELECT
         WHEN gd.borrower_type = 'employee' THEN TRIM(CONCAT(e_borrower.emp_fname, ' ', COALESCE(e_borrower.emp_minit, ''), ' ', e_borrower.emp_lname, IF(e_borrower.emp_suffix IS NOT NULL AND e_borrower.emp_suffix != '', CONCAT(' ', e_borrower.emp_suffix), '')))
         WHEN gd.borrower_type = 'student' THEN TRIM(CONCAT(s.first_name, ' ', COALESCE(s.middle_name, ''), ' ', s.last_name, IF(s.suffix IS NOT NULL AND s.suffix != '', CONCAT(' ', s.suffix), '')))
     END AS borrower_name,
-    d_stud.department_name AS borrower_department,
+    d_mrep.department_name AS borrower_department, /* Changed to accountable's department - but aliased as borrower_department for now */
     TRIM(CONCAT(m.emp_fname, ' ', COALESCE(m.emp_minit, ''), ' ', m.emp_lname, IF(m.emp_suffix IS NOT NULL AND m.emp_suffix != '', CONCAT(' ', m.emp_suffix), ''))) AS accountable_name,
     d_mrep.department_name AS accountable_department,
     s.student_id,
@@ -66,7 +66,7 @@ $baseSqlBag = "SELECT
         WHEN bd.borrower_type = 'employee' THEN TRIM(CONCAT(e_borrower.emp_fname, ' ', COALESCE(e_borrower.emp_minit, ''), ' ', e_borrower.emp_lname, IF(e_borrower.emp_suffix IS NOT NULL AND e_borrower.emp_suffix != '', CONCAT(' ', e_borrower.emp_suffix), '')))
         WHEN bd.borrower_type = 'student' THEN TRIM(CONCAT(s.first_name, ' ', COALESCE(s.middle_name, ''), ' ', s.last_name, IF(s.suffix IS NOT NULL AND s.suffix != '', CONCAT(' ', s.suffix), '')))
     END AS borrower_name,
-    d_stud.department_name AS borrower_department,
+    d_mrep.department_name AS borrower_department, /* Changed to accountable's department - but aliased as borrower_department for now */
     TRIM(CONCAT(m.emp_fname, ' ', COALESCE(m.emp_minit, ''), ' ', m.emp_lname, IF(m.emp_suffix IS NOT NULL AND m.emp_suffix != '', CONCAT(' ', m.emp_suffix), ''))) AS accountable_name,
     d_mrep.department_name AS accountable_department,
     s.student_id,
@@ -133,7 +133,27 @@ $records = [];
 if ($stmt && $stmt->execute()) {
     $result = $stmt->get_result();
     while ($row = $result->fetch_assoc()) {
-        $records[] = $row;
+        $records[] = [
+            'dist_id' => $row['dist_id'],
+            'box_no' => $row['box_no'],
+            'accountable_name' => $row['accountable_name'],
+            'department_name' => $row['accountable_department'], // Use accountable's department here
+            'borrower_name' => $row['borrower_name'],
+            'section' => $row['section'],
+            'item_name' => $row['item_name'],
+            'serial_no' => $row['serial_no'],
+            'received_date' => $row['received_date'],
+            'borrower_type' => $row['borrower_type'],
+            'stud_rec_id' => $row['stud_rec_id'],
+            'gender' => $row['gender'],
+            'contact_number' => $row['contact_number'],
+            'email' => $row['email'],
+            'stud_address' => $row['stud_address'],
+            'photo_path' => $row['photo_path'],
+            'item_type' => $row['item_type'],
+            'category_id' => $row['category_id'],
+            'accountable_dept_id' => $row['accountable_dept_id']
+        ];
     }
 }
 

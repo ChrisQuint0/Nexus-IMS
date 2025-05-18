@@ -290,7 +290,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const actionCell = row.insertCell();
       const boxNoCell = row.insertCell();
       const accountableCell = row.insertCell();
-      const departmentCell = row.insertCell();
+      const departmentCell = row.insertCell(); // This is the column we need to update
       const nameCell = row.insertCell();
       const sectionCell = row.insertCell();
       const itemNameCell = row.insertCell();
@@ -300,7 +300,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Populate the cells with data from the record
       boxNoCell.textContent = record.box_no || "N/A";
       accountableCell.textContent = record.accountable_name || "N/A";
-      departmentCell.textContent = record.borrower_department || "N/A";
+      departmentCell.textContent = record.accountable_department || "N/A"; // Use accountable_department here
       nameCell.textContent = record.borrower_name || "N/A";
       sectionCell.textContent = record.section || "N/A";
       itemNameCell.textContent = record.item_name || "N/A";

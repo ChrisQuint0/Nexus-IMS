@@ -420,7 +420,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function fetchBorrowerRecords() {
     // Fetch the user's role
-    fetch("../php/get_users.php")
+    fetch("../php/get_user_role.php")
       .then((response) => response.json())
       .then((userData) => {
         const userRole = userData.role;

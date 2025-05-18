@@ -133,7 +133,7 @@ button:hover {
   overflow-x: auto; /* Enable horizontal scrolling for overflow */
   overflow-y: auto;
   border-radius: 8px; /* Add rounded corners to the container */
-  width: 1000px; /* Or a specific width if needed, but consider responsiveness */
+  width: 70%; /* Or a specific width if needed, but consider responsiveness */
   height: auto;
   margin-right: 50px;
   margin-top: 30px;

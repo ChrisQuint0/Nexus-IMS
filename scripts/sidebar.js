@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function getUserRole() {
   try {
-    const response = await fetch("../php/get_users.php");
+    const response = await fetch("../php/get_user_role.php");
     if (!response.ok) {
       console.error("Failed to fetch user role:", response.status);
       return null;
@@ -183,11 +183,11 @@ function applyRoleBasedSidebar(userRole) {
     if (logsDiv) {
       const logsDropdownEl = document.querySelector(".logs-dropdown");
       if (logsDropdownEl) {
-        if (claimsOption) claimsOption.style.display = "block";
         if (returnsOption) returnsOption.style.display = "block";
         if (repairsOption) repairsOption.style.display = "block";
         if (unrecoverablesOption) unrecoverablesOption.style.display = "block"; // Show Unrecoverables
         if (activityLogsOption) activityLogsOption.style.display = "none";
+        if (claimsOption) claimsOption.style.display = "none"; // Always hide Claims for dept_head
         logsDropdownEl.classList.add("show"); // Initially show the reports dropdown
         const logsToggle = logsDiv.querySelector(".dropdown-arrow");
         if (logsToggle) logsToggle.classList.add("rotate");
@@ -199,7 +199,7 @@ function applyRoleBasedSidebar(userRole) {
     if (settingsDiv) settingsDiv.style.display = "none";
     if (settingsDropdown) settingsDropdown.style.display = "none";
   } else if (userRole === "admin") {
-    // For admin, ensure everything is visible
+    // For admin, ensure everything is visible except Claims
     if (dashboardDiv) dashboardDiv.style.display = "flex";
     if (inventoryDiv) inventoryDiv.style.display = "flex";
     const repairablesDiv = document.querySelector(".repairables-div");
@@ -207,11 +207,11 @@ function applyRoleBasedSidebar(userRole) {
     if (logsDiv) {
       const logsDropdownEl = document.querySelector(".logs-dropdown");
       if (logsDropdownEl) {
-        if (claimsOption) claimsOption.style.display = "block";
         if (returnsOption) returnsOption.style.display = "block";
         if (repairsOption) repairsOption.style.display = "block";
         if (unrecoverablesOption) unrecoverablesOption.style.display = "block";
         if (activityLogsOption) activityLogsOption.style.display = "block";
+        if (claimsOption) claimsOption.style.display = "none"; // Always hide Claims for admin as well
       }
     }
     if (settingsDiv) settingsDiv.style.display = "flex";

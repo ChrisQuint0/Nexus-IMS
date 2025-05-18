@@ -1,6 +1,5 @@
 <?php
 header('Content-Type: application/json');
-header('Content-Type: application/json');
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 header("Access-Control-Allow-Methods: POST");
@@ -41,7 +40,7 @@ function sanitize_email($value) {
 }
 
 $success = true; // Track overall success
-$messages = [];    // Store individual messages
+$messages = [];     // Store individual messages
 
 foreach ($data as $row) {
     // Sanitize the data
@@ -71,7 +70,7 @@ foreach ($data as $row) {
 
     // Prepare the SQL INSERT statement
     $sql = "INSERT INTO students (student_id, first_name, middle_name, last_name, suffix, gender, section, department_id, contact_number, email, stud_address)
-            VALUES (:student_id, :first_name, :middle_name, :last_name, :suffix, :gender, :section, :department_id, :contact_number, :email, :stud_address)";
+                VALUES (:student_id, :first_name, :middle_name, :last_name, :suffix, :gender, :section, :department_id, :contact_number, :email, :stud_address)";
 
     $stmt = $conn->prepare($sql);
 

@@ -14,8 +14,8 @@ if ($conn->connect_error) {
 }
 
 $sql = "SELECT al.action, al.timestamp, u.username
-        FROM audit_log al
-        LEFT JOIN users u ON al.user_id = u.user_id";
+FROM audit_log al
+LEFT JOIN users u ON al.user_id = u.user_id";
 
 $whereClauses = [];
 if (isset($_GET['action_filter']) && !empty($_GET['action_filter'])) {
