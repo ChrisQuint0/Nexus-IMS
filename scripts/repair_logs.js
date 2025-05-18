@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("searchbar");
   const tableBody = document.querySelector("#tblReturnLogs tbody");
   let allRepairLogs = [];
+  let userRole = null;
+  let userDepartmentId = null;
 
   // --- Scanner Module ---
   let html5QrcodeScanner = null;
