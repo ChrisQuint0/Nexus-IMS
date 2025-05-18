@@ -525,3 +525,14 @@ Purchase Date: 2025-05-16
 Box Number: 9999
 Serial No: 9999
 Purchase Date: 2025-05-16
+[18-May-2025 09:39:35 Europe/Berlin] Processing uploaded photo
+[18-May-2025 09:39:35 Europe/Berlin] Photo data added to receipt data
+[18-May-2025 09:39:35 Europe/Berlin] Starting PDF generation process
+[18-May-2025 09:39:35 Europe/Berlin] TCPDF library found
+[18-May-2025 09:39:35 Europe/Berlin] Creating new TCPDF instance
+[18-May-2025 09:39:35 Europe/Berlin] Loading template from: C:\xampp\htdocs\Nexus-IMS\pages\receipt_template.html
+[18-May-2025 09:39:35 Europe/Berlin] Processing borrower photo
+[18-May-2025 09:39:35 Europe/Berlin] QR Code Content: Item Name: DOOGEE T30PRO TABLET
+Box Number: 1234567
+Serial No: 1234567
+Purchase Date: 2025-05-18

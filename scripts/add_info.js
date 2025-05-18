@@ -152,15 +152,22 @@ document.addEventListener("DOMContentLoaded", function () {
       emp_minit: document.getElementById("middle-initial").value,
       emp_suffix: document.getElementById("suffix").value,
       emp_email: document.getElementById("emp-email").value,
-      emp_department: document.getElementById("employee-department").value,
       emp_contact_number: document.getElementById("emp-contact").value,
       emp_address: document.getElementById("emp-address").value,
+      department_id: document.getElementById("employee-department").value,
     };
 
     console.log("Employee Data being sent:", employeeData);
+    console.log(
+      "Department ID value:",
+      document.getElementById("employee-department").value
+    );
+    console.log(
+      "Department select element:",
+      document.getElementById("employee-department")
+    );
 
     fetch("../php/add_employee.php", {
-      // Make sure this path is correct!
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(employeeData),
@@ -172,7 +179,12 @@ document.addEventListener("DOMContentLoaded", function () {
           alert(data.message);
           newEmployeeForm.reset();
         } else {
-          alert(data.message);
+          let errorMessage = data.message + "\n\n";
+          if (data.errors && Array.isArray(data.errors)) {
+            errorMessage += data.errors.join("\n");
+          }
+          alert(errorMessage);
+          console.error("Validation errors:", data);
         }
       })
       .catch((error) => {

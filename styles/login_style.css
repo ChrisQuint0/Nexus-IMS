@@ -1,8 +1,8 @@
 @font-face {
-  font-family: 'Nunito-Regular';
+  font-family: "Nunito-Regular";
   font-style: normal;
   font-weight: normal;
-  src: url('../assets/fonts/Nunito-Regular.ttf') format('truetype');
+  src: url("../assets/fonts/Nunito-Regular.ttf") format("truetype");
 }
 
 * {
@@ -11,7 +11,7 @@
 }
 
 body {
-  font-family: 'Nunito-Regular';
+  font-family: "Nunito-Regular";
 }
 
 .main-content {

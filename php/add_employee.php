@@ -29,12 +29,16 @@ try {
   $emp_category = isset($data['emp-category']) ? trim($data['emp-category']) : '';
   $emp_fname = isset($data['emp_fname']) ? trim($data['emp_fname']) : '';
   $emp_lname = isset($data['emp_lname']) ? trim($data['emp_lname']) : '';
-  $emp_minit = isset($data['emp_minit']) ? trim($data['emp_minit']) : ''; // Corrected key name
-  $emp_suffix = isset($data['emp_suffix']) ? trim($data['emp_suffix']) : ''; // Corrected key name
+  $emp_minit = isset($data['emp_minit']) ? trim($data['emp_minit']) : '';
+  $emp_suffix = isset($data['emp_suffix']) ? trim($data['emp_suffix']) : '';
   $emp_email = isset($data['emp_email']) ? trim($data['emp_email']) : '';
-  $emp_department = isset($data['emp_department']) ? trim($data['emp_department']) : '';
+  $department_id = isset($data['department_id']) ? intval($data['department_id']) : 0;
   $emp_contact = isset($data['emp_contact_number']) ? trim($data['emp_contact_number']) : '';
   $emp_address = isset($data['emp_address']) ? trim($data['emp_address']) : '';
+
+  // Debug logging
+  error_log("Received department_id: " . print_r($data['department_id'], true));
+  error_log("Parsed department_id: " . $department_id);
 
   // Basic validation (add more robust validation as needed)
   $errors = [];
@@ -54,8 +58,8 @@ try {
   if (empty($emp_email) || !filter_var($emp_email, FILTER_VALIDATE_EMAIL)) {
     $errors[] = 'Invalid email address.';
   }
-  if (empty($emp_department)) {
-    $errors[] = 'Department is required.';
+  if ($department_id <= 0) {
+    $errors[] = 'Department is required. Received value: ' . $department_id;
   }
   if (empty($emp_contact)) {
     $errors[] = 'Contact number is required.';
@@ -65,13 +69,21 @@ try {
   }
 
   if (!empty($errors)) {
-    echo json_encode(['success' => false, 'message' => 'Validation errors.', 'errors' => $errors]);
+    echo json_encode([
+      'success' => false, 
+      'message' => 'Validation errors occurred. Please check all fields.',
+      'errors' => $errors,
+      'debug' => [
+        'received_data' => $data,
+        'parsed_department_id' => $department_id
+      ]
+    ]);
     exit();
   }
 
   // Prepare the SQL INSERT statement
   $sql = "INSERT INTO employees (employee_id, emp_category, emp_fname, emp_lname, emp_minit, emp_suffix, emp_email, emp_contact_number, emp_address, department_id)
-          VALUES (:employee_id, :emp_category, :emp_fname, :emp_lname, :emp_minit, :emp_suffix, :emp_email, :emp_contact, :emp_address, (SELECT department_id FROM departments WHERE department_name = :emp_department))";
+          VALUES (:employee_id, :emp_category, :emp_fname, :emp_lname, :emp_minit, :emp_suffix, :emp_email, :emp_contact, :emp_address, :department_id)";
 
   $stmt = $conn->prepare($sql);
 
@@ -85,7 +97,7 @@ try {
   $stmt->bindParam(':emp_email', $emp_email);
   $stmt->bindParam(':emp_contact', $emp_contact);
   $stmt->bindParam(':emp_address', $emp_address);
-  $stmt->bindParam(':emp_department', $emp_department);
+  $stmt->bindParam(':department_id', $department_id, PDO::PARAM_INT);
 
   // Execute the query
   if ($stmt->execute()) {
