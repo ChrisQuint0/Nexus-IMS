@@ -163,26 +163,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Function to generate CSV
-  generateCsvButton.addEventListener("click", function () {
-    fetch("../php/generate_unrecoverables_csv.php")
-      .then((response) => response.blob())
-      .then((blob) => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "unrecoverable_items.csv";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        window.URL.revokeObjectURL(url);
-      })
-      .catch((error) => {
-        console.error("Error generating CSV:", error);
-        alert("Error generating CSV file.");
-      });
-  });
-
   // Load data on page load
   loadUnrecoverables();
 });

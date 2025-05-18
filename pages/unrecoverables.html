@@ -7,72 +7,107 @@
 
     <link rel="stylesheet" href="../styles/unrecoverables.css" />
     <link rel="stylesheet" href="../styles/sidenav_styles.css" />
+    <link rel="stylesheet" href="../styles/return_logs_styles.css" />
+    <link rel="stylesheet" href="../styles/download_overlay_styles.css" />
   </head>
   <body>
     <div id="sidebar-container"></div>
     <div class="main-content">
-    <div class="main-wrapper">
-    <div class="header-section" style="display: flex; align-items: center">
-      <div
-        class="heading"
-        style="
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          padding-top: 50px;
-          padding-left: 50px;
-        "
-      >
-        <img
-          src="../assets/images/unrecoverable_icon.png"
-          style="width: 100px; height: 100px"
-        />
-        <h1 style="font-size: 45px; color: #0e2f56">Unrecoverables</h1>
-      </div>
-    </div>
-    <div class="search-section" style="display: flex">
-      <div class="search-bar-section">
-        <span class="search-bar-label">Search</span>
-        <input
-          type="text"
-          id="search-item"
-          placeholder="Search By Serial No."
-        />
-      </div>
+      <div class="main-wrapper">
+        <div class="header-section" style="display: flex; align-items: center">
+          <div
+            class="heading"
+            style="
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              padding-top: 50px;
+              padding-left: 50px;
+            "
+          >
+            <img
+              src="../assets/images/unrecoverable_icon.png"
+              style="width: 100px; height: 100px"
+            />
+            <h1 style="font-size: 45px; color: #0e2f56">Unrecoverables</h1>
+          </div>
+        </div>
+        <div class="search-section" style="display: flex">
+          <div class="search-bar-section">
+            <span class="search-bar-label">Search</span>
+            <input
+              type="text"
+              id="search-item"
+              placeholder="Search By Serial No."
+            />
+          </div>
 
-      <div class="downloads-container" style="margin-left: 100px">
-        <img
-          src="../assets/images/generate_csv.png"
-          style="width: 50px; height: 50px"
-          id="generate-csv"
-        />
+          <div class="downloads-container" style="margin-left: 100px">
+            <img
+              src="../assets/images/generate_csv.png"
+              style="width: 50px; height: 50px"
+              id="generate-csv"
+            />
 
-        <img
-          src="../assets/images/generate_pdf.png"
-          style="width: 50px; height: 50px; display: none"
-          id="generate-pdf"
-        />
+            <img
+              src="../assets/images/generate_pdf.png"
+              style="width: 50px; height: 50px; display: none"
+              id="generate-pdf"
+            />
+          </div>
+        </div>
+        <div class="table-container">
+          <table class="unrecoverables-table">
+            <thead>
+              <tr>
+                <th>Action</th>
+                <th>Status</th>
+                <th>Box Number</th>
+                <th>Accountable</th>
+                <th>Department</th>
+                <th>Item Name</th>
+                <th>Serial No.</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div id="downloadOverlay-csv" class="downloadOverlay">
+          <div class="download-popup">
+            <span class="close-btn" id="closeDownloadBtn">&times;</span>
+            <h2>Download CSV</h2>
+            <div class="column-selector">
+              <p class="selector-title">Select columns to include:</p>
+              <div class="multiselect-container">
+                <div class="multiselect-header">
+                  <span class="header-text">Selected Columns</span>
+                  <!-- <div class="selected-count">
+                    <span class="selected-count-value">0</span> selected
+                  </div> -->
+                  <span class="dropdown-icon">▼</span>
+                </div>
+                <div class="multiselect-dropdown"></div>
+              </div>
+              <div class="action-buttons">
+                <button class="select-all">Select All</button>
+                <button class="deselect-all">Deselect All</button>
+              </div>
+            </div>
+            <div class="adminDeptChoice">
+              <label for="department-select" class="label-style"
+                >Department</label
+              >
+              <select class="department-select" id="department-select">
+                <option value="all">All Departments</option>
+              </select>
+            </div>
+            <button class="download-button" onclick="">Download CSV</button>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="table-container">
-      <table class="unrecoverables-table">
-        <thead>
-          <tr>
-            <th>Action</th>
-            <th>Status</th>
-            <th>Box Number</th>
-            <th>Accountable</th>
-            <th>Department</th>
-            <th>Item Name</th>
-            <th>Serial No.</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
-    </div>
     </div>
     <script src="../scripts/sidebar.js"></script>
     <script src="../scripts/unrecoverables.js"></script>
+    <script src="../scripts/unrecoverables_csv.js"></script>
   </body>
 </html>
