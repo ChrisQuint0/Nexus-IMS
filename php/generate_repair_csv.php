@@ -49,10 +49,10 @@ $sqlColumns = [
     'received_date' => 'gd.received_date',
     'returned_date' => 'gd.return_date',
     'borrower_name' => "CASE
-                WHEN gd.borrower_type = 'student' THEN CONCAT(s.first_name, ' ', s.last_name)
-                WHEN gd.borrower_type IS NOT NULL THEN CONCAT(e.emp_fname, ' ', e.emp_lname)
-                ELSE 'Unknown'
-            END",
+                        WHEN gd.borrower_type = 'student' THEN CONCAT(s.first_name, ' ', s.last_name)
+                        WHEN gd.borrower_type IS NOT NULL THEN CONCAT(e.emp_fname, ' ', e.emp_lname)
+                        ELSE 'Unknown'
+                    END",
     'section' => 's.section',
     'MR' => "CONCAT(emp.emp_fname, ' ', emp.emp_lname)",
     'department' => 'd.department_name'
@@ -102,23 +102,42 @@ if ($userType != 'admin') {
     if (!$stmt->execute()) {
         die('Execute failed: ' . $stmt->error);
     }
-} else if ($userType == 'admin' && $onlyDepartment != '') {
-    // Build query for admin view with specific department
-    $sql = "SELECT " . $selectClause . " " . $baseQuery . " AND emp.department_id = ?";
-    $debug_department = intval($onlyDepartment);
+} else if ($userType == 'admin') {
+    if ($onlyDepartment != '' && $onlyDepartment != '0') {
+        // Build query for admin view with specific department
+        $sql = "SELECT " . $selectClause . " " . $baseQuery . " AND emp.department_id = ?";
+        $debug_department = intval($onlyDepartment);
 
-    // Prepare and execute the statement
-    $stmt = $conn->prepare($sql);
-    if ($stmt === false) {
-        die('Prepare failed: ' . $conn->error);
-    }
-    $stmt->bind_param("i", $debug_department);
-    if (!$stmt->execute()) {
-        die('Execute failed: ' . $stmt->error);
+        // Prepare and execute the statement
+        $stmt = $conn->prepare($sql);
+        if ($stmt === false) {
+            die('Prepare failed: ' . $conn->error);
+        }
+        $stmt->bind_param("i", $debug_department);
+        if (!$stmt->execute()) {
+            die('Execute failed: ' . $stmt->error);
+        }
+    } else if ($onlyDepartment == '0') {
+        // Build query for admin view for ALL departments
+        $sql = "SELECT " . $selectClause . " " . $baseQuery;
+
+        // Prepare and execute the statement
+        $stmt = $conn->prepare($sql);
+        if ($stmt === false) {
+            die('Prepare failed: ' . $conn->error);
+        }
+        if (!$stmt->execute()) {
+            die('Execute failed: ' . $stmt->error);
+        }
+    } else {
+        // fallback for missing or invalid data
+        fputcsv($output, ['Error: No valid department selected']);
+        fclose($output);
+        exit;
     }
 } else {
-    // fallback for missing or invalid data
-    fputcsv($output, ['Error: No valid department selected']);
+    // fallback for missing or invalid data if userType is somehow not admin or dept_head
+    fputcsv($output, ['Error: Invalid user type']);
     fclose($output);
     exit;
 }

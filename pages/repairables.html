@@ -3,23 +3,72 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nexus IMS</title>
+    <title>Nexus IMS - Repairables</title>
 
-    <!--- WARNING ! USING RETURN LOGS STYLE SHEET!-->
     <link rel="stylesheet" href="../styles/return_logs_styles.css" />
     <link rel="stylesheet" href="../styles/sidenav_styles.css" />
     <link rel="stylesheet" href="../styles/repair_dashboard.css" />
+    <style>
+      .table-wrapper {
+        width: 95%; /* Adjust as needed for page width */
+        margin: 20px auto; /* Center the table */
+        border-radius: 10px;
+        overflow: auto; /* Enable scrolling if content overflows */
+        border: 1px solid #ddd; /* Optional border */
+      }
 
-    <!--- Import for HMTL5QR Module!-->
+      .table-table {
+        width: 100%; /* Make table take full width of its container */
+        border-collapse: collapse;
+      }
+
+      .table-table thead tr {
+        background-color: #0e2f56;
+        color: white;
+      }
+
+      .table-table th,
+      .table-table td {
+        padding: 10px 15px;
+        border-bottom: 1px solid #ddd;
+        white-space: nowrap; /* Prevent text from wrapping */
+      }
+
+      .table-table tbody tr:nth-child(odd) {
+        background-color: #f9f9f9;
+      }
+
+      .table-table tbody tr:hover {
+        background-color: #f0f0f0;
+      }
+
+      /* Style for the Edit, Status, Save, Action columns */
+      .table-table td:first-child, /* Edit */
+      .table-table td:nth-child(2), /* Status */
+      .table-table td:nth-child(3), /* Save */
+      .table-table td:nth-child(4) /* Action */ {
+        text-align: center; /* Center the content */
+      }
+
+      /* You might want to adjust the width of these columns */
+      .table-table td:first-child,
+      .table-table td:nth-child(2),
+      .table-table td:nth-child(3),
+      .table-table td:nth-child(4) {
+        width: 50px; /* Example fixed width */
+      }
+    </style>
+
     <script src="../node_modules/html5-qrcode/html5-qrcode.min.js"></script>
   </head>
   <body>
-    <!-- This is the Nav Bar-->
     <div id="sidebar-container"></div>
     <div class="main-content">
       <div class="main-wrapper">
-        <div class="header"><h1>Repairables</h1></div>
-        <div class="searchbar-div">
+        <div class="header">
+          <h1 style="color: #0e2f56; font-size: 50px">Repairables</h1>
+        </div>
+        <div class="searchbar-div" style="margin-bottom: 50px">
           <h2>Search</h2>
           <input
             id="searchbar"
@@ -27,7 +76,17 @@
             placeholder="⌕ Search by Name or Serial Number"
           />
           <button id="scan-btn">Scan QR/Barcode</button>
+          <div class="gen-csv-div" style="margin-left: 100px">
+            <div id="csv_btn" class="downlaod-icons">
+              <img
+                src="../assets/images/generate_csv.png"
+                alt=""
+                style="height: 60px; width: 60px"
+              />
+            </div>
+          </div>
         </div>
+
         <div id="overlayContainer" class="overlay">
           <div class="popup">
             <button class="close-btn" id="closePopupBtn">&times;</button>
@@ -40,26 +99,154 @@
             <table class="table-table">
               <thead>
                 <tr>
-                  <td>Edit</td>
-                  <td>Status</td>
-                  <td>Save</td>
-                  <td>Action</td>
-                  <td>Box No.</td>
-                  <td>Receiver</td>
-                  <td>Item Name</td>
-                  <td>Serial No.</td>
-                  <td>Received Date</td>
-                  <td>Accountable</td>
-                  <td>Reason</td>
+                  <th>Edit</th>
+                  <th>Status</th>
+                  <th>Save</th>
+                  <th>Action</th>
+                  <th>Box No.</th>
+                  <th>Receiver</th>
+                  <th>Item Name</th>
+                  <th>Serial No.</th>
+                  <th>Received Date</th>
+                  <th>Accountable</th>
+                  <th>Reason</th>
                 </tr>
               </thead>
               <tbody>
-                <!--Data goes here-->
+                <tr>
+                  <td><button>Edit</button></td>
+                  <td>In Progress</td>
+                  <td><button>Save</button></td>
+                  <td><button>View</button></td>
+                  <td>BX001</td>
+                  <td>John Doe</td>
+                  <td>Laptop</td>
+                  <td>SN12345</td>
+                  <td>2024-07-26</td>
+                  <td>Jane Smith</td>
+                  <td>Broken Screen</td>
+                </tr>
+                <tr>
+                  <td><button>Edit</button></td>
+                  <td>Pending</td>
+                  <td><button>Save</button></td>
+                  <td><button>View</button></td>
+                  <td>BX002</td>
+                  <td>Alice Brown</td>
+                  <td>Keyboard</td>
+                  <td>KB67890</td>
+                  <td>2024-07-25</td>
+                  <td>Bob Williams</td>
+                  <td>Sticky Keys</td>
+                </tr>
+                <tr>
+                  <td><button>Edit</button></td>
+                  <td>Fixed</td>
+                  <td><button>Save</button></td>
+                  <td><button>View</button></td>
+                  <td>BX003</td>
+                  <td>Charlie Green</td>
+                  <td>Mouse</td>
+                  <td>MS11223</td>
+                  <td>2024-07-24</td>
+                  <td>Diana Miller</td>
+                  <td>Not Working</td>
+                </tr>
+                <tr>
+                  <td><button>Edit</button></td>
+                  <td>In Progress</td>
+                  <td><button>Save</button></td>
+                  <td><button>View</button></td>
+                  <td>BX004</td>
+                  <td>Eve White</td>
+                  <td>Monitor</td>
+                  <td>MN44556</td>
+                  <td>2024-07-23</td>
+                  <td>Frank Black</td>
+                  <td>Flickering</td>
+                </tr>
+                <tr>
+                  <td><button>Edit</button></td>
+                  <td>Pending</td>
+                  <td><button>Save</button></td>
+                  <td><button>View</button></td>
+                  <td>BX005</td>
+                  <td>Grace Grey</td>
+                  <td>Webcam</td>
+                  <td>WC77889</td>
+                  <td>2024-07-22</td>
+                  <td>Henry Blue</td>
+                  <td>No Image</td>
+                </tr>
+                <tr>
+                  <td><button>Edit</button></td>
+                  <td>Fixed</td>
+                  <td><button>Save</button></td>
+                  <td><button>View</button></td>
+                  <td>BX006</td>
+                  <td>Ivy Stone</td>
+                  <td>Speaker</td>
+                  <td>SP99001</td>
+                  <td>2024-07-21</td>
+                  <td>Jack Gold</td>
+                  <td>No Sound</td>
+                </tr>
+                <tr>
+                  <td><button>Edit</button></td>
+                  <td>In Progress</td>
+                  <td><button>Save</button></td>
+                  <td><button>View</button></td>
+                  <td>BX007</td>
+                  <td>Kelly Lime</td>
+                  <td>Headphones</td>
+                  <td>HP22334</td>
+                  <td>2024-07-20</td>
+                  <td>Liam Pink</td>
+                  <td>Broken Mic</td>
+                </tr>
+                <tr>
+                  <td><button>Edit</button></td>
+                  <td>Pending</td>
+                  <td><button>Save</button></td>
+                  <td><button>View</button></td>
+                  <td>BX008</td>
+                  <td>Mia Teal</td>
+                  <td>Projector</td>
+                  <td>PJ55667</td>
+                  <td>2024-07-19</td>
+                  <td>Noah Silver</td>
+                  <td>Not Powering On</td>
+                </tr>
+                <tr>
+                  <td><button>Edit</button></td>
+                  <td>Fixed</td>
+                  <td><button>Save</button></td>
+                  <td><button>View</button></td>
+                  <td>BX009</td>
+                  <td>Olivia Maroon</td>
+                  <td>Tablet</td>
+                  <td>TB88990</td>
+                  <td>2024-07-18</td>
+                  <td>Owen Bronze</td>
+                  <td>Cracked Screen</td>
+                </tr>
+                <tr>
+                  <td><button>Edit</button></td>
+                  <td>In Progress</td>
+                  <td><button>Save</button></td>
+                  <td><button>View</button></td>
+                  <td>BX010</td>
+                  <td>Quinn Navy</td>
+                  <td>Printer</td>
+                  <td>PR11223</td>
+                  <td>2024-07-17</td>
+                  <td>Riley Copper</td>
+                  <td>Paper Jam</td>
+                </tr>
               </tbody>
             </table>
           </div>
         </div>
-        <!-- View More Overlay -->
         <div id="viewMoreOverlay" class="overlay">
           <div class="popup" id="viewMore-popup-container">
             <button class="close-btn" onclick="closePopup('viewMoreOverlay')">
@@ -78,7 +265,6 @@
                 <p id="viewMore-address">Address:</p>
               </div>
               <div class="viewMore-up-right">
-                <!--Image of the borrower-->
                 <img
                   class="borrower-photo"
                   src="../assets/images/photo_test_2.jpg"
@@ -89,9 +275,6 @@
           </div>
         </div>
         <div class="request-wrapper">
-          <div id="csv_btn" class="downlaod-icons">
-            <img src="../assets/images/generate_csv.png" alt="" />
-          </div>
           <div id="pdf_btn" class="downlaod-icons">
             <img
               src="../assets/images/generate_pdf.png"
@@ -126,9 +309,7 @@
               <span class="dropdown-icon">▼</span>
             </div>
 
-            <div class="multiselect-dropdown">
-              <!-- Column options will be inserted here by JavaScript -->
-            </div>
+            <div class="multiselect-dropdown"></div>
           </div>
 
           <div class="action-buttons">
@@ -145,7 +326,6 @@
       </div>
     </div>
 
-    <!-- PDF Download Overlay -->
     <div id="downloadOverlay-pdf" class="downloadOverlay">
       <div class="datePicker">
         <span
@@ -170,9 +350,7 @@
               <span class="dropdown-icon">▼</span>
             </div>
 
-            <div class="multiselect-dropdown">
-              <!-- Column options will be inserted here by JavaScript -->
-            </div>
+            <div class="multiselect-dropdown"></div>
           </div>
 
           <div class="action-buttons">

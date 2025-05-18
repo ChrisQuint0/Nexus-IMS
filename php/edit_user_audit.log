@@ -333,3 +333,10 @@
 [2025-05-18 02:42:05] Before bind_param - bindValues count: 6
 [2025-05-18 02:42:05] Attempting to update user ID: 25, Username: Christopher Quinto, Email: quinto_christopher@plpasig.edu.ph, Role: dept_head, Department ID: 6, Account Status: activated by admin ID: 17
 [2025-05-18 02:42:05] User ID: 25 updated successfully by admin ID: 17.
+[2025-05-18 03:50:57] Received edit user request from IP: ::1
+[2025-05-18 03:50:57] Received JSON data: {"user_id":25,"username":"Christopher Quinto","email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538","role":"dept_head","department_id":"6","account_status":"activated"}
+[2025-05-18 03:50:57] Before bind_param - bindTypes: sssissi
+[2025-05-18 03:50:57] Before bind_param - bindValues count: 7
+[2025-05-18 03:50:57] Before bind_param - passwordBindValue: $2y$10$1r74D4z2uJEyc8dGyl1VHOdwy6drtCwWgroLc9ey7kLJCshNlVO2q
+[2025-05-18 03:50:57] Attempting to update user ID: 25, Username: Christopher Quinto, Email: quinto_christopher@plpasig.edu.ph, Role: dept_head, Department ID: 6, Account Status: activated, Password (hashed): $2y$10$1r74D4z2uJEyc8dGyl1VHOdwy6drtCwWgroLc9ey7kLJCshNlVO2q by admin ID: 17
+[2025-05-18 03:50:57] User ID: 25 updated successfully by admin ID: 17 with password change.
