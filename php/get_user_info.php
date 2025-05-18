@@ -2,9 +2,21 @@
 session_start();
 include 'db.php'; // Include your database connection
 
+// Check if user is logged in
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header('Content-Type: application/json');
+    echo json_encode([
+        'success' => false,
+        'message' => 'Session invalid'
+    ]);
+    exit();
+}
+
 $response = [
+    'success' => true,
     'is_admin' => $_SESSION['user_type'] === 'admin',
     'department_id' => $_SESSION['department_id'] ?? null,
+    'userType' => $_SESSION['user_type'] ?? null,
     'departments' => []
 ];
 

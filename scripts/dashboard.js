@@ -3,21 +3,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const welcomeMessage = document.getElementById("welcome-message");
 
-  fetch("../php/check_session.php", {
+  fetch("../php/get_user_info.php", {
     credentials: "include",
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data.logged_in && data.username) {
+      if (!data.success) {
+        window.location.href = "../pages/login.html";
+        return;
+      }
+      if (data.userType && data.username) {
         welcomeMessage.textContent = `Welcome ${data.username}!`;
-      } else {
-        // If not logged in, redirect to the login page
-        // window.location.href = "../pages/login.html";
       }
     })
     .catch((error) => {
       console.error("Error checking session:", error);
-      // window.location.href = "../pages/login.html"; // Redirect on error as well
+      window.location.href = "../pages/login.html";
     });
 });
 

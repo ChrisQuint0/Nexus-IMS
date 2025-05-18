@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .then((response) => response.json())
     .then((data) => {
       if (!data.success) {
-        alert(data.message || "Session invalid");
+        window.location.href = "../pages/login.html";
         return;
       }
       userType = data.userType;
@@ -99,6 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch((error) => {
       console.error("Error checking session:", error);
+      window.location.href = "../pages/login.html";
     });
 
   // Set up download buttons

@@ -508,3 +508,26 @@
 [2025-05-18 07:43:58] User found with email: super_admin@gmail.com, User ID: 17
 [2025-05-18 07:43:58] Account is activated for user: Super Admin
 [2025-05-18 07:43:59] Login successful for user: Super Admin. Session variables set.
+[2025-05-18 08:34:03] Received login request from origin: http://localhost, IP: ::1
+[2025-05-18 08:34:03] Session already active with ID: jirk9o52ekshnc4d411ds6fvk4
+[2025-05-18 08:34:03] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-18 08:34:03] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 25
+[2025-05-18 08:34:03] Account is activated for user: Christopher Quinto
+[2025-05-18 08:34:03] Login successful for user: Christopher Quinto. Session variables set.
+[2025-05-18 08:34:15] Received login request from origin: http://localhost, IP: ::1
+[2025-05-18 08:34:15] Session already active with ID: jirk9o52ekshnc4d411ds6fvk4
+[2025-05-18 08:34:15] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-18 08:34:15] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 25
+[2025-05-18 08:34:15] Account is activated for user: Christopher Quinto
+[2025-05-18 08:34:16] Login successful for user: Christopher Quinto. Session variables set.
+[2025-05-18 08:35:29] Received login request from origin: http://localhost, IP: ::1
+[2025-05-18 08:35:29] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-18 08:35:29] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 25
+[2025-05-18 08:35:29] Account is activated for user: Christopher Quinto
+[2025-05-18 08:35:29] Login successful for user: Christopher Quinto. Session variables set.
+[2025-05-18 08:39:59] Received login request from origin: http://localhost, IP: 127.0.0.1
+[2025-05-18 08:39:59] Session started with ID: kvh487rlfkfi5v9guv8ptd9bjc
+[2025-05-18 08:39:59] Received JSON data: {"email":"quinto_christopher@plpasig.edu.ph","password":"Pass@1538"}
+[2025-05-18 08:39:59] User found with email: quinto_christopher@plpasig.edu.ph, User ID: 25
+[2025-05-18 08:39:59] Account is activated for user: Christopher Quinto
+[2025-05-18 08:40:00] Login successful for user: Christopher Quinto. Session variables set.
