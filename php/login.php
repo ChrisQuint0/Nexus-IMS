@@ -1,4 +1,5 @@
 <?php
+require_once 'db_functions.php';
 
 // Determine the origin of the request
 $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
@@ -55,12 +56,12 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Database connection details
 $host = "localhost";
-$db = "nexus_ims_db_dummy";
+
 $user = "root";
 $pass = "";
 
 // Connect to MySQL
-$conn = new mysqli($host, $user, $pass, $db);
+$conn = get_database_connection();
 if ($conn->connect_error) {
     http_response_code(500);
     echo json_encode(["success" => false, "message" => "Database connection failed."]);

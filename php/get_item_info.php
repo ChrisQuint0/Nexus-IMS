@@ -4,13 +4,13 @@ header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
 
 // Database connection details (as before)
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "nexus_ims_db_dummy";
+require_once 'db_functions.php';
+
+// Get database connection
+$conn = get_pdo_connection();
 
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn = get_database_connection();
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     echo json_encode(['success' => false, 'message' => "Database error: " . $e->getMessage()]);

@@ -1,4 +1,6 @@
 <?php
+require_once 'db_functions.php';
+
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
@@ -12,16 +14,8 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Database connection
-try {
-    $conn = new mysqli("localhost", "root", "", "nexus_ims_db_dummy");
-    if ($conn->connect_error) {
-        throw new Exception("Connection failed: " . $conn->connect_error);
-    }
-} catch (Exception $e) {
-    echo json_encode(['error' => 'Database connection error']);
-    exit;
-}
+// Get database connection
+$conn = get_database_connection();
 
 $baseSqlGadget = "SELECT
     gd.dist_id,

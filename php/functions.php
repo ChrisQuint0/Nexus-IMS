@@ -54,6 +54,18 @@ function generateResetLink($token) {
     $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
     $host = rtrim($host, '/');
     
+    // Get the directory path dynamically
+    $path = dirname($_SERVER['PHP_SELF']);
+    // Remove '/php' from the path if it exists at the end
+    $path = preg_replace('#/php$#', '', $path);
+    
+    // Debug logging
+    error_log("Reset Link Generation Debug:");
+    error_log("PHP_SELF: " . $_SERVER['PHP_SELF']);
+    error_log("Directory Path: " . $path);
+    error_log("Host: " . $host);
+    error_log("Protocol: " . $protocol);
+    
     // URL encode token
     $encodedToken = urlencode($token);
     
@@ -62,7 +74,10 @@ function generateResetLink($token) {
         throw new Exception("Invalid components for reset link generation");
     }
     
-    return "$protocol://$host/MIS-Nexus-Inventory-Management-NIMS-/php/reset_pass.php?token=$encodedToken";
+    $resetLink = "$protocol://$host$path/php/reset_pass.php?token=$encodedToken";
+    error_log("Generated Reset Link: " . $resetLink);
+    
+    return $resetLink;
 }
 
 function sendResetEmail($email, $resetLink) {

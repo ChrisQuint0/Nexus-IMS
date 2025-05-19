@@ -1,4 +1,6 @@
 <?php
+require_once 'db_functions.php';
+
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
@@ -8,12 +10,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Database connection
-$conn = new mysqli("localhost", "root", "", "nexus_ims_db_dummy");
-if ($conn->connect_error) {
-    echo json_encode(['error' => 'Database connection error']);
-    exit;
-}
+// Get database connection
+$conn = get_database_connection();
 
 // Start the session to access user information
 session_start();

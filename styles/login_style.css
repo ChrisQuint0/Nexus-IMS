@@ -8,6 +8,7 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -170,4 +171,144 @@ select:focus {
   border-color: #1c2143;
   outline: none;
   box-shadow: 0 0 6px rgba(28, 33, 67, 0.4);
+}
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 390px) {
+  .main-wrapper {
+    flex-direction: column;
+  }
+
+  #logo-div {
+    position: relative;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  #logo-div img {
+    height: 40px !important;
+    width: auto !important;
+    margin-top: 0 !important;
+  }
+
+  #logo-div h1 {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+  }
+
+  #left-div {
+    width: 100%;
+    height: auto;
+    order: 2;
+    padding: 1rem;
+  }
+
+  #prompt-div {
+    width: 100%;
+    padding: 1rem;
+    height: auto;
+    margin-top: 0 !important;
+  }
+
+  #prompt-div-login {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  #login-form input {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.8rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  #login-btn {
+    width: 100% !important;
+    font-size: 1rem !important;
+    padding: 12px !important;
+  }
+
+  #right-div {
+    width: 100%;
+    height: auto;
+    order: 1;
+    padding: 2rem 1rem;
+  }
+
+  #login-image {
+    max-height: 200px;
+    margin-bottom: 1.5rem;
+  }
+
+  #right-div-h1 {
+    font-size: 1.5rem !important;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  #right-div-h3 {
+    font-size: 1rem !important;
+    text-align: center;
+  }
+
+  .password-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .show-password {
+    display: flex;
+    align-items: center;
+  }
+
+  .forgot-password-link {
+    text-align: center;
+  }
+}
+
+/* Tablet Responsive Styles */
+@media screen and (min-width: 391px) and (max-width: 768px) {
+  .main-wrapper {
+    flex-direction: column;
+  }
+
+  #logo-div {
+    position: relative;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+
+  #left-div {
+    width: 100%;
+    order: 2;
+  }
+
+  #prompt-div {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  #login-form input {
+    width: 100%;
+  }
+
+  #login-btn {
+    width: 100% !important;
+  }
+
+  #right-div {
+    width: 100%;
+    order: 1;
+    padding: 3rem 1rem;
+  }
 }

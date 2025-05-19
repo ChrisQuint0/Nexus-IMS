@@ -1,4 +1,6 @@
 <?php
+require_once 'db_functions.php';
+
 // Set response headers
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
@@ -8,20 +10,11 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Database connection
-try {
-    $conn = new mysqli("localhost", "root", "", "nexus_ims_db_dummy");
-    if ($conn->connect_error) {
-        throw new Exception("Connection failed: " . $conn->connect_error);
-    }
+// Get database connection
+$conn = get_database_connection();
 
-    // ✅ Ensure UTF-8 character set is used
-    $conn->set_charset("utf8mb4");
-
-} catch (Exception $e) {
-    echo json_encode(['error' => 'Database connection error']);
-    exit;
-}
+// ✅ Ensure UTF-8 character set is used
+$conn->set_charset("utf8mb4");
 
 session_start();
 $userType = $_SESSION['user_type'] ?? null;

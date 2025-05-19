@@ -1,8 +1,10 @@
 <?php
-$host = 'localhost';
-$dbname = 'nexus_ims_db_dummy';
-$username = 'root';
-$password = '';
+require_once 'db_config.php';
+
+$host = DB_HOST;
+$dbname = DB_NAME;
+$username = DB_USER;
+$password = DB_PASS;
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);

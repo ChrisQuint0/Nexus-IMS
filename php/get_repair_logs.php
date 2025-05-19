@@ -4,13 +4,13 @@ header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
 
 // Database connection details
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "nexus_ims_db_dummy";
+require_once 'db_functions.php';
+
+// Get database connection
+$conn = get_pdo_connection();
 
 // Create connection
-$conn = new mysqli($host, $username, $password, $database);
+$conn = get_database_connection();
 
 // Check connection
 if ($conn->connect_error) {

@@ -1,19 +1,13 @@
 <?php
+require_once 'db_functions.php';
+
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 
-// Database connection
-try {
-    $conn = new mysqli("localhost", "root", "", "nexus_ims_db_dummy");
-    if ($conn->connect_error) {
-        throw new Exception("Connection failed: " . $conn->connect_error);
-    }
-} catch (Exception $e) {
-    echo json_encode(['success' => false, 'error' => 'Database connection error']);
-    exit;
-}
+// Get database connection
+$conn = get_database_connection();
 
 // Get the POST data
 $data = json_decode(file_get_contents('php://input'), true);

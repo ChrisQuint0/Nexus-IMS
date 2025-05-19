@@ -1,13 +1,14 @@
 <?php
+require_once 'db_functions.php';
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
 $host = 'localhost';
-$db = 'nexus_ims_db_dummy';
+
 $user = 'root';
 $pass = '';
 
-$conn = new mysqli($host, $user, $pass, $db);
+$conn = get_database_connection();
 
 if ($conn->connect_error) {
     die(json_encode(['success' => false, 'message' => "Connection failed: " . $conn->connect_error])); // Added success: false

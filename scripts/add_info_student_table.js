@@ -8,21 +8,60 @@ let allDepartments = []; // To store all fetched department data
 
 // Function to fetch student data and departments from the PHP backend
 function fetchStudentData() {
+  console.log("Fetching student data...");
   fetch("../php/get_students.php")
     .then((response) => {
+      console.log("Response status:", response.status);
+      console.log("Response headers:", response.headers);
+
+      // First check if the response is ok
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        return response.text().then((text) => {
+          console.error(
+            "Response not OK. Status:",
+            response.status,
+            "Text:",
+            text
+          );
+          throw new Error(`HTTP error! status: ${response.status}`);
+        });
       }
-      return response.json();
+
+      // Try to parse as JSON
+      return response.text().then((text) => {
+        console.log("Raw response:", text);
+        try {
+          return JSON.parse(text);
+        } catch (e) {
+          console.error("JSON Parse Error:", e);
+          console.error("Received text:", text);
+          throw new Error("Failed to parse JSON response");
+        }
+      });
     })
     .then((data) => {
-      allStudentData = data.students; // Assuming your PHP returns { students: [], departments: [] }
+      console.log("Parsed data:", data);
+
+      if (!data.success) {
+        throw new Error(data.error || "Server returned an error");
+      }
+
+      if (!data.students || !data.departments) {
+        console.error("Missing expected data:", data);
+        throw new Error("Invalid data structure received");
+      }
+
+      allStudentData = data.students;
       allDepartments = data.departments;
+      console.log(
+        `Loaded ${allStudentData.length} students and ${allDepartments.length} departments`
+      );
       populateStudentTable(allStudentData);
     })
     .catch((error) => {
-      console.error("Error fetching student data:", error);
-      alert("Failed to load student data.");
+      console.error("Error in fetchStudentData:", error);
+      console.error("Stack trace:", error.stack);
+      alert(`Failed to load student data: ${error.message}`);
     });
 }
 

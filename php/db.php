@@ -1,8 +1,10 @@
 <?php
-$host = 'localhost';
-$db = 'nexus_ims_db_dummy';
-$user = 'root';
-$pass = '';
+require_once 'db_config.php';
+
+$host = DB_HOST;
+$db = DB_NAME;
+$user = DB_USER;
+$pass = DB_PASS;
 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");

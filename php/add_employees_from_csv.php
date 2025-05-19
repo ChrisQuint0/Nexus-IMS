@@ -5,13 +5,13 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 
 // Database connection details (replace with your actual credentials)
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "nexus_ims_db_dummy";
+require_once 'db_functions.php';
+
+// Get database connection
+$conn = get_pdo_connection();
 
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn = get_database_connection();
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     echo json_encode(['success' => false, 'message' => "⚠️ Database Connection Error: Unable to connect to the database. Technical details: " . $e->getMessage()]);

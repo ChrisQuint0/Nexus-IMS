@@ -4,12 +4,12 @@ header("Content-Type: application/json");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "nexus_ims_db_dummy";
+require_once 'db_functions.php';
 
-$conn = new mysqli($host, $username, $password, $database);
+// Get database connection
+$conn = get_pdo_connection();
+
+$conn = get_database_connection();
 
 if ($conn->connect_error) {
     die(json_encode(["error" => "Connection failed: " . $conn->connect_error]));

@@ -53,24 +53,30 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Event listeners for main popup
-  showPopupBtn.addEventListener("click", function (event) {
-    event.preventDefault(); // Prevent form submission
-    event.stopPropagation(); // Stop event bubbling
-    showPopup();
-  });
+  if (showPopupBtn) {
+    showPopupBtn.addEventListener("click", function (event) {
+      event.preventDefault(); // Prevent form submission
+      event.stopPropagation(); // Stop event bubbling
+      showPopup();
+    });
+  }
 
-  closePopupBtn.addEventListener("click", function (event) {
-    event.preventDefault(); // Prevent form submission
-    event.stopPropagation(); // Stop event bubbling
-    hidePopup();
-  });
+  if (closePopupBtn) {
+    closePopupBtn.addEventListener("click", function (event) {
+      event.preventDefault(); // Prevent form submission
+      event.stopPropagation(); // Stop event bubbling
+      hidePopup();
+    });
+  }
 
   // Close popup when clicking outside the popup content
-  overlayContainer.addEventListener("click", (event) => {
-    if (event.target === overlayContainer) {
-      hidePopup();
-    }
-  });
+  if (overlayContainer) {
+    overlayContainer.addEventListener("click", (event) => {
+      if (event.target === overlayContainer) {
+        hidePopup();
+      }
+    });
+  }
 
   // Side navigation functions
   function hideShowBtn() {
@@ -131,9 +137,33 @@ document.addEventListener("DOMContentLoaded", function () {
   let allReturnLogs = [];
   let selectedLogRowData = null;
 
-  function populateTable(data) {
-    console.log("populateTable called with data:", data);
+  function populateTable(response) {
+    console.log("populateTable called with response:", response);
+
+    if (!response || !response.success) {
+      console.error("Invalid response format or error:", response);
+      return;
+    }
+
+    const data = response.data || [];
+    console.log("Processing data array of length:", data.length);
+
+    if (!Array.isArray(data)) {
+      console.error("Data is not an array:", data);
+      return;
+    }
+
     tableBody.innerHTML = ""; // Clear existing table rows
+
+    if (data.length === 0) {
+      const row = tableBody.insertRow();
+      const cell = row.insertCell();
+      cell.colSpan = 12; // Adjust based on your table columns
+      cell.textContent = "No return logs found";
+      cell.style.textAlign = "center";
+      return;
+    }
+
     data.forEach((log) => {
       const row = tableBody.insertRow();
       row.style.cursor = "pointer"; // Indicate row is clickable
@@ -252,24 +282,37 @@ document.addEventListener("DOMContentLoaded", function () {
         accountableName.includes(lowerCaseQuery)
       );
     });
-    populateTable(filteredLogs);
+    populateTable({ success: true, data: filteredLogs });
   }
 
-  searchInput.addEventListener("input", function () {
-    const query = this.value.trim();
-    filterTable(query);
-  });
+  // Add event listener to search input
+  if (searchInput) {
+    searchInput.addEventListener("input", function () {
+      filterTable(this.value.trim());
+    });
+  }
 
+  // Fetch return logs data
   fetch("../php/get_return_logs.php")
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
     .then((data) => {
-      allReturnLogs = data;
-      populateTable(data);
+      console.log("Fetched data:", data);
+      if (data && data.success) {
+        allReturnLogs = data.data || [];
+        populateTable(data);
+      } else {
+        console.error("Invalid data format received:", data);
+        throw new Error("Invalid data format received");
+      }
     })
     .catch((error) => {
       console.error("Error fetching return logs:", error);
-      tableBody.innerHTML =
-        '<tr><td colspan="12">Failed to load return logs.</td></tr>';
+      tableBody.innerHTML = `<tr><td colspan="12" style="text-align: center;">Error loading return logs: ${error.message}</td></tr>`;
     });
 
   // Close the view more overlay when the close button is clicked
