@@ -1,4 +1,6 @@
 <?php
+
+//Note from Toffer: This credentials is no longer in use, so no worries here.
 // Database Configuration
 define('DB_HOST', 'sql212.infinityfree.com');
 define('DB_NAME', 'if0_38748003_nexus_ims_db');
